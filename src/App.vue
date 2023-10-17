@@ -37,7 +37,7 @@ import { store } from './store';
 <template>
 
     <HeaderComponent/>
-    
+
     <!--🔰 router view down here, here slides main content -->
     <router-view></router-view>
 
@@ -51,9 +51,12 @@ import { store } from './store';
 
 
 <style lang="scss">
-@use 'assets/scss/main.scss';
+@import 'assets/scss/main.scss';
+@import 'assets/scss/variables.scss';
 
-
-
-
+// import font from local space 
+@font-face {
+    font-family: 'buenos aires regular'  ;
+    src: url('./assets/scss/font/buenosaires/BuenosAires-Regular.ttf');
+}
 </style>
