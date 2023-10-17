@@ -37,7 +37,7 @@ export default {
               </button>
             </li>
             <li>
-              <button class="btn btn-light mx-2 px-2 py-1 rounded-4">
+              <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
                 <a class="text-dark px-2" href="">Accedi</a>
               </button>
             </li>
