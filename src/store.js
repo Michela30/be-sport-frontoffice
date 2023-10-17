@@ -2,10 +2,22 @@ import { reactive } from "vue";
 // import braintree from "braintree-web";
 
 const store = reactive({
-    api: "http://127.0.0.1:8000/api/restaurants/",
-    base_api: "http://127.0.0.1:8000/",
-    post_api: "http://127.0.0.1:8000/api/orders",
-    mail_api: "http://127.0.0.1:8000/api/leads",
+    // 💚 axios in app.vue put all trainers here
+    allTrainers: '',
+
+    allSpecs: [
+        // this will fill with api call now is placeholder 📛
+        'Swimming',
+        'Sport Climbing',
+        'Volleyball',
+        'Dance',
+        'Fitness',
+        'Artistic Gymnastic',
+        'Basket',
+        'Martial Arts',
+        'Tennis',
+        'Boxe',
+    ],
 
 });
 

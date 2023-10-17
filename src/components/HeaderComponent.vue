@@ -33,7 +33,7 @@ export default {
             </li>
             <li>
               <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
-                <a class="text-dark" href="">Search</a>
+                <router-link class="text-dark" :to="{ name: 'search' }">Search</router-link>
               </button>
             </li>
             <li>

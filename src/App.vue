@@ -1,35 +1,37 @@
 <script>
-//import
+// import
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import axios from 'axios';
 import { store } from './store';
 
-   export default {
-    data() {
-      return{
+export default {
+  data() {
+    return {
       store,
-      }
-    },
-    components: {
-      HeaderComponent,
-      MainComponent,
-      FooterComponent
-    },
-    methods(){
-
-    },
-    created(){
-      // axios.get('')
-      // .then(response => {
-      //   console.log(response.data)
-      // })
-
-    },
-    mounted(){
     }
+  },
+  components: {
+    HeaderComponent,
+    MainComponent,
+    FooterComponent
+  },
+  methods: {
+
+  },
+  created() {
+    axios
+      .get('http://127.0.0.1:8000/api/trainers/')
+      .then(response => {
+        this.store.allTrainers = response.data.trainers;
+        console.log(this.store.allTrainers)
+      })
+  },
+  mounted() {
+
   }
+}
 </script>
 
 
