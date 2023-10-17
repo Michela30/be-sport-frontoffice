@@ -28,7 +28,6 @@ import { store } from './store';
 
     },
     mounted(){
-      store.braintree();
     }
   }
 </script>
@@ -36,19 +35,16 @@ import { store } from './store';
 
 
 <template>
-  <div>
-    <div id="dropin-wrapper">
-    <div id="checkout-message"></div>
-    <div id="dropin-container"></div>
-    <button id="submit-button">Submit payment</button>
-  </div>
-    <HeaderComponent/>
 
-    <MainComponent/>
+    <HeaderComponent/>
+    
+    <!--🔰 router view down here, here slides main content -->
+    <router-view></router-view>
+
+    <!-- <MainComponent/> -->
 
     <FooterComponent/>
 
-  </div>
 </template>
 
 
