@@ -43,7 +43,7 @@ export default {
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
-                        <!-- this fire the search -->
+                        <!--💚 this fire the search -->
                         <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
                         <div v-else>Search</div>
                     </button>
@@ -76,6 +76,11 @@ export default {
                             Rating:
                         </div>
                         <!-- rotta vue allo show qui poi -->
+                        <button class="btn search-button p-2 rounded-3 mx-1">
+                            <!--💙 this fire the show -->
+                            <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">Search</router-link>
+                            
+                        </button>
                     </div>
                 </div>
             </div>
