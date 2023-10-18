@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       store,
+      objSpec: '',
     }
   },
   components: {
@@ -26,8 +27,15 @@ export default {
       .then(response => {
         this.store.allTrainers = response.data.trainers;
         console.log(this.store.allTrainers)
+      });
+      axios
+      .get('http://127.0.0.1:8000/api/specializations/')
+      .then(response => {
+        this.objSpec = response.data.specializations.name;
+        console.log(this.objSpec)
       })
   },
+  
   mounted() {
 
   }

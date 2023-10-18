@@ -61,8 +61,6 @@ export default {
                 <!-- Inizio Card -->
             <div class="row py-5">
                 <div class="card" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-
-                 
                     <img :src="singleTrainer.picture" class="card-img-top" alt="...">
                     <div class="card-body text-center ">
                         <h5 class="card-title ">{{ singleTrainer.user.name }}</h5>
