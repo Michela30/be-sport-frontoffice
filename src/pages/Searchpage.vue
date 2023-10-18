@@ -55,6 +55,12 @@ export default {
                 </div>
             </div>
         </div>
+        <!-- here shows all trainer for that specific spec -->
+        <div class="row">
+            <h2>
+                all trainers from that specific spec
+            </h2>
+        </div>
     </div>
 </template>
 
