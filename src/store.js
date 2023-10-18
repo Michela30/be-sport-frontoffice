@@ -6,18 +6,21 @@ const store = reactive({
     allTrainers: '',
 
     allSpecs: []
-        // this will fill with api call now is placeholder 📛
-        // 'Swimming',
-        // 'Sport Climbing',
-        // 'Volleyball',
-        // 'Dance',
-        // 'Fitness',
-        // 'Artistic Gymnastic',
-        // 'Basket',
-        // 'Martial Arts',
-        // 'Tennis',
-        // 'Boxe',
-    ,
+    // [
+    //     // this will fill with api call now is placeholder 📛
+    //     // 'Swimming',
+    //     // 'Sport Climbing',
+    //     // 'Volleyball',
+    //     // 'Dance',
+    //     // 'Fitness',
+    //     // 'Artistic Gymnastic',
+    //     // 'Basket',
+    //     // 'Martial Arts',
+    //     // 'Tennis',
+    //     // 'Boxe',
+    // ]
+        
+    
 
 });
 
