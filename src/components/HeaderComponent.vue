@@ -38,7 +38,12 @@ export default {
             </li>
             <li>
               <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
-                <a class="text-dark px-2" href="">Accedi</a>
+                <a class="text-dark px-2" href="http://127.0.0.1:8000/login">Login</a>
+              </button>
+            </li>
+            <li>
+              <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
+                <a class="text-dark px-2" href="http://127.0.0.1:8000/register">Register</a>
               </button>
             </li>
           </ul>
