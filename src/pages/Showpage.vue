@@ -1,18 +1,26 @@
 <script>
-//import
+import axios from 'axios';
+import { store } from "../store";
 
 export default {
     data() {
         return {
             //dati
+            singleTrainer: ''
         }
     },
     methods: {
-        //function
-        getImagePath: function (image) {
-            return new URL(image, import.meta.url).href;
-        }
     },
+    created() {
+        axios
+            .get(`http://127.0.0.1:8000/api/trainers/${this.$route.params.id}`)
+            .then(response => {
+                console.log(this.$route.params.id);
+                console.log(response.data);
+                // questo riempie il singolo trainer con i dati filtrati dalla api
+                this.singleTrainer = response.data;
+            })
+    }
 
 }
 </script>
@@ -20,7 +28,13 @@ export default {
 
 <template>
     <h1>Ciao funziona lo show!</h1>
-       <router-link :to="{ name: 'home' }">link to Home</router-link>
+      <div class="container">
+        <div class="row">
+            <div class="imgWrapper">
+                
+            </div>
+        </div>
+      </div>
 </template>
 
 

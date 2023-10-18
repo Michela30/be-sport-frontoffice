@@ -120,10 +120,6 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
-.search-button:hover {
-    background-color: lightcoral;
-}
-
 .search-button {
     background-color: rgb(253, 215, 215);
 }
@@ -137,8 +133,12 @@ export default {
     background-color: lightgray;
 }
 .card{
-    min-height: 95%;
+     min-height: 95%;
     margin-bottom: 20px;
+    .search-button:hover {
+    background-color: lightcoral;
+}
+   
     .single-Spec{
         background-color: lightcoral;
         padding: 5px;
@@ -164,8 +164,6 @@ export default {
         font-weight: bold;
         color: $brightText;
         text-shadow: 2px 2px 2px $darkColor;
-
-
     }
     .my-surname{
         position: absolute;
