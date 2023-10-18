@@ -37,9 +37,9 @@ export default {
             <router-link :to="{ name: 'search' }">link to search</router-link>
         </h1> -->
 
-        <div class="row my-5">
-            <div class="col d-flex justify-content-center">
-                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4 mb-5" @click="showSpecial()">
+        <div class="row my-5 ">
+            <div class="col d-flex justify-content-center ">
+                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
@@ -50,7 +50,7 @@ export default {
                 </div>
             </div>
             <!-- {{ foundSpecs }} -->
-            <div class="row justify-content-center pt-1">
+            <div class="row justify-content-center pt-1 mb-5">
                 <div class=" col-12 w-75 d-flex bg-white rounded    ">
                     <div class="" v-if="this.showSpecs">
                         <div v-for="singleSpecs in foundSpecs">

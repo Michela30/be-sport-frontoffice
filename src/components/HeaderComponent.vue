@@ -18,12 +18,13 @@ export default {
   <header class="">
     <div class="container-fluid p-3">
       <div class="row align-items-center">
-        <div class="col h-100">
+        <div class="col h-100 ">
           <!-- <div class="imgWrapper debug">
             <img src="../assets/imgs/superlogo.png" alt="a" class="float-start">
           </div> -->
-           <router-link :to="{ name: 'home' }"><h6 class="logoTypo">Be<span>Sport</span></h6></router-link>
+           <router-link :to="{ name: 'home' }"><h6 class=" logoTypo">Be<span>Sport</span></h6></router-link>
         </div>
+            
         <div class="col h-100">
           <ul class="d-flex justify-content-end ">
             <li>
@@ -61,6 +62,10 @@ export default {
 
 * {
   color: $brightText;
+}
+
+h6:hover{
+  text-shadow: 2px 2px 2px $darkColor;
 }
 button{
   
