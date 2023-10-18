@@ -68,7 +68,14 @@ export default {
                     <div class="card m-2" >
                         <!-- div for img and absolute text -->
                         <div class="card-container ">
-                            <img  :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                            <!-- v-if per aggiornare img da API -->
+                            <div v-if="singleTrainer.full_thumb_path">
+                                <img :src="singleTrainer.full_thumb_path" class="card-img-top" >
+                            </div>
+                            <div v-else>
+                                <img  :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                            </div>
+                            
                             <h5 class="card-title my-name">{{ singleTrainer.user.name }}</h5>
                             <h5 class="card-title  my-surname">{{ singleTrainer.user.surname }}</h5>
                         </div>
