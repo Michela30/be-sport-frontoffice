@@ -20,7 +20,7 @@ export default {
 
 <template>
     <h1>Ciao funziona la search!</h1>
-   <router-link :to="{ name: 'show' }">link to show</router-link>
+   <!-- <router-link :to="{ name: 'show', params: '' }">link to show</router-link> -->
 </template>
 
 
