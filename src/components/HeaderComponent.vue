@@ -22,7 +22,7 @@ export default {
           <!-- <div class="imgWrapper debug">
             <img src="../assets/imgs/superlogo.png" alt="a" class="float-start">
           </div> -->
-          <h6 class="logoTypo">Be<span>Sport</span></h6>
+           <router-link :to="{ name: 'home' }"><h6 class="logoTypo">Be<span>Sport</span></h6></router-link>
         </div>
         <div class="col h-100">
           <ul class="d-flex justify-content-end ">
