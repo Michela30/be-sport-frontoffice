@@ -28,13 +28,25 @@ export default {
 
 <template>
     <h1>Ciao funziona lo show!</h1>
-      <div class="container">
+    <div class="container">
         <div class="row">
-            <div class="imgWrapper">
-                
+            <!-- picture preview -->
+            <div class="col-12">
+                <div class="imgWrapper w-50">
+                    <img src="../assets/imgs/superlogo.png" alt="a">
+                </div>
+            </div>
+            <!-- data -->
+            <div class="col-12">
+                <h3 class="text-center">Nome del tizio</h3>
+            </div>
+            <!-- rating -->
+            <div class="p-1">
+                Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
             </div>
         </div>
-      </div>
+    </div>
 </template>
 
 

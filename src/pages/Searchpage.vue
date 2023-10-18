@@ -13,7 +13,7 @@ export default {
             showSpecs: false,
 
 
-            foundedTrainers: ''
+            foundedTrainers: {},
         }
     },
     methods: {
@@ -33,22 +33,26 @@ export default {
         // here fires axios call
         searchBySpecs() {
             axios
-                .get(`http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}`)
+                .get(`http://127.0.0.1:8000/api/trainerfilter/`, {
+                    params: { specialization: this.$route.params.spec },
+                })
                 .then(response => {
                     // questo riempie founed trainers con i dati filtrati dalla api
                     this.foundedTrainers = response.data.results;
                 })
         }
     },
-    created() {
+    mounted() {
         // here fires axios call
         axios
             // .get(`http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}`)
-            .get(``, {})
+            .get(`http://127.0.0.1:8000/api/trainerfilter/`, {params: { specialization: this.$route.params.spec },
+            })
             .then(response => {
                 // questo riempie founed trainers con i dati filtrati dalla api
-                this.foundedTrainers = response.data.results;
-                console.log(response.data)
+                this.foundedTrainers = response.data.trainer;
+                
+                console.log('questo è larray di trainers trovati ->',this.foundedTrainers)
             })
         console.log('questo è il paramentro che arriva dalla vue rotta ->', this.$route.params.spec)
     }
@@ -89,13 +93,13 @@ export default {
                 all trainers card from that specific spec
             </h2>
             <!-- 💢  need to change data origin from store.allTrainers to founedTrainers in data -->
-            <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+            <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                         <div class="card m-2" >
                             <!-- div for img and absolute text -->
                             <div class="card-container ">
                                 <img  :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
-                                <h5 class="card-title my-name">{{ singleTrainer.user.name }}</h5>
-                                <h5 class="card-title  my-surname">{{ singleTrainer.user.surname }}</h5>
+                                <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
+                                <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
                             </div>
                             <!-- start body card -->
                             <div class="card-body m-2 text-center ">
@@ -110,20 +114,21 @@ export default {
                                 </div>
                             
                                 <div>
-                                    email : {{ singleTrainer.user.email }}
+                                    email : {{ singleTrainer.email }}
                                 </div>
                                 <div>
                                     presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, officiis.
                                 </div>
                                 <!-- perchè non funziona il bold? -->
                                 <div class="fw-bold 2h">
-                                    my specializations:
+                                    my specializations: 
                                 </div>
                                 <div class="d-flex flex-wrap d-wrap">
-                                
-                                    <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
+                                    <!--💥💥 need to fix we need from api all specs from specific trainer query -->
+                                <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+                                    <!-- <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
                                         {{ singleSpec.name }}
-                                    </div>
+                                    </div> -->
                                 </div>
                             
                                 <!-- rotta vue allo show qui poi -->
