@@ -26,7 +26,7 @@ export default {
       .get('http://127.0.0.1:8000/api/trainers/')
       .then(response => {
         this.store.allTrainers = response.data.trainers;
-        console.log(this.store.allTrainers)
+        // console.log(this.store.allTrainers)
       });
       axios
       .get('http://127.0.0.1:8000/api/specializations/')
@@ -35,7 +35,7 @@ export default {
         response.data.specializations.forEach(singleApiSpec => {
           this.store.allSpecs.push(singleApiSpec.name)
         });
-        console.log(this.store.allSpecs);
+        // console.log(this.store.allSpecs);
       })
   },
   
