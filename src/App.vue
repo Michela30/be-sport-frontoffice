@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       store,
+      // objSpec: '',
     }
   },
   components: {
@@ -30,7 +31,7 @@ export default {
       axios
       .get('http://127.0.0.1:8000/api/specializations/')
       .then(response => {
-        //this add just name to specs, may need to convert spec to objs. it will broke specs name search idk.
+        //this add just name to specs array in store, may need to convert spec to objs. it will broke specs name search idk.
         response.data.specializations.forEach(singleApiSpec => {
           this.store.allSpecs.push(singleApiSpec.name)
         });

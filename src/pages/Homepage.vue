@@ -26,6 +26,7 @@ export default {
         showSpecial() {
             this.showSpecs = true
         }
+
     },
 }
 </script>
@@ -39,11 +40,13 @@ export default {
         <div class="row my-5">
             <div class="col d-flex justify-content-center">
                 <div class="bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
-                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
-                        placeholder="Type what would you like to train?" aria-label="Username"
-                        aria-describedby="addon-wrapping">
+                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
-                    <button class="btn search-button p-2 rounded-3 mx-1">Search</button>
+                    <button class="btn search-button p-2 rounded-3 mx-1">
+                        <!--💚 this fire the search -->
+                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
+                        <div v-else>Search</div>
+                    </button>
                 </div>
             </div>
             <!-- {{ foundSpecs }} -->
@@ -51,30 +54,35 @@ export default {
                 <div class=" col-12 w-75 d-flex bg-white rounded    ">
                     <div class="" v-if="this.showSpecs">
                         <div v-for="singleSpecs in foundSpecs">
-                            <div class=" p-2">
+                            <div @click="this.inputSearch = singleSpecs" class=" p-2">
                                 {{ singleSpecs }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                <!-- Inizio Card -->
+            <!-- Inizio Card -->
             <div class="row py-5">
                 <div class="card" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <img :src="singleTrainer.picture" class="card-img-top" alt="...">
                     <div class="card-body text-center ">
                         <h5 class="card-title ">{{ singleTrainer.user.name }}</h5>
                         <h5 class="card-title">{{ singleTrainer.user.surname }}</h5>
-                        <div class="card-title" v-for="(singleSpec, i) in singleTrainer.specializations" :key="i" >{{singleSpec.name }}</div>
+                        <div class="card-title" v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">{{ singleSpec.name }}</div>
                         <div>
                             email : {{ singleTrainer.user.email }}
                         </div>
                         <div>
-                            Rating:  
+                            Rating:
                         </div>
-                        <router-link class="text-dark btn bg-primary text-white p-2" :to="{ name: 'search' }">Search</router-link>
-                    </div> 
-                </div> 
+                        <!-- rotta vue allo show qui poi -->
+                        <button class="btn search-button p-2 rounded-3 mx-1">
+                            <!--💙 this fire the show -->
+                            <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">Search</router-link>
+                            
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

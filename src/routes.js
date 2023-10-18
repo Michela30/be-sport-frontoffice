@@ -12,13 +12,13 @@ const routes = [
     },
     // searchPage
     {
-        path: '/search',
+        path: '/search/:spec',
         name: 'search',
         component: Searchpage,
     },
     //showPage
     {
-        path: '/show',
+        path: '/show/:id',
         name: 'show',
         component: Showpage,
     },

@@ -33,7 +33,8 @@ export default {
             </li>
             <li>
               <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
-                <router-link class="text-dark" :to="{ name: 'search' }">Search</router-link>
+                <!--💢 qua ci va inserito il parametro di ricerca stringa vuota per il search -->
+                <router-link class="text-dark" :to="{ name: 'search', params: {spec: ' '} }">Search</router-link>
               </button>
             </li>
             <li>
