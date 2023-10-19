@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             singleTrainer: '',
+
             email: {
                 name: '',
                 email: '',
@@ -25,19 +26,22 @@ export default {
     },
     methods: {
         sendEmail() {
-             console.log(this.email);
             axios
                 .post("http://127.0.0.1:8000/api/messages",
                     this.email
                 )
-                .then(response => {    
+                .then(response => { 
                     console.log('chiamata post per email', response)
+                    this.email.name=''  
+                    this.email.email = ''  
+                    this.email.message_text = ''
+                })
+                .catch(err => {
+                    console.log(err.response.data);
                 })
 
         },
-        // mancano i v-model su queste 💥💢💌💟
         sendRating() {
-            console.log(this.email);
             axios
                 .post("http://127.0.0.1:8000/api/votes",
                     this.vote
@@ -45,16 +49,31 @@ export default {
                 .then(response => {
                     console.log('chiamata post per email', response)
                 })
+                .catch(err => {
+                    console.log(err.response.data);
+                })
 
         },
         sendReview() {
-            console.log(this.email);
+            // this extract today date from js and add to this.review obj
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            this.review.date = today
+            console.log('this.review.date',this.review.date)
+
             axios
                 .post("http://127.0.0.1:8000/api/reviews",
                     this.review
                 )
                 .then(response => {
                     console.log('chiamata post per email', response)
+                })
+                .catch(err => {
+                    console.log(err.response.data);
                 })
         }
     },
@@ -84,7 +103,7 @@ export default {
             <div class="row">
                 <div class="col-8">
                     <!-- form message here -->
-                    <form class="bg-white rounded p-3 m-2" action="" >
+                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('mandata email in post axios')" >
                         <h5 class="m-2">Contact Me here 📨</h5>
                         <div class="form-group  m-2">
                             <label for="name">Name</label>
@@ -100,32 +119,34 @@ export default {
                             </textarea>
                         </div>
 
-                        <button type="button" class="btn btn-info text-white fs-7 px-1 mx-2" @click.prevent="sendEmail(), console.log('premuto submit')">Submit</button>
+                        <!-- <button type="button" class="btn btn-info text-white fs-7 px-1 mx-2" @click.prevent="sendEmail(); console.log('premuto submit')">Submit</button> -->
+                         <button type="submit" class="btn btn-info text-white fs-7 px-1 mx-2">Submit</button>
                     </form>
 
                     <!-- rating form -->
-                    <form class="bg-white rounded p-3 m-2" action="">
+                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendRating(); console.log('mandata rating stars')" >
                         <label for="rating" class="form-label">Rate Me ✨</label>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="rating">
+                        <select v-model="this.vote.rating" class="form-select form-select-sm" aria-label=".form-select-sm example" id="rating">
                             <option value="1">⭐</option>
                             <option value="2">⭐⭐</option>
                             <option value="3">⭐⭐⭐</option>
                             <option value="4">⭐⭐⭐⭐</option>
-                            <option selected value="5">⭐⭐⭐⭐⭐</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
                         </select>
-                        <button type="button" class="btn btn-info text-white fs-7 px-1 ">Submit</button>
+                        <button type="submit"  class="btn btn-info text-white fs-7 px-1 ">Submit</button>
                     </form>
                     <!-- text review form here -->
-                    <form action="" class="bg-white rounded p-3 m-2">
+                    <form action="" class="bg-white rounded p-3 m-2" @submit.prevent="sendReview(); console.log('mandata una review')">
+                        <!-- <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2024-12-31" /> -->
                         <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                                <input v-model="this.review.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
                             </div>
                         <label for="rating" class="form-label ">Write me a review 💛</label>
-                        <textarea class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea v-model="this.review.comment" class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
 
                         
-                            <button type="button" class="btn btn-info text-white fs-7 px-1 ">Submit</button>
+                            <button type="submit" class="btn btn-info text-white fs-7 px-1 " >Submit</button>
 
                     </form>
                 </div>
