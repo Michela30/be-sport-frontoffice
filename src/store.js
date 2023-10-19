@@ -7,6 +7,9 @@ const store = reactive({
     apiShowSingleTrainer:'http://127.0.0.1:8000/api/trainer/'+'id',
     apiAllSpecs: 'http://127.0.0.1:8000/api/specializations/',
     apiSpecTrainers: 'http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}',
+    apiMessages: 'http://127.0.0.1:8000/api/messages',
+    apiReviews: 'http://127.0.0.1:8000/api/reviews',
+    apiVotes:  'http://127.0.0.1:8000/api/votes',
 
     allTrainers: '',
 
