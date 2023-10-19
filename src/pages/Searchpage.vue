@@ -134,7 +134,7 @@ export default {
                                 <!-- rotta vue allo show qui poi -->
                                 <button class="btn search-button p-2 rounded-3 mx-1">
                                     <!--💙 this fire the show -->
-                                    <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">Search</router-link>
+                                    <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">Details</router-link>
                                 
                                 </button>
                             </div>
