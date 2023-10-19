@@ -5,11 +5,77 @@ import { store } from "../store";
 export default {
     data() {
         return {
-            //dati
-            singleTrainer: null
+            singleTrainer: '',
+
+            email: {
+                name: '',
+                email: '',
+                message_text: '',    
+            },
+            vote: {
+                rating: '',
+            },
+            review: {
+                name: '',
+                date: '',
+                comment: '' ,
+            }
+
+
         }
     },
     methods: {
+        sendEmail() {
+            axios
+                .post("http://127.0.0.1:8000/api/messages",
+                    this.email
+                )
+                .then(response => { 
+                    console.log('chiamata post per email', response)
+                    this.email.name=''  
+                    this.email.email = ''  
+                    this.email.message_text = ''
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                })
+
+        },
+        sendRating() {
+            axios
+                .post("http://127.0.0.1:8000/api/votes",
+                    this.vote
+                )
+                .then(response => {
+                    console.log('chiamata post per email', response)
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                })
+
+        },
+        sendReview() {
+            // this extract today date from js and add to this.review obj
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            this.review.date = today
+            console.log('this.review.date',this.review.date)
+
+            axios
+                .post("http://127.0.0.1:8000/api/reviews",
+                    this.review
+                )
+                .then(response => {
+                    console.log('chiamata post per email', response)
+                })
+                .catch(err => {
+                    console.log(err.response.data);
+                })
+        }
     },
     created() {
         console.log('http://127.0.0.1:8000/api/trainer/' + this.$route.params.id);
@@ -33,22 +99,59 @@ export default {
 
 <template>
     <div class=" my-container">
-
         <div class="container  w-100 m-auto">
             <div class="row">
-                <!-- {{ singleTrainer }} -->
                 <div class="col-8">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+                    <!-- form message here -->
+                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('mandata email in post axios')" >
+                        <h5 class="m-2">Contact Me here 📨</h5>
+                        <div class="form-group  m-2">
+                            <label for="name">Name</label>
+                            <input v-model="this.email.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                        </div>
+                        <div class="m-2">
+                            <label for="email" class="form-label ">Email address</label>
+                            <input v-model="this.email.email"  type="email" class="form-control p-1 fs-7" id="email" placeholder="insert your email here">
+                        </div>
+                        <div class="m-2">
+                            <label for="mesagge" class="form-label">Type your message here</label>
+                            <textarea v-model="this.email.message_text"  class="form-control p-1 fs-7" id="mesagge" rows="3">
+                            </textarea>
+                        </div>
+
+                        <!-- <button type="button" class="btn btn-info text-white fs-7 px-1 mx-2" @click.prevent="sendEmail(); console.log('premuto submit')">Submit</button> -->
+                         <button type="submit" class="btn btn-info text-white fs-7 px-1 mx-2">Submit</button>
+                    </form>
+
+                    <!-- rating form -->
+                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendRating(); console.log('mandata rating stars')" >
+                        <label for="rating" class="form-label">Rate Me ✨</label>
+                        <select v-model="this.vote.rating" class="form-select form-select-sm" aria-label=".form-select-sm example" id="rating">
+                            <option value="1">⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                        </select>
+                        <button type="submit"  class="btn btn-info text-white fs-7 px-1 ">Submit</button>
+                    </form>
+                    <!-- text review form here -->
+                    <form action="" class="bg-white rounded p-3 m-2" @submit.prevent="sendReview(); console.log('mandata una review')">
+                        <!-- <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2024-12-31" /> -->
+                        <div class="form-group">
+                                <label for="name">Name</label>
+                                <input v-model="this.review.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                            </div>
+                        <label for="rating" class="form-label ">Write me a review 💛</label>
+                        <textarea v-model="this.review.comment" class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                        
+                            <button type="submit" class="btn btn-info text-white fs-7 px-1 " >Submit</button>
+
+                    </form>
                 </div>
-                <div class="col-4 d-flex flex-column align-items-center justify-content-center">
+
+                <div class="col-4 p-2 d-flex flex-column align-items-center justify-content-center">
                     <div class=" w-50 ">
                         <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
                             <div class="">
@@ -110,7 +213,6 @@ export default {
 .imgWrapper {
     border-radius: 50%;
     border: 5px solid lightcoral;
-    width: 200px;
     aspect-ratio: 1/1;
     object-fit: cover;
     object-position: top;
