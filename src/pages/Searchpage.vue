@@ -120,6 +120,8 @@ export default {
                                 <div class="p-1">
                                     Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                     <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                    <!-- testfrom api down here ✝ -->
+                                    <!-- {{ singleTrainer.votes }} -->
                                 </div>
                                 <div class="p-1">
                                     Sponsorship:
@@ -136,6 +138,10 @@ export default {
                             <!-- perchè non funziona il bold? -->
                             <div class="fw-bold 2h">
                                 my specializations:
+                            </div>
+                            <div>
+                                <!-- test review down here ✝
+                                review {{ singleTrainer.reviews }} -->
                             </div>
                             <div class="d-flex flex-wrap d-wrap">
                                 <!--💥💥 need to fix we need from api all specs from specific trainer query -->

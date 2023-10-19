@@ -5,25 +5,57 @@ import { store } from "../store";
 export default {
     data() {
         return {
-            singleTrainer: null,
-
+            singleTrainer: '',
             email: {
-                'username': '',
-                'email': '',
-                'message': '',
+                name: '',
+                email: '',
+                message_text: '',    
+            },
+            vote: {
+                rating: '',
+            },
+            review: {
+                name: '',
+                date: '',
+                comment: '' ,
             }
+
+
         }
     },
     methods: {
         sendEmail() {
+             console.log(this.email);
             axios
-                .post("http://127.0.0.1:8000/api/email/",
+                .post("http://127.0.0.1:8000/api/messages",
                     this.email
                 )
-                .then(response => {
-                    console.log(response)
+                .then(response => {    
+                    console.log('chiamata post per email', response)
                 })
 
+        },
+        // mancano i v-model su queste 💥💢💌💟
+        sendRating() {
+            console.log(this.email);
+            axios
+                .post("http://127.0.0.1:8000/api/votes",
+                    this.vote
+                )
+                .then(response => {
+                    console.log('chiamata post per email', response)
+                })
+
+        },
+        sendReview() {
+            console.log(this.email);
+            axios
+                .post("http://127.0.0.1:8000/api/reviews",
+                    this.review
+                )
+                .then(response => {
+                    console.log('chiamata post per email', response)
+                })
         }
     },
     created() {
@@ -52,22 +84,23 @@ export default {
             <div class="row">
                 <div class="col-8">
                     <!-- form message here -->
-                    <form class="bg-white rounded p-3 m-2" action="">
+                    <form class="bg-white rounded p-3 m-2" action="" >
                         <h5 class="m-2">Contact Me here 📨</h5>
                         <div class="form-group  m-2">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control p-1" id="name" placeholder="Insert your name">
+                            <input v-model="this.email.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
                         </div>
                         <div class="m-2">
                             <label for="email" class="form-label ">Email address</label>
-                            <input type="email" class="form-control p-1" id="email" placeholder="insert your email here">
+                            <input v-model="this.email.email"  type="email" class="form-control p-1 fs-7" id="email" placeholder="insert your email here">
                         </div>
                         <div class="m-2">
                             <label for="mesagge" class="form-label">Type your message here</label>
-                            <textarea class="form-control p-1" id="mesagge" rows="3">
-
+                            <textarea v-model="this.email.message_text"  class="form-control p-1 fs-7" id="mesagge" rows="3">
                             </textarea>
                         </div>
+
+                        <button type="button" class="btn btn-info text-white fs-7 px-1 mx-2" @click.prevent="sendEmail(), console.log('premuto submit')">Submit</button>
                     </form>
 
                     <!-- rating form -->
@@ -80,12 +113,20 @@ export default {
                             <option value="4">⭐⭐⭐⭐</option>
                             <option selected value="5">⭐⭐⭐⭐⭐</option>
                         </select>
+                        <button type="button" class="btn btn-info text-white fs-7 px-1 ">Submit</button>
                     </form>
-
                     <!-- text review form here -->
                     <form action="" class="bg-white rounded p-3 m-2">
+                        <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                            </div>
                         <label for="rating" class="form-label ">Write me a review 💛</label>
                         <textarea class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                        
+                            <button type="button" class="btn btn-info text-white fs-7 px-1 ">Submit</button>
+
                     </form>
                 </div>
 
