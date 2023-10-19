@@ -70,7 +70,7 @@ h6:hover{
 button{
   
   -webkit-box-shadow: 11px 11px 23px -6px rgba(0,0,0,0.43); 
-box-shadow: 11px 11px 23px -6px rgba(0,0,0,0.43);
+  box-shadow: 11px 11px 23px -6px rgba(0,0,0,0.43);
 }
 
 header {
