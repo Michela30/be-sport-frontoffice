@@ -162,6 +162,7 @@ export default {
 @use '../assets/scss/variables.scss' as *;
 .my-container{
     background-color: $mainColor;
+    min-height: calc(100vh - 260px);
 }
 
 .search-button {
