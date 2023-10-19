@@ -47,14 +47,13 @@ export default {
         // here fires axios call
         axios
             // .get(`http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}`)
-            .get(`http://127.0.0.1:8000/api/trainerfilter/`, {
-                params: { specialization: this.$route.params.spec },
+            // 💥💥 dont touch this never ⛔⛔
+            .get(`http://127.0.0.1:8000/api/trainerfilter/`, {params: { specialization: this.$route.params.spec },
             })
             .then(response => {
                 // questo riempie founed trainers con i dati filtrati dalla api
-                this.foundedTrainers = response.data.trainer;
-
-                console.log('questo è larray di trainers trovati ->', this.foundedTrainers)
+                this.foundedTrainers = response.data.trainer;   
+                console.log('questo è larray di trainers trovati ->',this.foundedTrainers)
             })
         console.log('questo è il paramentro che arriva dalla vue rotta ->', this.$route.params.spec)
     }
