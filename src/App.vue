@@ -78,4 +78,6 @@ export default {
     font-family: 'buenos aires regular'  ;
     src: url('./assets/scss/font/buenosaires/BuenosAires-Regular.ttf');
 }
+
+
 </style>

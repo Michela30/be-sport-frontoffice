@@ -32,30 +32,32 @@ export default {
 </script>
 
 <template>
-    <div class="container mx-5">
-        <!-- <h1>ciao funziona la home?
-            <router-link :to="{ name: 'search' }">link to search</router-link>
-        </h1> -->
+    <div class="h-100 my-container">
 
-        <div class="row my-5 ">
-            <div class="col d-flex justify-content-center ">
-                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
-                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
-                    <!--🔽 Lancia chiamata API 🔽 -->
-                    <button class="btn search-button p-2 rounded-3 mx-1">
-                        <!--💚 this fire the search -->
-                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
-                        <div v-else>Search</div>
-                    </button>
+        <div class="container w-100 m-auto py-5">
+            <!-- <h1>ciao funziona la home?
+                <router-link :to="{ name: 'search' }">link to search</router-link>
+            </h1> -->
+            
+            <div class="row  ">
+                <div class="col d-flex justify-content-center ">
+                    <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
+                        <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
+                        <!--🔽 Lancia chiamata API 🔽 -->
+                        <button class="btn search-button p-2 rounded-3 mx-1">
+                            <!--💚 this fire the search -->
+                            <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
+                            <div v-else>Search</div>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <!-- {{ foundSpecs }} -->
-            <div class="row justify-content-center pt-1 mb-5">
-                <div class=" col-12 w-75 d-flex bg-white rounded    ">
-                    <div class="" v-if="this.showSpecs">
-                        <div v-for="singleSpecs in foundSpecs">
-                            <div @click="this.inputSearch = singleSpecs" class=" p-2">
-                                {{ singleSpecs }}
+                <!-- {{ foundSpecs }} -->
+                <div class="row justify-content-center pt-1 mb-5">
+                    <div class=" col-12 w-75 d-flex bg-white rounded    ">
+                        <div class="" v-if="this.showSpecs">
+                            <div v-for="singleSpecs in foundSpecs">
+                                <div @click="this.inputSearch = singleSpecs" class=" p-2">
+                                    {{ singleSpecs }}
                             </div>
                         </div>
                     </div>
@@ -64,17 +66,19 @@ export default {
             <!-- Inizio Card -->
             <div class="row justify-content-center ">
                 <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-
-                    <div class="card m-2" >
-                        <!-- div for img and absolute text -->
-                        <div class="card-container ">
-                            <!-- v-if per aggiornare img da API -->
-                            <div v-if="singleTrainer.full_thumb_path">
-                                <img :src="singleTrainer.full_thumb_path" class="card-img-top" >
-                            </div>
-                            <div v-else>
-                                <img  :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
-                            </div>
+                    <!--💙 this fire the show -->
+                    <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
+                        
+                        <div class="card m-2" >
+                            <!-- div for img and absolute text -->
+                            <div class="card-container ">
+                                <!-- v-if per aggiornare img da API -->
+                                <div v-if="singleTrainer.full_thumb_path">
+                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top" >
+                                </div>
+                                <div v-else>
+                                    <img  :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                                </div>
                             
                             <h5 class="card-title my-name">{{ singleTrainer.user.name }}</h5>
                             <h5 class="card-title  my-surname">{{ singleTrainer.user.surname }}</h5>
@@ -109,17 +113,18 @@ export default {
                             </div>
                             
                             <!-- rotta vue allo show qui poi -->
-                            <button class="btn search-button p-2 rounded-3 mx-1">
-                                <!--💙 this fire the show -->
-                                <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">Search</router-link>
+                            <!-- <button class="btn search-button p-2 rounded-3 mx-1"> -->
+                                <!-- My Details -->
                                 
-                            </button>
+                                <!-- </button> -->
+                            </div>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 
@@ -127,6 +132,9 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
+.my-container{
+    background-color: $mainColor;
+}
 .search-button {
     background-color: rgb(253, 215, 215);
 }
@@ -138,6 +146,14 @@ export default {
 
 .thumbnail:hover {
     background-color: lightgray;
+}
+
+.card:hover{
+    -webkit-box-shadow: 11px 11px 23px -6px $darkColor; 
+    box-shadow: 11px 11px 23px -6px $darkColor;
+    transform: scale(1.03);
+    transition: 0.7s;
+
 }
 .card{
     min-height: 100%;
@@ -180,5 +196,9 @@ export default {
         color: $brightText;
         text-shadow: 2px 2px 2px $darkColor;
     }
+
+    
+   
 }
+
 </style>

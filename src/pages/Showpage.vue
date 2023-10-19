@@ -32,19 +32,26 @@ export default {
 
 
 <template>
-    <div class="container mx-auto my-5">
+<div class="h-100 my-container">
+
+    <div class="container  w-100 m-auto">
         <div class="row">
             <!-- {{ singleTrainer }} -->
-
+            
             <div class="col-12 d-flex justify-content-center">
-                <div class="imgWrapper w-50">
-                    <div v-if="singleTrainer.full_thumb_path">
-                        <img :src="singleTrainer.full_thumb_path" class="card-img-top">
+                <div class=" w-50 ">
+                    <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
+                        <div class="">
+                            <img :src="singleTrainer.full_thumb_path" class="card-img-top imgWrapper ">
+                        </div>
                     </div>
                     <div v-else>
-                        <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                        <div class="">
+                            <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
+                        </div>
+                        
                     </div>
-
+                    
                 </div>
             </div>
             <!-- data -->
@@ -62,20 +69,33 @@ export default {
                 </p>
             </div>
             <div class="col-12 text-center">
-                    <p>  mail: {{ singleTrainer.user.email }}
-                    </p>
-                </div>
-
-                <div class="col-12 text-center">
-                        <p>  Description: {{ singleTrainer.description }}
-                        </p>
-                    </div>
+                <p>  mail: {{ singleTrainer.user.email }}
+                </p>
+            </div>
+            
+            <div class="col-12 text-center">
+                <p>  Description: {{ singleTrainer.description }}
+                </p>
+            </div>
         </div>
     </div>
+</div>
 </template>
 
 
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
+.my-container{
+    background: rgb(245,245,245);
+background: linear-gradient(0deg, rgba(245,245,245,1) 42%, rgba(242,221,215,1) 63%, rgba(240,201,190,1) 74%, rgba(236,164,143,1) 91%, rgba(235,153,129,1) 100%);
+}
+.imgWrapper{
+    border-radius: 50%;
+    border: 5px solid lightcoral;
+    width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: top;
+}
 </style>
