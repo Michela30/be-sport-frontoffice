@@ -62,8 +62,8 @@ export default {
                 </div>
             </div>
             <!-- Inizio Card -->
-            <div class="row gy-2 justify-content-center ">
-                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+            <div class="row justify-content-center ">
+                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
 
                     <div class="card m-2" >
                         <!-- div for img and absolute text -->
@@ -140,7 +140,7 @@ export default {
     background-color: lightgray;
 }
 .card{
-     min-height: 95%;
+    min-height: 100%;
     margin-bottom: 20px;
     .search-button:hover {
     background-color: lightcoral;

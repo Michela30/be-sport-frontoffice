@@ -40,9 +40,10 @@ export default {
                     // questo riempie founed trainers con i dati filtrati dalla api
                     this.foundedTrainers = response.data.results;
                 })
-        }
+        },
+        
     },
-    mounted() {
+    created() {
         // here fires axios call
         axios
             // .get(`http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}`)
@@ -69,7 +70,7 @@ export default {
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
                         <!--💚 this fire the search -->
-                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
+                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch }}">Search</router-link>
                         <div v-else>Search</div>
                     </button>
                 </div>
@@ -89,9 +90,9 @@ export default {
         </div>
         <!-- here shows all trainer for that specific spec -->
         <div class="row">
-            <h2>
+            <!-- <h2>
                 all trainers card from that specific spec
-            </h2>
+            </h2> -->
             <!-- 💢  need to change data origin from store.allTrainers to founedTrainers in data -->
             <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                         <div class="card m-2" >
