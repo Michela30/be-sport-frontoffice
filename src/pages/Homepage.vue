@@ -22,6 +22,7 @@ export default {
                     console.log('trovata la spec');
                 }
             });
+
         },
         showSpecial() {
             this.showSpecs = true
@@ -112,7 +113,7 @@ export default {
                                     <div class="d-flex flex-wrap d-wrap">
 
                                         <div class="single-Spec m-1 p-1"
-                                            v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
+                                            v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
                                             {{ singleSpec.name }}
                                         </div>
                                     </div>
@@ -128,7 +129,10 @@ export default {
                     </div>
                 </div>
                 <!-- Inizio Review -->
-                <div class="row review-row p-2">
+                <div class="scrollable-cards">
+
+                
+                <div class="row review-row p-2 ">
                     <div class="col-6 p-2">
                         <h2>
                             Skilled and top-rated tutors
@@ -137,32 +141,34 @@ export default {
                             <span>More than thousents of students</span> gave a <span>5 star </span> review to their tutor
                         </div>
                     </div>
+                    <!-- inizio card -->
+                    <div class="col-6 my-row-2 ">
+                        <div class="my-col m-2 p-3" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
 
-                    <div class="col-6 my-row-2 "  >
-                        <div class="my-col m-2" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-                                
-                                <div class="col-12 d-flex">
-                                    <div class="col-auto ">
-                                        <div class="img-box ">
-                                            <!-- 🔽 Metto una img di placeholder 🔽 -->
-                                            <!-- <img src="../../public/img-trainers/2.jpg" alt="img da placeholder"> -->
-                                            <div v-if="singleTrainer.full_thumb_path">
-                                                <img :src="singleTrainer.full_thumb_path" class="card-img-top">
-                                            </div>
-                                            <div v-else>
-                                                <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
-                                            </div>
+                            <div class="col-12 d-flex">
+                                <div class="col-auto ">
+                                    <div class="img-box ">
+                                        <!-- 🔽 Metto una img di placeholder 🔽 -->
+                                        <!-- <img src="../../public/img-trainers/2.jpg" alt="img da placeholder"> -->
+                                        <div class="my-img" v-if="singleTrainer.full_thumb_path">
+                                            <img :src="singleTrainer.full_thumb_path" class="my-img">
                                         </div>
-                                
+                                        <div v-else class="my-img">
+                                            <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
+                                        </div>
                                     </div>
-                                    <div class="col-auto ps-2 d-flex flex-column justify-content-center">
-                                        <div >
-                                            <div class="fs-5">
+
+                                </div>
+                                <div class="col-auto ps-2 d-flex flex-column justify-content-center">
+                                    <div>
+                                        <div class="fs-5">
                                             {{ singleTrainer.user.name }}
+
+
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="fs-6">
                                         <div class="my-text">
                                             <!--🔽 specializzazione di placeholder🔽 -->
@@ -183,18 +189,28 @@ export default {
                             <div class="col-12 py-2">
                                 <div class="fs-5">
                                     <!-- review da palceholder -->
-                                    fantastico insegante toppppppp grande gino topppppppppppppppppppppppp
-                                </div >
+                                    <div class="fs-5">
+                                        <!-- {{ singleTrainer.review[0].comment }} -->
+                                        <template v-if="singleTrainer.review && singleTrainer.review[i]">
+                                            {{ singleTrainer.review[i].comment }}
+                                        </template>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-12">
                                 <div class="fs-5">
                                     <!-- review da palceholder -->
-                                    Sofia 12-10-2022
-                                </div >
+                                    <template v-if="singleTrainer.review && singleTrainer.review[i]">
+                                        {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
+                                    </template>
+                                    
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>  
             </div>
         </div>
     </div>
@@ -281,19 +297,22 @@ export default {
 // Inizio CSS rewiev
 
 .review-row {
-    .my-col{
+    
+    margin-top: 100px !important;
+    .my-col {
         background-color: whitesmoke;
         border-radius: 30px;
         -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
         box-shadow: 11px 11px 23px -6px $darkColor;
         width: calc((100% / 2) - 20px) !important;
-            margin: 10px 20px;
+        margin: 10px 20px;
     }
+
     .img-box {
         width: 80px;
         height: 80px;
 
-        img {
+        .my-img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
@@ -301,15 +320,18 @@ export default {
             object-position: top;
         }
     }
-    .my-text{
+
+    .my-text {
         text-shadow: 2px 2px 2px $darkColor;
     }
+
     .my-row-2 {
         display: flex;
         flex-wrap: wrap;
         margin: 10px;
+        transform: rotate(-7deg);
 
     }
-   
+
 }
 </style>
