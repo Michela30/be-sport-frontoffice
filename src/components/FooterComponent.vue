@@ -116,6 +116,10 @@ export default {
 footer {
     background-color: $darkColor ;
     color: $brightText;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height:200px
 }
 
 h5 {
