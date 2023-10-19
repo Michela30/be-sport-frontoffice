@@ -64,7 +64,7 @@ export default {
 <template>
 <div class="h-100 my-container">
     <div class="container  w-100 m-auto">
-        <div class="row my-5 justify-content-center ">
+        <div class="row  justify-content-center ">
             <div class="col d-flex justify-content-center">
                 <div class="bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
@@ -146,11 +146,7 @@ export default {
                             </div>
                             
                             <!-- rotta vue allo show qui poi -->
-                            <button class="btn search-button p-2 rounded-3 mx-1">
-                                <!--💙 this fire the show -->
-                                My Details
-                                
-                            </button>
+                            
                         </div>
                     </div>
                 </router-link>
@@ -181,6 +177,13 @@ export default {
     background-color: lightgray;
 }
 
+.card:hover{
+    -webkit-box-shadow: 11px 11px 23px -6px $darkColor; 
+    box-shadow: 11px 11px 23px -6px $darkColor;
+    transform: scale(1.03);
+    transition: 0.7s;
+
+}
 .card {
     .search-button:hover {
     background-color: lightcoral;
