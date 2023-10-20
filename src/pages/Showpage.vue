@@ -6,39 +6,54 @@ export default {
     data() {
         return {
             singleTrainer: '',
-            
+
             email: {
                 trainer_id: '',
                 name: '',
                 email: '',
-                message_text: '',    
+                message_text: '',
             },
             vote: {
+                trainer_id: '',
+                date: '',
                 rating: '',
             },
             review: {
+                trainer_id: '',
                 name: '',
                 date: '',
-                comment: '' ,
+                comment: '',
             }
 
 
         }
     },
     methods: {
+
+        getDate(objDate) {
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
+            let yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+            console.log('data aggiornata nel', objDate)
+            objDate = today
+            // this.vote.date = today
+        },
         sendEmail() {
             axios
                 .post("http://127.0.0.1:8000/api/messages",
                     this.email, {
-                        header: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                    header: {
+                        'Content-Type': 'multipart/form-data'
                     }
+                }
                 )
-                .then(response => { 
+                .then(response => {
                     console.log('chiamata post per email', response)
-                    this.email.name=''  
-                    this.email.email = ''  
+                    this.email.name = ''
+                    this.email.email = ''
                     this.email.message_text = ''
                 })
                 .catch(err => {
@@ -47,16 +62,27 @@ export default {
 
         },
         sendRating() {
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
+            let yyyy = today.getFullYear();
+            // ----------------------------------
+            today = yyyy + '-' + mm + '-' + dd;
+            this.vote.date = today
+
             axios
                 .post("http://127.0.0.1:8000/api/votes",
-                    this.vote ,{
-                        header: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                    this.vote, {
+                    header: {
+                        'Content-Type': 'multipart/form-data'
                     }
+                }
                 )
                 .then(response => {
-                    console.log('chiamata post per email', response)
+                    console.log('this.vote', this.vote);
+                    console.log('chiamata post per rating', response)
+                    this.vote.date = ''
+                    this.vote.rating = ''
                 })
                 .catch(err => {
                     console.log(err.response.data);
@@ -64,26 +90,27 @@ export default {
 
         },
         sendReview() {
-            // this extract today date from js and add to this.review obj
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
-
-            today = mm + '/' + dd + '/' + yyyy;
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
+            let yyyy = today.getFullYear();
+            today = yyyy + '-' + mm + '-' + dd;
             this.review.date = today
-            console.log('this.review.date',this.review.date)
-
+            // ----------------------------------
             axios
                 .post("http://127.0.0.1:8000/api/reviews",
-                    this.review , {
-                        header: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                    this.review, {
+                    header: {
+                        'Content-Type': 'multipart/form-data'
                     }
+                }
                 )
                 .then(response => {
-                    console.log('chiamata post per email', response)
+                    console.log('this.review', this.review);
+                    console.log('chiamata post per review', response)
+                    this.review.name = ''
+                    this.review.date = ''
+                    this.review.comment = ''
                 })
                 .catch(err => {
                     console.log(err.response.data);
@@ -91,7 +118,6 @@ export default {
         }
     },
     created() {
-        //console.log('http://127.0.0.1:8000/api/trainer/' + this.$route.params.id);
         // here fires axios call
         axios
             .get(`http://127.0.0.1:8000/api/trainer/${this.$route.params.id}`)
@@ -101,11 +127,11 @@ export default {
             // })
             .then(response => {
                 this.singleTrainer = response.data.trainer;
-                this.email.trainer_id = this.$route.params.id
-                console.log('this.data',  this.data.trainer_id)
-                //console.log('this.singleTrainer', this.singleTrainer)
+                this.email.trainer_id = this.$route.params.id;
+                this.vote.trainer_id = this.$route.params.id;
+                this.review.trainer_id = this.$route.params.id;
             })
-            
+
     }
 
 }
@@ -116,9 +142,9 @@ export default {
     <div class=" my-container">
         <div class="container  w-100 m-auto">
             <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-sm-8">
                     <!-- form message here -->
-                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('mandata email in post axios')" >
+                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('premuto bottone email')">
                         <h5 class="m-2">Contact Me here 📨</h5>
 
                         <div class="form-group  m-2">
@@ -127,20 +153,20 @@ export default {
                         </div>
                         <div class="m-2">
                             <label for="email" class="form-label ">Email address</label>
-                            <input v-model="this.email.email"  type="email" class="form-control p-1 fs-7" id="email" placeholder="insert your email here">
+                            <input v-model="this.email.email" type="email" class="form-control p-1 fs-7" id="email" placeholder="insert your email here">
                         </div>
                         <div class="m-2">
                             <label for="mesagge" class="form-label">Type your message here</label>
-                            <textarea v-model="this.email.message_text"  class="form-control p-1 fs-7" id="mesagge" rows="3">
+                            <textarea v-model="this.email.message_text" class="form-control p-1 fs-7" id="mesagge" rows="3">
                             </textarea>
                         </div>
 
                         <!-- <button type="button" class="btn btn-info text-white fs-7 px-1 mx-2" @click.prevent="sendEmail(); console.log('premuto submit')">Submit</button> -->
-                         <button type="submit" class="btn btn-info text-white fs-7 px-1 mx-2">Submit</button>
+                        <button type="submit" class="btn btn-info text-white fs-7 px-1 mx-2">Submit</button>
                     </form>
 
                     <!-- rating form -->
-                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendRating(); console.log('mandata rating stars')" >
+                    <form class="bg-white rounded p-4 m-2" action="" @submit.prevent="sendRating(); console.log('premuto bottone rating')">
                         <label for="rating" class="form-label">Rate Me ✨</label>
                         <select v-model="this.vote.rating" class="form-select form-select-sm" aria-label=".form-select-sm example" id="rating">
                             <option value="1">⭐</option>
@@ -149,26 +175,26 @@ export default {
                             <option value="4">⭐⭐⭐⭐</option>
                             <option value="5">⭐⭐⭐⭐⭐</option>
                         </select>
-                        <button type="submit"  class="btn btn-info text-white fs-7 px-1 ">Submit</button>
+                        <button type="submit" class="btn btn-info text-white fs-7 my-2 px-1 ">Submit</button>
                     </form>
                     <!-- text review form here -->
-                    <form action="" class="bg-white rounded p-3 m-2" @submit.prevent="sendReview(); console.log('mandata una review')">
+                    <form action="" class="bg-white rounded p-4 m-2" @submit.prevent="sendReview(); console.log('premuto bottone review')">
                         <!-- <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2024-12-31" /> -->
                         <div class="form-group">
-                                <label for="name">Name</label>
-                                <input v-model="this.review.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
-                            </div>
+                            <label for="name">Name</label>
+                            <input v-model="this.review.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                        </div>
                         <label for="rating" class="form-label ">Write me a review 💛</label>
                         <textarea v-model="this.review.comment" class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
 
-                        
-                            <button type="submit" class="btn btn-info text-white fs-7 px-1 " >Submit</button>
+
+                        <button type="submit" class="btn btn-info text-white fs-7 my-2 px-1 ">Submit</button>
 
                     </form>
                 </div>
 
                 <!-- card del singolo trainer -->
-                <div class="col-4 p-2 d-flex flex-column align-items-center justify-content-start">
+                <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start">
                     <div class="card d-flex flex-column align-items-center justify-content-center p-3">
                         <div class=" w-50 ">
                             <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
@@ -180,9 +206,9 @@ export default {
                                 <div class="">
                                     <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
                                 </div>
-    
+
                             </div>
-    
+
                         </div>
                         <!-- data -->
                         <div class="col">
@@ -202,7 +228,7 @@ export default {
                             <p> mail: {{ singleTrainer.user.email }}
                             </p>
                         </div>
-    
+
                         <div class="col text-center">
                             <p> Description: {{ singleTrainer.description }}
                             </p>
