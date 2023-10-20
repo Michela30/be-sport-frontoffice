@@ -5,22 +5,23 @@ import { store } from "../store";
 export default {
     data() {
         return {
-
             store,
-            // this make searchbar work
             inputSearch: '',
             foundSpecs: store.allSpecs,
             showSpecs: false,
-
             foundedTrainers: {},
+            selectedRating: 0,
         }
     },
     methods: {
-          
+        sortData() {
+            // Sort the trainers based on average rating (descending order)
+            this.foundedTrainers.sort((a, b) => b.average_rating - a.average_rating);
+            console.log('Sorted foundedTrainers:', this.foundedTrainers);
+        },
         searchSpec() {
             this.foundSpecs = [];
             this.store.allSpecs.forEach((singleSpecs, i) => {
-                // confronto il nome di ogni singola spec con l'input che arriva dall'utente
                 if (singleSpecs.toLowerCase().includes(this.inputSearch.toLowerCase())) {
                     this.foundSpecs.push(singleSpecs);
                     console.log('trovata la spec');
@@ -30,47 +31,47 @@ export default {
         showSpecial() {
             this.showSpecs = true
         },
-         voteDivider(value) {
+        // il meme questa funzione 😂😀😀
+        voteDivider(value) {
             let exitNum = Math.floor((value / 1))
             return exitNum
         },
-        // here fires axios call
+        //❌📛🛑 need to fix this, wont fire on load
         searchBySpecs() {
             axios
                 .get(`http://127.0.0.1:8000/api/trainerfilter/`, {
                     params: { specialization: this.$route.params.spec },
                 })
                 .then(response => {
-                    // questo riempie founed trainers con i dati filtrati dalla api
                     this.foundedTrainers = response.data.results;
+                    // Sort the trainers based on average rating (descending order)
+                    this.sortData();
                 })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
         },
-
-
     },
     created() {
-
-        // here fires axios call
         axios
-            // .get(`http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}`)
-            // 💥💥 dont touch this never ⛔⛔
             .get(`http://127.0.0.1:8000/api/trainerfilter/`, {
                 params: { specialization: this.$route.params.spec },
             })
             .then(response => {
-                // questo riempie founed trainers con i dati filtrati dalla api
                 this.foundedTrainers = response.data.trainer;
-                console.log('questo è larray di trainers trovati ->', this.foundedTrainers)
+                console.log('questo è larray di trainers trovati ->', this.foundedTrainers);
+                // Sort the trainers based on average rating (descending order)
+                this.sortData();
             })
-        console.log('questo è il paramentro che arriva dalla vue rotta ->', this.$route.params.spec)
-
-
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     },
-
     mounted() {
     }
 }
 </script>
+
 
 
 <template>
@@ -91,7 +92,7 @@ export default {
                 </div>
                 <!-- {{ foundSpecs }} -->
                 <div class="row justify-content-center pt-1">
-                    <div class=" col-12 w-75 d-flex bg-white rounded    ">
+                    <div class=" col-12 w-75 d-flex bg-white rounded ">
                         <div class="" v-if="this.showSpecs">
                             <div v-for="singleSpecs in foundSpecs">
                                 <div @click="this.inputSearch = singleSpecs" class=" p-2">
@@ -106,87 +107,160 @@ export default {
             <div class="row ">
                 <h4 class="fs-6 px-2">Filtra per:</h4>
                 <div class="col-6 p-2">
-                    <select @change="" class="form-select" aria-label="Default select example">
-                        <option disabled selected>numero voti</option>
+                    <select v-model="this.selectedRating" class="form-select">
+                        <!-- <option value="0">No review</option> -->
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
+                        <option value="4">Four</option>
+                        <option value="5">Five</option>
                     </select>
 
                 </div>
-
                 <div class="col-6 p-2">
-                    <select @change="" class="form-select" aria-label="Default select example">
+                    <select @change="" class="form-select">
                         <option selected>Numero recensioni</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
+                        <option value="4">Four</option>
+                        <option value="5">Five</option>
                     </select>
 
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
-            <div class="row">
-                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
-                        <div class="card m-2">
-                            <!-- div for img and absolute text -->
-                            <div class="card-container ">
-                                <!-- <img :src="singleTrainer.picture" class="rounded card-img-top" alt="..."> -->
-                                <div v-if="singleTrainer.full_thumb_path">
-                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top">
-                                </div>
-                                <div v-else>
-                                    <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
-                                </div>
-
-                                <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
-                                <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
-                            </div>
-                            <!-- start body card -->
-                            <div class="card-body m-2 text-center ">
-                                <div class="d-flex p-2">
-                                    <div class="p-1">
-                                        <i v-for="singleStar in voteDivider(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
-                                        <i v-for="singleStar in (5 - voteDivider(singleTrainer.average_rating))" class="fa-regular fa-star" ></i>
-                                        <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
-                                        
+            <div class="row" v-if="selectedRating == 0">
+                <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
+                :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
+                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
+                        <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
+                            <div class="card m-2">
+    
+                                <!-- div for img and absolute text -->
+                                <div class="card-container ">
+                                    <!-- <img :src="singleTrainer.picture" class="rounded card-img-top" alt="..."> -->
+                                    <div v-if="singleTrainer.full_thumb_path">
+                                        <img :src="singleTrainer.full_thumb_path" class="card-img-top">
                                     </div>
-                                    <div class="p-1">
-                                        Sponsorship:
+                                    <div v-else>
+                                        <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                                     </div>
+    
+                                    <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
+                                    <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
                                 </div>
-
-                                <div>
-                                    email : {{ singleTrainer.email }}
+                                <!-- start body card -->
+                                <div class="card-body m-2 text-center ">
+                                    <div class="d-flex p-2">
+                                        <div class="p-1">
+                                            <i v-for="singleStar in voteDivider(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                            <i v-for="singleStar in (5 - voteDivider(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
+                                            <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
+    
+                                        </div>
+                                        <div class="p-1">
+                                            Sponsorship:
+                                        </div>
+                                    </div>
+    
+                                    <div>
+                                        email : {{ singleTrainer.email }}
+                                    </div>
+                                    <div>
+                                        presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                                        officiis.
+                                    </div>
+                                    <!-- perchè non funziona il bold? -->
+                                    <div class="fw-bold 2h">
+                                        my specializations:
+                                    </div>
+                                    <div>
+                                        <!-- test review down here ✝
+                                    review {{ singleTrainer.reviews }} -->
+                                    </div>
+                                    <div class="d-flex flex-wrap d-wrap">
+                                        <!--💥💥 need to fix we need from api all specs from specific trainer query -->
+                                        <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+                                        <!-- <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
+                                        {{ singleSpec.name }}
+                                    </div> -->
+                                    </div>
+    
+                                    <!-- rotta vue allo show qui poi -->
+    
                                 </div>
-                                <div>
-                                    presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-                                    officiis.
-                                </div>
-                                <!-- perchè non funziona il bold? -->
-                                <div class="fw-bold 2h">
-                                    my specializations:
-                                </div>
-                                <div>
-                                    <!-- test review down here ✝
-                                review {{ singleTrainer.reviews }} -->
-                                </div>
-                                <div class="d-flex flex-wrap d-wrap">
-                                    <!--💥💥 need to fix we need from api all specs from specific trainer query -->
-                                    <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
-                                    <!-- <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
-                                    {{ singleSpec.name }}
-                                </div> -->
-                                </div>
-
-                                <!-- rotta vue allo show qui poi -->
-
                             </div>
-                        </div>
-                    </router-link>
+                        </router-link>               
                 </div>
+            </div>
+
+            <div class="row" v-else>
+                <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
+                :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
+                    <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i"
+                    :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'" >
+                            <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
+                                <div class="card m-2">
+    
+                                    <!-- div for img and absolute text -->
+                                    <div class="card-container ">
+                                        <!-- <img :src="singleTrainer.picture" class="rounded card-img-top" alt="..."> -->
+                                        <div v-if="singleTrainer.full_thumb_path">
+                                            <img :src="singleTrainer.full_thumb_path" class="card-img-top">
+                                        </div>
+                                        <div v-else>
+                                            <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                                        </div>
+    
+                                        <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
+                                        <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
+                                    </div>
+                                    <!-- start body card -->
+                                    <div class="card-body m-2 text-center ">
+                                        <div class="d-flex p-2">
+                                            <div class="p-1">
+                                                <i v-for="singleStar in voteDivider(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                                <i v-for="singleStar in (5 - voteDivider(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
+                                                <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
+    
+                                            </div>
+                                            <div class="p-1">
+                                                Sponsorship:
+                                            </div>
+                                        </div>
+    
+                                        <div>
+                                            email : {{ singleTrainer.email }}
+                                        </div>
+                                        <div>
+                                            presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                                            officiis.
+                                        </div>
+                                        <!-- perchè non funziona il bold? -->
+                                        <div class="fw-bold 2h">
+                                            my specializations:
+                                        </div>
+                                        <div>
+                                            <!-- test review down here ✝
+                                    review {{ singleTrainer.reviews }} -->
+                                        </div>
+                                        <div class="d-flex flex-wrap d-wrap">
+                                            <!--💥💥 need to fix we need from api all specs from specific trainer query -->
+                                            <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+                                            <!-- <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
+                                        {{ singleSpec.name }}
+                                    </div> -->
+                                        </div>
+    
+                                        <!-- rotta vue allo show qui poi -->
+    
+                                    </div>
+                                </div>
+                            </router-link>               
+                    </div>
             </div>
         </div>
     </div>
@@ -196,6 +270,10 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
+
+.hidden {
+    display: none;
+}
 
 .my-container {
     background-color: $mainColor;
