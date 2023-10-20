@@ -20,7 +20,7 @@ export default {
 
 <template>
     <footer>
-        <div class="container-fluid p-3">
+        <div class="container-fluid  w-100 px-3">
             <div class="row justify-content-between py-3 pt-1">
                 <div class="col-4">
                     <div class="d-flex flex-column mb-3">
@@ -42,25 +42,25 @@ export default {
                             </ul>
 
                             <ul class="ms-1">
-                                    <li class="p-1">
-                                        BeSport Global
-                                    </li>
-                                    <li class="p-1">
-                                        All Subjects
-                                    </li>
-                                    <li class="p-1">
-                                        Find the perfect tutor
-                                    </li>
-                                    <li class="p-1">
-                                        Online Lessons
-                                    </li>
-                                    <li class="p-1">
-                                           States
-                                        </li>
-                                        <li class="p-1">
-                                               BeSport Careers
-                                            </li>
-                                </ul>
+                                <li class="p-1">
+                                    BeSport Global
+                                </li>
+                                <li class="p-1">
+                                    All Subjects
+                                </li>
+                                <li class="p-1">
+                                    Find the perfect tutor
+                                </li>
+                                <li class="p-1">
+                                    Online Lessons
+                                </li>
+                                <li class="p-1">
+                                    States
+                                </li>
+                                <li class="p-1">
+                                    BeSport Careers
+                                </li>
+                            </ul>
 
                         </div>
                     </div>
@@ -86,7 +86,7 @@ export default {
                 <div class="col-4 d-flex justify-content-end">
                     <div class="d-flex flex-column mb-3">
                         <h5 class="ms-2">Follow Us:</h5>
-                        <ul class="ms-1 d-flex fs-5" >
+                        <ul class="ms-1 d-flex fs-5">
                             <li class="p-2">
                                 <i class="fa-brands fa-facebook"></i>
                             </li>
@@ -119,7 +119,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height:200px
+    height: 200px
 }
 
 h5 {
