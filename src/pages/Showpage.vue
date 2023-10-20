@@ -127,6 +127,7 @@ export default {
             // })
             .then(response => {
                 this.singleTrainer = response.data.trainer;
+                // this assign id pf page to fields
                 this.email.trainer_id = this.$route.params.id;
                 this.vote.trainer_id = this.$route.params.id;
                 this.review.trainer_id = this.$route.params.id;
@@ -142,6 +143,48 @@ export default {
     <div class=" my-container">
         <div class="container  w-100 m-auto">
             <div class="row">
+                 <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start ">
+                        <div class="card d-flex flex-column align-items-center justify-content-center p-3">
+                            <div class=" w-50 ">
+                                <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
+                                    <div class="">
+                                        <img :src="singleTrainer.full_thumb_path" class="card-img-top imgWrapper ">
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div class="">
+                                        <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- data -->
+                            <div class="col">
+                                <h3 class="text-center">{{ singleTrainer.user.name }} {{ singleTrainer.user.surname }}</h3>
+                            </div>
+                            <!-- rating -->
+                            <div class="col p-1 text-center">
+                                Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                            <div class="col text-center">
+                                <p>
+                                    Phone Number: {{ singleTrainer.phone_number }}
+                                </p>
+                            </div>
+                            <div class="col text-center">
+                                <p> mail: {{ singleTrainer.user.email }}
+                                </p>
+                            </div>
+
+                            <div class="col text-center">
+                                <p> Description: {{ singleTrainer.description }}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
                 <div class="col-12 col-sm-8">
                     <!-- form message here -->
                     <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('premuto bottone email')">
@@ -194,48 +237,7 @@ export default {
                 </div>
 
                 <!-- card del singolo trainer -->
-                <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start">
-                    <div class="card d-flex flex-column align-items-center justify-content-center p-3">
-                        <div class=" w-50 ">
-                            <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
-                                <div class="">
-                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top imgWrapper ">
-                                </div>
-                            </div>
-                            <div v-else>
-                                <div class="">
-                                    <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- data -->
-                        <div class="col">
-                            <h3 class="text-center">{{ singleTrainer.user.name }} {{ singleTrainer.user.surname }}</h3>
-                        </div>
-                        <!-- rating -->
-                        <div class="col p-1 text-center">
-                            Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                        </div>
-                        <div class="col text-center">
-                            <p>
-                                Phone Number: {{ singleTrainer.phone_number }}
-                            </p>
-                        </div>
-                        <div class="col text-center">
-                            <p> mail: {{ singleTrainer.user.email }}
-                            </p>
-                        </div>
-
-                        <div class="col text-center">
-                            <p> Description: {{ singleTrainer.description }}
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
+               
             </div>
         </div>
 

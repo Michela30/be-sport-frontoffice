@@ -12,11 +12,11 @@ export default {
             foundSpecs: store.allSpecs,
             showSpecs: false,
 
-
             foundedTrainers: {},
         }
     },
     methods: {
+          
         searchSpec() {
             this.foundSpecs = [];
             this.store.allSpecs.forEach((singleSpecs, i) => {
@@ -30,6 +30,10 @@ export default {
         showSpecial() {
             this.showSpecs = true
         },
+         voteDivider(value) {
+            let exitNum = Math.floor((value / 1))
+            return exitNum
+        },
         // here fires axios call
         searchBySpecs() {
             axios
@@ -41,20 +45,11 @@ export default {
                     this.foundedTrainers = response.data.results;
                 })
         },
-        averageVoteCalc() {
-            let arr = this.singleTrainer.votes;
-            let sum = 0;
 
-            arr.forEach(function (num) { sum += num });
-            
-            console.log('this is the average', average);
-            average = sum / arr.length;
-            return average;
-        }
 
     },
     created() {
-        
+
         // here fires axios call
         axios
             // .get(`http://127.0.0.1:8000/api/trainerfilter/${this.$route.params.spec}`)
@@ -69,7 +64,7 @@ export default {
             })
         console.log('questo è il paramentro che arriva dalla vue rotta ->', this.$route.params.spec)
 
-         
+
     },
 
     mounted() {
@@ -81,6 +76,7 @@ export default {
 <template>
     <div class="h-100 my-container">
         <div class="container  w-100 m-auto">
+            <!--💱 searchbars all here -->
             <div class="row  justify-content-center ">
                 <div class="col d-flex justify-content-center">
                     <div class="bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
@@ -106,11 +102,31 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- 🍳🍕 lower searchbars here -->
+            <div class="row ">
+                <h4 class="fs-6 px-2">Filtra per:</h4>
+                <div class="col-6 p-2">
+                    <select @change="" class="form-select" aria-label="Default select example">
+                        <option disabled selected>numero voti</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+
+                </div>
+
+                <div class="col-6 p-2">
+                    <select @change="" class="form-select" aria-label="Default select example">
+                        <option selected>Numero recensioni</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+
+                </div>
+            </div>
             <!-- here shows all trainer for that specific spec -->
             <div class="row">
-                <!-- <h2>
-                all trainers card from that specific spec
-            </h2> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
                         <div class="card m-2">
@@ -131,10 +147,11 @@ export default {
                             <div class="card-body m-2 text-center ">
                                 <div class="d-flex p-2">
                                     <div class="p-1">
-                                        Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <!-- testfrom api down here ✝ -->
-                                        <!-- {{ singleTrainer.votes }} -->
+                                        <i v-for="singleStar in voteDivider(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                        <i v-for="singleStar in (5 - voteDivider(singleTrainer.average_rating))" class="fa-regular fa-star" ></i>
+                                        <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
+                                        
                                     </div>
                                     <div class="p-1">
                                         Sponsorship:
