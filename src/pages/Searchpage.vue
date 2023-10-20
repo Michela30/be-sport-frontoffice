@@ -11,6 +11,7 @@ export default {
             showSpecs: false,
             foundedTrainers: {},
             selectedRating: 0,
+            selectedReview: 0,
         }
     },
     methods: {
@@ -108,7 +109,7 @@ export default {
                 <h4 class="fs-6 px-2">Filtra per:</h4>
                 <div class="col-6 p-2">
                     <select v-model="this.selectedRating" class="form-select">
-                        <!-- <option value="0">No review</option> -->
+                        <option value="0" selected>Show all </option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
@@ -118,19 +119,18 @@ export default {
 
                 </div>
                 <div class="col-6 p-2">
-                    <select @change="" class="form-select">
-                        <option selected>Numero recensioni</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
+                    <select v-model="this.selectedReview" class="form-select">
+                        <option value="0" selected>Show all </option>
+                        <option value="5">At least 5 reviews</option>
+                        <option value="10">At least 10 reviews</option>
+                        <option value="15">At least 15 reviews</option>
+                        <option value="20">At least 20 reviews</option>
+                        <option value="25">At least 25 reviews</option>
                     </select>
-
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
-            <div class="row" v-if="selectedRating == 0">
+            <div class="row" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
@@ -167,6 +167,7 @@ export default {
     
                                     <div>
                                         email : {{ singleTrainer.email }}
+                                        
                                     </div>
                                     <div>
                                         presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
@@ -197,13 +198,14 @@ export default {
             </div>
 
             <div class="row" v-else>
+                <h5>SIAMO NEL V-ELSE</h5>
                 <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                     <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i"
-                    :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'" >
+                    :class="(selectedRating == Math.floor(singleTrainer.average_rating) || selectedReview >= Math.floor(singleTrainer.reviews.length) ) ? '' : 'hidden'" >
                             <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
                                 <div class="card m-2">
-    
+                                    
                                     <!-- div for img and absolute text -->
                                     <div class="card-container ">
                                         <!-- <img :src="singleTrainer.picture" class="rounded card-img-top" alt="..."> -->
@@ -216,6 +218,7 @@ export default {
     
                                         <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                                         <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
+                                        <h5>{{ singleTrainer.reviews.length }}</h5>
                                     </div>
                                     <!-- start body card -->
                                     <div class="card-body m-2 text-center ">
