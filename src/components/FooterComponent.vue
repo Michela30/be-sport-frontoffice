@@ -20,7 +20,7 @@ export default {
 
 <template>
     <footer>
-        <div class="container-fluid p-3">
+        <div class="container-fluid  w-100 px-3">
             <div class="row justify-content-between py-3 pt-1">
                 <div class="col-4">
                     <div class="d-flex flex-column mb-3">
