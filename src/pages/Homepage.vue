@@ -233,8 +233,6 @@ export default {
 
 .my-container-bottom {
     background-color: whitesmoke;
-
-
 }
 
 .search-button {

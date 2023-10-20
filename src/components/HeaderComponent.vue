@@ -134,7 +134,7 @@ button {
 }
 
 header {
-    background: rgb(232, 124, 93);
+    background: $mainColor;
     background: linear-gradient(0deg, rgba(232, 124, 93, 1) 67%, rgba(205, 97, 66, 1) 95%);
     
 }
