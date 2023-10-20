@@ -34,9 +34,7 @@ export default {
 
 <template>
     <div class="container-fluid  wrapper-container">
-
-
-        <div class=" my-container container w-100 m-auto py-5">
+        <div class=" my-container container w-100 m-auto ">
             <!-- <h1>ciao funziona la home?
                 <router-link :to="{ name: 'search' }">link to search</router-link>
             </h1> -->
@@ -131,86 +129,86 @@ export default {
             </div>
 
         </div>
-        <!-- Inizio Review -->
-        <div class="container-fluid my-container-bottom">
-            <!-- non mi prende il bg ??? why -->
-            <div class="h-100 container my-container-bottom w-100 m-auto py-5 ">
-                <div class="row review-row p-2  ">
-                    <div class="col-6 p-2 left-container pe-5 d-flex flex-column  justify-content-center">
+    </div>
+    <!-- Inizio Review -->
+    <div class="container-fluid my-container-bottom">
+        <!-- non mi prende il bg ??? why -->
+        <div class="h-100 container my-container-bottom w-100 m-auto py-5 ">
+            <div class="row review-row p-2  ">
+                <div class="col-md-6 col-sm-12 p-2 left-container pe-5 d-flex flex-column  justify-content-center">
 
-                        <h2 class="title py-4 ">
-                            Skilled and top-rated tutors
-                        </h2>
-                        <div class="text">
-                            <span>More than thousents of students</span> gave a <span>5 star </span> review to their
-                            tutor
-                        </div>
+                    <h2 class="title py-4 ">
+                        Skilled and top-rated tutors
+                    </h2>
+                    <div class="text">
+                        <span>More than thousents of students</span> gave a <span>5 star </span> review to their
+                        tutor
                     </div>
-                    <!-- inizio card -->
+                </div>
+                <!-- inizio card -->
 
-                    <div class="col-6 my-row-2 ">
-                        <div class="my-col m-2 p-3" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
-                            <div class="col-12 d-flex">
-                                <div class="col-auto ">
-                                    <div class="img-box ">
-                                        <!-- 🔽 Metto una img di placeholder 🔽 -->
-                                        <!-- <img src="../../public/img-trainers/2.jpg" alt="img da placeholder"> -->
-                                        <div class="my-img" v-if="singleTrainer.full_thumb_path">
-                                            <img :src="singleTrainer.full_thumb_path" class="my-img">
-                                        </div>
-                                        <div v-else class="my-img">
-                                            <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
-                                        </div>
+                <div class="col-md-6 my-row-2 col-sm-12 ">
+                    <div class="my-col m-2 p-3" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
+                        <div class="col-12 d-flex">
+                            <div class="col-auto ">
+                                <div class="img-box ">
+                                    <!-- 🔽 Metto una img di placeholder 🔽 -->
+                                    <!-- <img src="../../public/img-trainers/2.jpg" alt="img da placeholder"> -->
+                                    <div class="my-img" v-if="singleTrainer.full_thumb_path">
+                                        <img :src="singleTrainer.full_thumb_path" class="my-img">
                                     </div>
-
+                                    <div v-else class="my-img">
+                                        <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
+                                    </div>
                                 </div>
-                                <div class="col-auto ps-2 d-flex flex-column justify-content-center">
-                                    <div>
-                                        <div class="fs-5">
-                                            {{ singleTrainer.user.name }}
+
+                            </div>
+                            <div class="col-auto ps-2 d-flex flex-column justify-content-center">
+                                <div>
+                                    <div class="fs-5">
+                                        {{ singleTrainer.user.name }}
 
 
-                                        </div>
                                     </div>
+                                </div>
 
 
-                                    <div class="fs-6">
-                                        <div class="my-text">
-                                            <!--🔽 specializzazione di placeholder🔽 -->
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <!-- <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations"
+                                <div class="fs-6">
+                                    <div class="my-text">
+                                        <!--🔽 specializzazione di placeholder🔽 -->
+                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <!-- <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations"
                                                 :key="i">
                                                 {{ singleSpec.name }} 
                                             </div> -->
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Inizio contenuto della singola card -->
-                            <div class="col-12 py-2">
+                        </div>
+                        <!-- Inizio contenuto della singola card -->
+                        <div class="col-12 py-2">
+                            <div class="fs-5">
+                                <!-- review da palceholder -->
                                 <div class="fs-5">
-                                    <!-- review da palceholder -->
-                                    <div class="fs-5">
-                                        <!-- {{ singleTrainer.review[0].comment }} -->
-                                        <template v-if="singleTrainer.review && singleTrainer.review[i]">
-                                            {{ singleTrainer.review[i].comment }}
-                                        </template>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="fs-5">
-                                    <!-- review da palceholder -->
+                                    <!-- {{ singleTrainer.review[0].comment }} -->
                                     <template v-if="singleTrainer.review && singleTrainer.review[i]">
-                                        {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
+                                        {{ singleTrainer.review[i].comment }}
                                     </template>
-
-
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="fs-5">
+                                <!-- review da palceholder -->
+                                <template v-if="singleTrainer.review && singleTrainer.review[i]">
+                                    {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
+                                </template>
+
+
                             </div>
                         </div>
                     </div>
@@ -236,7 +234,7 @@ export default {
 .my-container-bottom {
     background-color: whitesmoke;
 
-   
+
 }
 
 .search-button {
@@ -331,7 +329,7 @@ export default {
         border-radius: 30px;
         -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
         box-shadow: 11px 11px 23px -6px $darkColor;
-        width: calc((100% / 2) - 20px) !important;
+        width: calc((100% / 2) - 20px) ;
         margin: 10px 20px;
     }
 
@@ -358,5 +356,18 @@ export default {
         margin: 10px;
         transform: rotate(-7deg);
     }
+}
+
+// MEDIA QUERY
+
+@media screen and (max-width: 760px) {
+    .my-row-2 {
+        transform: rotate(-0deg) !important;
+    }
+    .my-col{
+        width:calc((100% / 1) - 20px) !important;
+        
+    }
+   
 }
 </style>
