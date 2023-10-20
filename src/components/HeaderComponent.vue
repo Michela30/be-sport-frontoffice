@@ -2,57 +2,116 @@
 //import
 
 export default {
-  data() {
-    return {
-      //dati
-    }
-  },
-  methods: {
-    //function
-  },
+    data() {
+        return {
+            //dati
+        }
+    },
+    methods: {
+        //function
+    },
 }
 </script>
 
 
+
+
+    
+
+
+
 <template>
-  <header class="">
-    <div class="container-fluid p-3">
-      <div class="row align-items-center">
-        <div class="col h-100 ">
-          <!-- <div class="imgWrapper debug">
-            <img src="../assets/imgs/superlogo.png" alt="a" class="float-start">
-          </div> -->
-           <router-link :to="{ name: 'home' }"><h6 class=" logoTypo">Be<span>Sport</span></h6></router-link>
+    
+<header>
+    <div class="container-fluid pb-5 p-2">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg ">
+                <div class="container-fluid">
+                    <router-link :to="{ name: 'home' }">
+                        <h6 class=" logoTypo">Be<span>Sport</span></h6>
+                    </router-link>
+                    <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                            
+                        </ul>
+                        <span class="navbar-text">
+                            <ul class="d-flex justify-content-end ">
+                        <li>
+                            <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
+                                <a class="text-dark px-2" href="">FAQ</a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
+                                <!--💢 qua ci va inserito il parametro di ricerca stringa vuota per il search -->
+                                <router-link class="text-dark"
+                                    :to="{ name: 'search', params: { spec: ' ' } }">Search</router-link>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
+                                <a class="text-dark px-2" href="http://127.0.0.1:8000/login">Login</a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
+                                <a class="text-dark px-2" href="http://127.0.0.1:8000/register">Register</a>
+                            </button>
+                        </li>
+                    </ul>
+                        </span>
+                    </div>
+                </div>
+            </nav>
         </div>
-            
-        <div class="col h-100">
-          <ul class="d-flex justify-content-end ">
-            <li>
-              <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
-                <a class="text-dark px-2" href="">FAQ</a>
-              </button>
-            </li>
-            <li>
-              <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
-                <!--💢 qua ci va inserito il parametro di ricerca stringa vuota per il search -->
-                <router-link class="text-dark" :to="{ name: 'search', params: {spec: ' '} }">Search</router-link>
-              </button>
-            </li>
-            <li>
-              <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
-                <a class="text-dark px-2" href="http://127.0.0.1:8000/login">Login</a>
-              </button>
-            </li>
-            <li>
-              <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
-                <a class="text-dark px-2" href="http://127.0.0.1:8000/register">Register</a>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </header>
+</header>
+
+
+
+
+<!-- 
+    <header class="">
+        <div class="container-fluid p-3">
+            <div class="row align-items-center">
+                <div class="col h-100 ">
+                    <router-link :to="{ name: 'home' }">
+                        <h6 class=" logoTypo">Be<span>Sport</span></h6>
+                    </router-link>
+                </div>
+
+                <div class="col h-100">
+                    <ul class="d-flex justify-content-end ">
+                        <li>
+                            <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
+                                <a class="text-dark px-2" href="">FAQ</a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
+                               💢 qua ci va inserito il parametro di ricerca stringa vuota per il search 
+                                <router-link class="text-dark"
+                                    :to="{ name: 'search', params: { spec: ' ' } }">Search</router-link>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
+                                <a class="text-dark px-2" href="http://127.0.0.1:8000/login">Login</a>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
+                                <a class="text-dark px-2" href="http://127.0.0.1:8000/register">Register</a>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header> -->
 </template>
 
 
@@ -61,34 +120,36 @@ export default {
 @use '../assets/scss/variables.scss' as *;
 
 * {
-  color: $brightText;
+    color: $brightText;
 }
 
-h6:hover{
-  text-shadow: 2px 2px 2px $darkColor;
+h6:hover {
+    text-shadow: 2px 2px 2px $darkColor;
 }
-button{
-  
-  -webkit-box-shadow: 11px 11px 23px -6px rgba(0,0,0,0.43); 
-  box-shadow: 11px 11px 23px -6px rgba(0,0,0,0.43);
+
+button {
+
+    -webkit-box-shadow: 11px 11px 23px -6px rgba(0, 0, 0, 0.43);
+    box-shadow: 11px 11px 23px -6px rgba(0, 0, 0, 0.43);
 }
 
 header {
-  background: rgb(232, 124, 93);
-  background: linear-gradient(0deg, rgba(232, 124, 93, 1) 67%, rgba(205, 97, 66, 1) 95%);
+    background: rgb(232, 124, 93);
+    background: linear-gradient(0deg, rgba(232, 124, 93, 1) 67%, rgba(205, 97, 66, 1) 95%);
+    
 }
 
 .imgWrapper {
-  width: 30%;
+    width: 30%;
 }
 
 .logoTypo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: $brightText;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $brightText;
 
-  span {
-    color: $compColor;
-  }
+    span {
+        color: $compColor;
+    }
 }
 </style>
