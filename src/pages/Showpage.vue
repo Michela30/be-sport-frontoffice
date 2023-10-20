@@ -8,6 +8,7 @@ export default {
             singleTrainer: '',
             
             email: {
+                trainer_id: '',
                 name: '',
                 email: '',
                 message_text: '',    
@@ -28,7 +29,11 @@ export default {
         sendEmail() {
             axios
                 .post("http://127.0.0.1:8000/api/messages",
-                    this.email
+                    this.email, {
+                        header: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
                 )
                 .then(response => { 
                     console.log('chiamata post per email', response)
@@ -44,7 +49,11 @@ export default {
         sendRating() {
             axios
                 .post("http://127.0.0.1:8000/api/votes",
-                    this.vote
+                    this.vote ,{
+                        header: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
                 )
                 .then(response => {
                     console.log('chiamata post per email', response)
@@ -67,7 +76,11 @@ export default {
 
             axios
                 .post("http://127.0.0.1:8000/api/reviews",
-                    this.review
+                    this.review , {
+                        header: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
                 )
                 .then(response => {
                     console.log('chiamata post per email', response)
@@ -78,7 +91,7 @@ export default {
         }
     },
     created() {
-        console.log('http://127.0.0.1:8000/api/trainer/' + this.$route.params.id);
+        //console.log('http://127.0.0.1:8000/api/trainer/' + this.$route.params.id);
         // here fires axios call
         axios
             .get(`http://127.0.0.1:8000/api/trainer/${this.$route.params.id}`)
@@ -88,9 +101,11 @@ export default {
             // })
             .then(response => {
                 this.singleTrainer = response.data.trainer;
-
-                console.log('this.singleTrainer', this.singleTrainer)
+                this.email.trainer_id = this.$route.params.id
+                console.log('this.data',  this.data.trainer_id)
+                //console.log('this.singleTrainer', this.singleTrainer)
             })
+            
     }
 
 }
