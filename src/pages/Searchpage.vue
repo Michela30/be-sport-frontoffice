@@ -32,11 +32,6 @@ export default {
         showSpecial() {
             this.showSpecs = true
         },
-        // il meme questa funzione 😂😀😀
-        voteDivider(value) {
-            let exitNum = Math.floor((value / 1))
-            return exitNum
-        },
         //❌📛🛑 need to fix this, wont fire on load
         searchBySpecs() {
             axios
@@ -154,8 +149,8 @@ export default {
                                 <div class="card-body m-2 text-center ">
                                     <div class="d-flex p-2">
                                         <div class="p-1">
-                                            <i v-for="singleStar in voteDivider(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
-                                            <i v-for="singleStar in (5 - voteDivider(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
+                                            <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                            <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                                             <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                             <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
     
