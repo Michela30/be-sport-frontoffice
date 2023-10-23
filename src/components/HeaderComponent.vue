@@ -23,8 +23,8 @@ export default {
 <template>
     
 <header>
-    <div class="container-fluid d-felx justify-content-center d-inline pb-5 px-2 ">
-        <div class="row p-2 ">
+    <div class="container-fluid d-felx justify-content-center d-inline  px-2 ">
+        <div class="row px-2 ">
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
                     <router-link :to="{ name: 'home' }">
@@ -128,20 +128,20 @@ h6:hover {
 }
 
 button {
-
+    font-size: 0.8rem;
     -webkit-box-shadow: 11px 11px 23px -6px rgba(0, 0, 0, 0.43);
-    box-shadow: 11px 11px 23px -6px rgba(0, 0, 0, 0.43);
+    box-shadow: 0px 9px 20px -6px $shadowColor;
+
 }
 
 header {
     background: $mainColor;
-    background: linear-gradient(0deg, rgba(232, 124, 93, 1) 67%, rgba(205, 97, 66, 1) 95%);
+    background: rgba(232, 124, 93, 1);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1;
-    
-    box-shadow: 0px 5px 25px 0-5px $darkColor;
+    box-shadow: 0px 9px 20px -6px $shadowColor;
 }
 
 .imgWrapper {
