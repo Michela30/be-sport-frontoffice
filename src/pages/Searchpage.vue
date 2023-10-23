@@ -30,16 +30,17 @@ export default {
             });
         },
         showSpecial() {
-            this.showSpecs = true
+            this.showSpecs = !this.showSpecs
         },
-        //❌📛🛑 need to fix this, wont fire on load
-        searchBySpecs() {
+        updateSearch() {
             axios
                 .get(`http://127.0.0.1:8000/api/trainerfilter/`, {
-                    params: { specialization: this.$route.params.spec },
+                    // params: { specialization: this.$route.params.spec },
+                     params: { specialization: this.inputSearch },
                 })
                 .then(response => {
-                    this.foundedTrainers = response.data.results;
+                    this.foundedTrainers = response.data.trainer;
+                    console.log('questo è larray di trainers aggiornati ->', this.foundedTrainers);
                     // Sort the trainers based on average rating (descending order)
                     this.sortData();
                 })
@@ -71,25 +72,22 @@ export default {
 
 
 <template>
-    <div class="h-100 my-container ">
+    <div class="h-100 my-container " >
         <div class="container  w-100 m-auto ">
             <!--💱 searchbars all here -->
-            <div class="row  justify-content-center pt-5 mt-5 ">
+            <div class="row justify-content-center pt-5 mt-5 " >
                 <div class="col d-flex justify-content-center">
-                    <div class="bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
+                    <div class="bg-white d-flex p-2 w-75 rounded-4" @click="showSpecial(), console.log('premuto bottone dentro')" >
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
-                        <!--🔽 Lancia chiamata API 🔽 -->
-                        <button class="btn search-button p-2 rounded-3 mx-1">
-                            <!--💚 this fire the search -->
-                            <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
-                            <div v-else>Search</div>
-                        </button>
+                        <!--🔽 update chiamata API 🔽 -->
+                        <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
                     </div>
                 </div>
                 <!-- {{ foundSpecs }} -->
                 <div class="row justify-content-center pt-1">
-                    <div class=" col-12 w-75 d-flex bg-white rounded ">
-                        <div class="" v-if="this.showSpecs">
+                    <transition name="fade">
+                    <div class=" col-12 w-75 d-flex bg-white rounded " v-if="this.showSpecs">
+                        <div class="">
                             <div v-for="singleSpecs in foundSpecs">
                                 <div @click="this.inputSearch = singleSpecs" class=" p-2">
                                     {{ singleSpecs }}
@@ -97,6 +95,7 @@ export default {
                             </div>
                         </div>
                     </div>
+                </transition>
                 </div>
             </div>
             <!-- 🍳🍕 lower searchbars here -->
@@ -269,6 +268,8 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
+
+
 .hidden {
     display: none;
 }
@@ -342,4 +343,16 @@ export default {
         text-shadow: 2px 2px 2px $darkColor;
     }
 }
+
+// vue transition here ----------
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+// vue transition here ----------
 </style>
