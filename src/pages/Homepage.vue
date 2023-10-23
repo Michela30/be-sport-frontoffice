@@ -81,11 +81,12 @@ export default {
                             </div>
                             <!-- start body card -->
                             <div class="card-body m-2 text-center ">
-                                <div class="d-flex p-2">
+                                <div class="d-flex justify-content-center p-2">
                                     <div class="p-1">
-                                        <!-- ⭐🌠 fixare stelline manca average rating -->
+
                                         <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                                         <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
+                                        
                                     </div>
                                     <div class="p-1">
                                         Sponsorship:
@@ -93,17 +94,17 @@ export default {
                                 </div>
 
                                 <div>
-                                    email : {{ singleTrainer.user.email }}
+                                    Email: {{ singleTrainer.user.email }}
                                 </div>
                                 <div>
-                                    presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                                    Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
                                     officiis.
                                 </div>
                                 <!-- perchè non funziona il bold? -->
                                 <div class="fw-bold 2h">
-                                    my specializations:
+                                    My specializations:
                                 </div>
-                                <div class="d-flex flex-wrap d-wrap">
+                                <div class="d-flex flex-wrap d-wrap justify-content-center">
 
                                     <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
                                         {{ singleSpec.name }}
