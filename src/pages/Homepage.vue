@@ -33,14 +33,14 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid  wrapper-container">
+    <div class="container-fluid  wrapper-container ">
         <div class=" my-container container w-100 m-auto ">
             <!-- <h1>ciao funziona la home?
                 <router-link :to="{ name: 'search' }">link to search</router-link>
             </h1> -->
 
 
-            <div class="col d-flex justify-content-center ">
+            <div class="col d-flex justify-content-center pt-5 mt-5">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
                         placeholder="Type what would you like to train?" aria-label="Username"
@@ -134,8 +134,8 @@ export default {
     <div class="container-fluid my-container-bottom">
         <!-- non mi prende il bg ??? why -->
         <div class="h-100 container my-container-bottom w-100 m-auto py-5 ">
-            <div class="row review-row p-2  ">
-                <div class="col-md-6 col-sm-12 p-2 left-container pe-5 d-flex flex-column  justify-content-center">
+            <div class="row review-row p-2 ">
+                <div class="col-md-6 col-sm-12 p-2 left-container pe-5 d-flex flex-column  justify-content-center" >
 
                     <h2 class="title py-4 ">
                         Skilled and top-rated tutors

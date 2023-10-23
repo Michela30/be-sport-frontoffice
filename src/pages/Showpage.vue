@@ -143,7 +143,7 @@ export default {
     <div class=" my-container">
         <div class="container  w-100 m-auto">
             <div class="row">
-                 <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start ">
+                 <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start  pt-5 mt-5">
                         <div class="card d-flex flex-column align-items-center justify-content-center p-3">
                             <div class=" w-50 ">
                                 <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
@@ -185,7 +185,7 @@ export default {
 
                         </div>
                     </div>
-                <div class="col-12 col-sm-8">
+                <div class="col-12 col-sm-8 pt-5 mt-5">
                     <!-- form message here -->
                     <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('premuto bottone email')">
                         <h5 class="m-2">Contact Me here 📨</h5>
