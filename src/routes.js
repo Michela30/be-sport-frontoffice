@@ -18,7 +18,7 @@ const routes = [
     },
     //showPage
     {
-        path: '/show/:id',
+        path: '/show/:slug',
         name: 'show',
         component: Showpage,
     },

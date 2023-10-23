@@ -120,7 +120,7 @@ export default {
     created() {
         // here fires axios call
         axios
-            .get(`http://127.0.0.1:8000/api/trainer/${this.$route.params.id}`)
+            .get(`http://127.0.0.1:8000/api/trainer/${this.$route.params.slug}`)
             // 'http://localhost:8000/api/trainer/' + this.$route.params.id
             // .get(`http://127.0.0.1:8000/api/trainer/`, {
             //     params: { trainers: this.$route.params.id },

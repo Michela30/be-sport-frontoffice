@@ -128,7 +128,7 @@ export default {
                 <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
-                        <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
+                        <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                             <div class="card m-2">
     
                                 <!-- div for img and absolute text -->
@@ -197,7 +197,7 @@ export default {
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                     <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i"
                     :class="(selectedRating == Math.floor(singleTrainer.average_rating) || selectedReview >= Math.floor(singleTrainer.reviews.length) ) ? '' : 'hidden'" >
-                            <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
+                            <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                                 <div class="card m-2">
                                     
                                     <!-- div for img and absolute text -->
