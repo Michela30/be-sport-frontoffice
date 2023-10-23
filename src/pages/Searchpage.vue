@@ -92,7 +92,7 @@ export default {
                 <!-- {{ foundSpecs }} -->
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
-                    <div class=" col-12 w-75 d-flex bg-white rounded " v-if="this.showSpecs">
+                    <div class=" col-12 w-75 d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
                         <div class="w-100">
                             <div v-for="singleSpecs in foundSpecs">
                                 <div @click="this.inputSearch = singleSpecs" class=" cursor-pointer bg-hover p-2">
@@ -151,30 +151,30 @@ export default {
                                 </div>
                                 <!-- start body card -->
                                 <div class="card-body m-2 text-center ">
-                                    <div class="d-flex p-2">
+                                    <div class="d-flex justify-content-center p-2">
                                         <div class="p-1">
                                             <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                                             <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                                         </div>
                                         <div class="p-1">
-                                            Sponsorship: true o false ?
+                                            <!-- Sponsorship: true o false ? -->
                                         </div>
                                     </div>
     
                                     <div>
-                                        email : {{ singleTrainer.email }}   
+                                        Email: {{ singleTrainer.email }}   
                                     </div>
                                     <div>
-                                        presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                                        Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
                                         officiis.
                                     </div>
                                     <div class="fw-bold 2h">
-                                        my specializations:
+                                        My specializations:
                                     </div>
                                     <div>
 
                                     </div>
-                                    <div class="d-flex flex-wrap d-wrap">
+                                    <div class="d-flex flex-wrap d-wrap justify-content-center">
 
                                         <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
                                     
@@ -208,7 +208,7 @@ export default {
                                     </div>
                                     <!-- start body card -->
                                     <div class="card-body m-2 text-center ">
-                                        <div class="d-flex p-2">
+                                        <div class="d-flex justify-content-center p-2">
                                             <div class="p-1">
                                                 <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                                                 <i v-for="singleStar in (5 -  Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
@@ -219,29 +219,24 @@ export default {
                                         </div>
     
                                         <div>
-                                            email : {{ singleTrainer.email }}
+                                            Email: {{ singleTrainer.email }}
                                         </div>
                                         <div>
-                                            presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                                            Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
                                             officiis.
                                         </div>
-                                        <!-- perchè non funziona il bold? -->
+
                                         <div class="fw-bold 2h">
-                                            my specializations:
+                                            My specializations:
                                         </div>
                                         <div>
-                                            <!-- test review down here ✝
-                                    review {{ singleTrainer.reviews }} -->
+
                                         </div>
-                                        <div class="d-flex flex-wrap d-wrap">
-                                            <!--💥💥 need to fix we need from api all specs from specific trainer query -->
+                                        <div class="d-flex flex-wrap d-wrap justify-content-center">
+                                            
                                             <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
-                                            <!-- <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
-                                        {{ singleSpec.name }}
-                                    </div> -->
+                                            
                                         </div>
-    
-                                        <!-- rotta vue allo show qui poi -->
     
                                     </div>
                                 </div>

@@ -174,7 +174,7 @@ export default {
                                 </p>
                             </div>
                             <div class="col text-center">
-                                <p> mail: {{ singleTrainer.user.email }}
+                                <p> Email: {{ singleTrainer.user.email }}
                                 </p>
                             </div>
 
