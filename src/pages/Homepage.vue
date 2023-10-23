@@ -35,11 +35,6 @@ export default {
 <template>
     <div class="container-fluid  wrapper-container ">
         <div class=" my-container container w-100 m-auto ">
-            <!-- <h1>ciao funziona la home?
-                <router-link :to="{ name: 'search' }">link to search</router-link>
-            </h1> -->
-
-
             <div class="col d-flex justify-content-center pt-5 mt-5">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
@@ -54,7 +49,6 @@ export default {
                     </button>
                 </div>
             </div>
-            <!-- {{ foundSpecs }} -->
             <div class="row justify-content-center pt-1 mb-5">
                 <transition name="fade">
                 <div class=" col-12 w-75 d-flex bg-white rounded    ">

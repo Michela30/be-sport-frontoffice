@@ -99,22 +99,22 @@ export default {
                 </div>
             </div>
             <!-- 🍳🍕 lower searchbars here -->
-            <div class="row ">
-                <h4 class="fs-6 px-2">Filtra per:</h4>
-                <div class="col-6 p-2">
+            <div class="row w-75 m-auto py-3">
+                <h4 class="fs-6 px-2 py-2">Filtra per:</h4>
+                <div class="col-6  p-2">
                     <select v-model="this.selectedRating" class="form-select">
-                        <option value="0" selected>Show all </option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
+                        <option class="debug" value="0" selected>All Rating</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
                     </select>
 
                 </div>
                 <div class="col-6 p-2">
                     <select v-model="this.selectedReview" class="form-select">
-                        <option value="0" selected>Show all </option>
+                        <option value="0" selected>Any Reviews Number</option>
                         <option value="5">At least 5 reviews</option>
                         <option value="10">At least 10 reviews</option>
                         <option value="15">At least 15 reviews</option>
@@ -218,8 +218,8 @@ export default {
                                     <div class="card-body m-2 text-center ">
                                         <div class="d-flex p-2">
                                             <div class="p-1">
-                                                <i v-for="singleStar in voteDivider(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
-                                                <i v-for="singleStar in (5 - voteDivider(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
+                                                <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                                <i v-for="singleStar in (5 -  Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                                                 <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                             <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
     
@@ -268,7 +268,12 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
-
+.text-grey {
+    color: grey;
+}
+.text-dark {
+    color: black
+}
 
 .hidden {
     display: none;
