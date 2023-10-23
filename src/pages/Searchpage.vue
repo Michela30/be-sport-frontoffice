@@ -1,8 +1,12 @@
 <script>
+import LoaderComponent from '../components/LoaderComponent.vue';
 import axios from 'axios';
 import { store } from "../store";
 
 export default {
+      components: {
+        LoaderComponent,
+    },
     data() {
         return {
             store,
@@ -12,6 +16,7 @@ export default {
             foundedTrainers: {},
             selectedRating: 0,
             selectedReview: 0,
+            isLoad : false,
         }
     },
     methods: {
@@ -28,9 +33,6 @@ export default {
                     console.log('trovata la spec');
                 }
             });
-        },
-        showSpecial() {
-            this.showSpecs = !this.showSpecs
         },
         updateSearch() {
             axios
@@ -59,6 +61,7 @@ export default {
                 console.log('questo è larray di trainers trovati ->', this.foundedTrainers);
                 // Sort the trainers based on average rating (descending order)
                 this.sortData();
+                this.isLoad == true
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -72,12 +75,15 @@ export default {
 
 
 <template>
+    <div v-if="isLoad == false">
+
+    </div>
     <div class=" my-container " >
         <div class="container  w-100 m-auto ">
             <!--💱 searchbars all here -->
             <div class="row justify-content-center pt-5 mt-5 " >
                 <div class="col d-flex justify-content-center">
-                    <div class="bg-white d-flex p-2 w-75 rounded-4" @click="showSpecial(), console.log('premuto bottone dentro')" >
+                    <div class="bg-white d-flex p-2 w-75 rounded-4" @click="this.showSpecs = !this.showSpecs, console.log('premuto bottone dentro')" >
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" >
                         <!--🔽 update chiamata API 🔽 -->
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>

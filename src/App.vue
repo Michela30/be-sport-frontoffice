@@ -3,6 +3,7 @@
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import LoaderComponent from './components/LoaderComponent.vue';
 import axios from 'axios';
 import { store } from './store';
 
@@ -10,13 +11,14 @@ export default {
   data() {
     return {
       store,
-      // objSpec: '',
+      isLoad : false
     }
   },
   components: {
     HeaderComponent,
     MainComponent,
-    FooterComponent
+    FooterComponent,
+    LoaderComponent,
   },
   methods: {
 
@@ -27,6 +29,7 @@ export default {
       .then(response => {
         this.store.allTrainers = response.data.trainers;
         console.log(this.store.allTrainers)
+        this.isLoad = true
       });
       axios
       .get('http://127.0.0.1:8000/api/specializations/')
@@ -56,9 +59,10 @@ export default {
     </div> -->
 
     <HeaderComponent/>
-
+    <div v-if="this.isLoad == false"><LoaderComponent/></div>
     <!--🔰 router view down here, here slides main content -->
-    <router-view></router-view>
+    <div v-else>    <router-view></router-view></div>
+
 
     <!-- <MainComponent/> -->
 
