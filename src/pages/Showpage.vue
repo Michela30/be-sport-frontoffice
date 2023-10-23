@@ -128,9 +128,9 @@ export default {
             .then(response => {
                 this.singleTrainer = response.data.trainer;
                 // this assign id pf page to fields
-                this.email.trainer_id = this.$route.params.id;
-                this.vote.trainer_id = this.$route.params.id;
-                this.review.trainer_id = this.$route.params.id;
+                this.email.trainer_id = this.$route.params.slug;
+                this.vote.trainer_id = this.$route.params.slug;
+                this.review.trainer_id = this.$route.params.slug;
             })
 
     }
@@ -187,7 +187,7 @@ export default {
                     </div>
                 <div class="col-12 col-sm-8 pt-5 mt-5">
                     <!-- form message here -->
-                    <form class="bg-white rounded p-3 m-2" action="" @submit.prevent="sendEmail(); console.log('premuto bottone email')">
+                    <form class="bg-white rounded p-3 " action="" @submit.prevent="sendEmail(); console.log('premuto bottone email')">
                         <h5 class="m-2">Contact Me here 📨</h5>
 
                         <div class="form-group  m-2">
@@ -205,11 +205,11 @@ export default {
                         </div>
 
                         <!-- <button type="button" class="btn btn-info text-white fs-7 px-1 mx-2" @click.prevent="sendEmail(); console.log('premuto submit')">Submit</button> -->
-                        <button type="submit" class="btn btn-info text-white fs-7 px-1 mx-2">Submit</button>
+                        <button type="submit" class="btn text-white fs-7 py-1 px-2 mx-2">Submit</button>
                     </form>
 
                     <!-- rating form -->
-                    <form class="bg-white rounded p-4 m-2" action="" @submit.prevent="sendRating(); console.log('premuto bottone rating')">
+                    <form class="bg-white rounded p-4 my-2" action="" @submit.prevent="sendRating(); console.log('premuto bottone rating')">
                         <label for="rating" class="form-label">Rate Me ✨</label>
                         <select v-model="this.vote.rating" class="form-select form-select-sm" aria-label=".form-select-sm example" id="rating">
                             <option value="1">⭐</option>
@@ -218,10 +218,10 @@ export default {
                             <option value="4">⭐⭐⭐⭐</option>
                             <option value="5">⭐⭐⭐⭐⭐</option>
                         </select>
-                        <button type="submit" class="btn btn-info text-white fs-7 my-2 px-1 ">Submit</button>
+                        <button type="submit" class="btn text-white fs-7 my-2 py-1 px-2 ">Submit</button>
                     </form>
                     <!-- text review form here -->
-                    <form action="" class="bg-white rounded p-4 m-2" @submit.prevent="sendReview(); console.log('premuto bottone review')">
+                    <form action="" class="bg-white rounded p-4 my-2" @submit.prevent="sendReview(); console.log('premuto bottone review')">
                         <!-- <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2024-12-31" /> -->
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -231,7 +231,7 @@ export default {
                         <textarea v-model="this.review.comment" class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
 
 
-                        <button type="submit" class="btn btn-info text-white fs-7 my-2 px-1 ">Submit</button>
+                        <button type="submit" class="btn text-white fs-7 my-2 py-1 px-2 ">Submit</button>
 
                     </form>
                 </div>
@@ -253,9 +253,9 @@ export default {
 @use '../assets/scss/variables.scss' as *;
 
 .my-container {
-    min-height: calc(100vh - 260px);
+    min-height: calc(100vh - 200px);
     background: rgb(245, 245, 245);
-    background: linear-gradient(0deg, rgba(245, 245, 245, 1) 42%, rgba(242, 221, 215, 1) 63%, rgba(240, 201, 190, 1) 74%, rgba(236, 164, 143, 1) 91%, rgba(235, 153, 129, 1) 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(249,221,215,1) 100%);
 }
 
 .imgWrapper {
@@ -264,5 +264,14 @@ export default {
     aspect-ratio: 1/1;
     object-fit: cover;
     object-position: top;
+}
+.card {
+    border: 2px solid $mainColor;
+}
+form {
+    border: 2px solid $mainColor;
+}
+button {
+    background-color: $secColor !important ;
 }
 </style>

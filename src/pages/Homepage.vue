@@ -37,29 +37,26 @@ export default {
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
-                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
-                        placeholder="Type what would you like to train?" aria-label="Username"
-                        aria-describedby="addon-wrapping">
+                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
                         <!--💚 this fire the search -->
-                        <router-link v-if="this.inputSearch" class="text-dark"
-                            :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
+                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
                         <div v-else>Search</div>
                     </button>
                 </div>
             </div>
             <div class="row justify-content-center pt-1 mb-5">
                 <transition name="fade">
-                <div class=" col-12 w-75 d-flex bg-white rounded    ">
-                    <div class="w-100" v-if="this.showSpecs">
-                        <div v-for="singleSpecs in foundSpecs">
-                            <div @click="this.inputSearch = singleSpecs" class=" p-2">
-                                {{ singleSpecs }}
+                    <div class=" col-12 w-75 d-flex bg-white rounded    ">
+                        <div class="w-100" v-if="this.showSpecs">
+                            <div v-for="singleSpecs in foundSpecs">
+                                <div @click="this.inputSearch = singleSpecs" class="bg-hover p-2 cursor-pointer">
+                                    <p>{{ singleSpecs }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </transition>
             </div>
             <!-- Inizio Card -->
@@ -86,8 +83,9 @@ export default {
                             <div class="card-body m-2 text-center ">
                                 <div class="d-flex p-2">
                                     <div class="p-1">
-                                        Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                        <!-- ⭐🌠 fixare stelline manca average rating -->
+                                        <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                        <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                                     </div>
                                     <div class="p-1">
                                         Sponsorship:
@@ -107,8 +105,7 @@ export default {
                                 </div>
                                 <div class="d-flex flex-wrap d-wrap">
 
-                                    <div class="single-Spec m-1 p-1"
-                                        v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
+                                    <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
                                         {{ singleSpec.name }}
                                     </div>
                                 </div>
@@ -121,7 +118,7 @@ export default {
 
         </div>
     </div>
-    <div class="bg-smoke">
+    <div class="bg-smoke wave">
         <img src="../../public/wave.svg" alt="">
     </div>
     <!-- Inizio Review -->
@@ -129,7 +126,7 @@ export default {
         <!-- non mi prende il bg ??? why -->
         <div class="h-100 container my-container-bottom w-100 m-auto py-5 ">
             <div class="row review-row p-2 ">
-                <div class="col-md-6 col-sm-12 p-2 left-container pe-5 d-flex flex-column  justify-content-center" >
+                <div class="col-md-6 col-sm-12 p-2 left-container pe-5 d-flex flex-column  justify-content-center">
 
                     <h2 class="title py-4 ">
                         Skilled and top-rated tutors
@@ -249,6 +246,7 @@ export default {
 }
 
 .card {
+    cursor: pointer;
     min-height: 100%;
     margin-bottom: 20px;
 
@@ -258,7 +256,7 @@ export default {
 
     .single-Spec {
         background-color: #f9ddd75b;
-        border: 2px solid  $mainColor;
+        border: 2px solid $mainColor;
         padding: 2px 7px !important;
         margin: 5px;
         border-radius: 15px;
@@ -291,14 +289,16 @@ export default {
         color: $brightText;
         text-shadow: 2px 2px 2px $darkColor;
     }
+
+}
+
+.wave {
+    margin: -5px !important;
 }
 
 // Inizio CSS rewiev
 
 .review-row {
-    * {
-        background-color: whitesmoke;
-    }
 
     padding-top: 100px !important;
 
@@ -317,11 +317,10 @@ export default {
     }
 
     .my-col {
-        background-color: whitesmoke;
         border-radius: 30px;
         -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
         box-shadow: 11px 11px 23px -6px $darkColor;
-        width: calc((100% / 2) - 20px) ;
+        width: calc((100% / 2) - 20px);
         margin: 10px 20px;
     }
 
@@ -348,21 +347,25 @@ export default {
         margin: 10px;
         transform: rotate(-7deg);
     }
-    :first-child{
+
+    :first-child {
         overflow-x: hidden;
     }
 }
-
+.bg-hover:hover {
+    background-color: rgba(210, 210, 210, 0.279);
+}
 // vue transition here ----------
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
+
 // vue transition here ----------
 
 // MEDIA QUERY
@@ -370,11 +373,13 @@ export default {
 @media screen and (max-width: 1000px) {
     .my-row-2 {
         transform: rotate(-0deg) !important;
+        padding: 0px 50px !important;
     }
-    .my-col{
-        width:calc((100% / 1) - 20px) !important;
-        
+
+    .my-col {
+        width: calc((100% / 1) - 20px) !important;
+
     }
-   
+
 }
 </style>

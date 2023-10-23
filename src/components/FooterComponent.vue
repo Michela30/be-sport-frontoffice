@@ -20,8 +20,8 @@ export default {
 
 <template>
     <footer>
-        <div class="container-fluid  w-100 px-3">
-            <div class="row justify-content-between py-3 pt-1">
+        <div class="container-fluid  w-100 p-3">
+            <div class="row justify-content-between pt-1">
                 <div class="col-4">
                     <div class="d-flex flex-column mb-3">
                         <h5 class="ms-2">About:</h5>
@@ -114,8 +114,10 @@ export default {
 @use '../assets/scss/variables.scss' as *;
 
 footer {
+    overflow-y: hidden;
     background-color: $darkColor ;
     color: $brightText;
+    // postiion relative?
     position: absolute;
     bottom: 0;
     width: 100%;

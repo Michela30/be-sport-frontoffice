@@ -72,13 +72,13 @@ export default {
 
 
 <template>
-    <div class="h-100 my-container " >
+    <div class=" my-container " >
         <div class="container  w-100 m-auto ">
             <!--💱 searchbars all here -->
             <div class="row justify-content-center pt-5 mt-5 " >
                 <div class="col d-flex justify-content-center">
                     <div class="bg-white d-flex p-2 w-75 rounded-4" @click="showSpecial(), console.log('premuto bottone dentro')" >
-                        <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" >
                         <!--🔽 update chiamata API 🔽 -->
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
                     </div>
@@ -89,8 +89,10 @@ export default {
                     <div class=" col-12 w-75 d-flex bg-white rounded " v-if="this.showSpecs">
                         <div class="w-100">
                             <div v-for="singleSpecs in foundSpecs">
-                                <div @click="this.inputSearch = singleSpecs" class=" p-2">
-                                    {{ singleSpecs }}
+                                <div @click="this.inputSearch = singleSpecs" class=" cursor-pointer bg-hover p-2">
+                                    <p>
+                                        {{ singleSpecs }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -125,15 +127,12 @@ export default {
             </div>
             <!-- here shows all trainer for that specific spec -->
             <div class="row justify-content-center" v-if="selectedRating == 0 && selectedReview == 0">
-                <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
-                :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
                         <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                             <div class="card rounded-4 m-2">
     
                                 <!-- div for img and absolute text -->
                                 <div class="card-container ">
-                                    <!-- <img :src="singleTrainer.picture" class="rounded card-img-top" alt="..."> -->
                                     <div v-if="singleTrainer.full_thumb_path">
                                         <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
                                     </div>
@@ -150,40 +149,30 @@ export default {
                                         <div class="p-1">
                                             <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                                             <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
-                                            <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
-    
                                         </div>
                                         <div class="p-1">
-                                            Sponsorship:
+                                            Sponsorship: true o false ?
                                         </div>
                                     </div>
     
                                     <div>
-                                        email : {{ singleTrainer.email }}
-                                        
+                                        email : {{ singleTrainer.email }}   
                                     </div>
                                     <div>
                                         presentazione : Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
                                         officiis.
                                     </div>
-                                    <!-- perchè non funziona il bold? -->
                                     <div class="fw-bold 2h">
                                         my specializations:
                                     </div>
                                     <div>
-                                        <!-- test review down here ✝
-                                    review {{ singleTrainer.reviews }} -->
+
                                     </div>
                                     <div class="d-flex flex-wrap d-wrap">
-                                        <!--💥💥 need to fix we need from api all specs from specific trainer query -->
+
                                         <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
-                                        <!-- <div class="single-Spec m-1 p-1"  v-for="(singleSpec, i) in singleTrainer.specializations" :key="i">
-                                        {{ singleSpec.name }}
-                                    </div> -->
+                                    
                                     </div>
-    
-                                    <!-- rotta vue allo show qui poi -->
     
                                 </div>
                             </div>
@@ -191,10 +180,7 @@ export default {
                 </div>
             </div>
 
-            <div class="row" v-else>
-                <h5>SIAMO NEL V-ELSE</h5>
-                <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
-                :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
+            <div class="row justify-content-center" v-else>
                     <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i"
                     :class="(selectedRating == Math.floor(singleTrainer.average_rating) || selectedReview >= Math.floor(singleTrainer.reviews.length) ) ? '' : 'hidden'" >
                             <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
@@ -212,7 +198,7 @@ export default {
     
                                         <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                                         <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
-                                        <h5>{{ singleTrainer.reviews.length }}</h5>
+
                                     </div>
                                     <!-- start body card -->
                                     <div class="card-body m-2 text-center ">
@@ -220,9 +206,6 @@ export default {
                                             <div class="p-1">
                                                 <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                                                 <i v-for="singleStar in (5 -  Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
-                                                <!-- Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i> -->
-    
                                             </div>
                                             <div class="p-1">
                                                 Sponsorship:
@@ -281,7 +264,7 @@ export default {
 
 .my-container {
     background-color: $mainColor;
-    min-height: calc(100vh - 260px);
+    min-height: calc(100vh - 200px);
 }
 
 .search-button {
@@ -298,6 +281,7 @@ export default {
 }
 
 .card:hover {
+    cursor: pointer !important;
     -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
     box-shadow: 11px 11px 23px -6px $darkColor;
     transform: scale(1.03);
@@ -306,6 +290,7 @@ export default {
 }
 
 .card {
+    cursor: pointer;
     .search-button:hover {
         background-color: lightcoral;
     }
@@ -347,6 +332,10 @@ export default {
         color: $brightText;
         text-shadow: 2px 2px 2px $darkColor;
     }
+}
+
+.bg-hover:hover {
+    background-color: rgba(210, 210, 210, 0.279);
 }
 
 // vue transition here ----------
