@@ -121,6 +121,9 @@ export default {
 
         </div>
     </div>
+    <div class="bg-smoke">
+        <img src="../../public/wave.svg" alt="">
+    </div>
     <!-- Inizio Review -->
     <div class="container-fluid my-container-bottom">
         <!-- non mi prende il bg ??? why -->
@@ -220,13 +223,6 @@ export default {
     background-color: $mainColor !important;
 
 }
-// da fixare la waves 
-.wrapper-container::after{
-    content: "";
-    display: inline-block;
-    height: 300px !important;
-    background: url("../../public/wave.svg") ;
-}
 
 .my-container-bottom {
     background-color: whitesmoke;
@@ -261,8 +257,9 @@ export default {
     }
 
     .single-Spec {
-        background-color: lightcoral;
-        padding: 5px;
+        background-color: #f9ddd75b;
+        border: 2px solid  $mainColor;
+        padding: 2px 7px !important;
         margin: 5px;
         border-radius: 15px;
     }
@@ -370,7 +367,7 @@ export default {
 
 // MEDIA QUERY
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1000px) {
     .my-row-2 {
         transform: rotate(-0deg) !important;
     }
