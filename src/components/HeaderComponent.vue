@@ -23,7 +23,7 @@ export default {
 <template>
     
 <header>
-    <div class="container-fluid d-felx justify-content-center d-inline pb-5 p-2 ">
+    <div class="container-fluid d-felx justify-content-center d-inline pb-5 px-2 ">
         <div class="row p-2 ">
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
