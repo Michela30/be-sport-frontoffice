@@ -87,7 +87,7 @@ export default {
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
                     <div class=" col-12 w-75 d-flex bg-white rounded " v-if="this.showSpecs">
-                        <div class="">
+                        <div class="w-100">
                             <div v-for="singleSpecs in foundSpecs">
                                 <div @click="this.inputSearch = singleSpecs" class=" p-2">
                                     {{ singleSpecs }}
@@ -124,18 +124,18 @@ export default {
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
-            <div class="row" v-if="selectedRating == 0 && selectedReview == 0">
+            <div class="row justify-content-center" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
-                        <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
-                            <div class="card m-2">
+                        <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                            <div class="card rounded-4 m-2">
     
                                 <!-- div for img and absolute text -->
                                 <div class="card-container ">
                                     <!-- <img :src="singleTrainer.picture" class="rounded card-img-top" alt="..."> -->
                                     <div v-if="singleTrainer.full_thumb_path">
-                                        <img :src="singleTrainer.full_thumb_path" class="card-img-top">
+                                        <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
                                     </div>
                                     <div v-else>
                                         <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
@@ -197,7 +197,7 @@ export default {
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                     <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i"
                     :class="(selectedRating == Math.floor(singleTrainer.average_rating) || selectedReview >= Math.floor(singleTrainer.reviews.length) ) ? '' : 'hidden'" >
-                            <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">
+                            <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                                 <div class="card m-2">
                                     
                                     <!-- div for img and absolute text -->
@@ -301,7 +301,7 @@ export default {
     -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
     box-shadow: 11px 11px 23px -6px $darkColor;
     transform: scale(1.03);
-    transition: 0.7s;
+    transition: 0.4s;
 
 }
 
