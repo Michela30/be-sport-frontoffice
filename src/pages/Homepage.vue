@@ -63,7 +63,7 @@ export default {
                 </transition>
             </div>
             <!-- Inizio Card -->
-            <div class="row justify-content-center ">
+            <div class="row justify-content-center  pb-5">
                 <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <!--💙 this fire the show -->
                     <router-link class="text-dark" :to="{ name: 'show', params: { id: singleTrainer.id } }">

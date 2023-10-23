@@ -124,7 +124,7 @@ export default {
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
-            <div class="row" v-if="selectedRating == 0 && selectedReview == 0">
+            <div class="row justify-content-center" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating == Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'"> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
