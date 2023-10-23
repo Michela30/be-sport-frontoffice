@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid  wrapper-container ">
+    <div class="container-fluid  wrapper-container   ">
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
@@ -52,7 +52,7 @@ export default {
             <div class="row justify-content-center pt-1 mb-5">
                 <transition name="fade">
                 <div class=" col-12 w-75 d-flex bg-white rounded    ">
-                    <div class="" v-if="this.showSpecs">
+                    <div class="w-100" v-if="this.showSpecs">
                         <div v-for="singleSpecs in foundSpecs">
                             <div @click="this.inputSearch = singleSpecs" class=" p-2">
                                 {{ singleSpecs }}
@@ -64,16 +64,16 @@ export default {
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center  pb-5">
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <!--💙 this fire the show -->
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
 
-                        <div class="card m-2">
+                        <div class="card rounded-4 m-2">
                             <!-- div for img and absolute text -->
-                            <div class="card-container ">
+                            <div class="card-container  ">
                                 <!-- v-if per aggiornare img da API -->
                                 <div v-if="singleTrainer.full_thumb_path">
-                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top">
+                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
                                 </div>
                                 <div v-else>
                                     <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
@@ -213,10 +213,19 @@ export default {
 
 .my-container {
     background-color: $mainColor;
+    position: relative;
 }
 
 .wrapper-container {
     background-color: $mainColor !important;
+
+}
+// da fixare la waves 
+.wrapper-container::after{
+    content: "";
+    display: inline-block;
+    height: 300px !important;
+    background: url("../../public/wave.svg") ;
 }
 
 .my-container-bottom {
@@ -240,7 +249,7 @@ export default {
     -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
     box-shadow: 11px 11px 23px -6px $darkColor;
     transform: scale(1.03);
-    transition: 0.7s;
+    transition: 0.4s;
 }
 
 .card {
@@ -341,6 +350,9 @@ export default {
         flex-wrap: wrap;
         margin: 10px;
         transform: rotate(-7deg);
+    }
+    :first-child{
+        overflow-x: hidden;
     }
 }
 
