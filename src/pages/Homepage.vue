@@ -56,6 +56,7 @@ export default {
             </div>
             <!-- {{ foundSpecs }} -->
             <div class="row justify-content-center pt-1 mb-5">
+                <transition name="fade">
                 <div class=" col-12 w-75 d-flex bg-white rounded    ">
                     <div class="" v-if="this.showSpecs">
                         <div v-for="singleSpecs in foundSpecs">
@@ -65,6 +66,7 @@ export default {
                         </div>
                     </div>
                 </div>
+                </transition>
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center ">
@@ -117,11 +119,6 @@ export default {
                                     </div>
                                 </div>
 
-                                <!-- rotta vue allo show qui poi -->
-                                <!-- <button class="btn search-button p-2 rounded-3 mx-1"> -->
-                                <!-- My Details -->
-
-                                <!-- </button> -->
                             </div>
                         </div>
                     </router-link>
@@ -181,10 +178,7 @@ export default {
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <!-- <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations"
-                                                :key="i">
-                                                {{ singleSpec.name }} 
-                                            </div> -->
+
                                     </div>
                                 </div>
                             </div>
@@ -355,6 +349,18 @@ export default {
         transform: rotate(-7deg);
     }
 }
+
+// vue transition here ----------
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+// vue transition here ----------
 
 // MEDIA QUERY
 
