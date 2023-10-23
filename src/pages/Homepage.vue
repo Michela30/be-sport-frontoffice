@@ -352,9 +352,11 @@ export default {
         overflow-x: hidden;
     }
 }
+
 .bg-hover:hover {
     background-color: rgba(210, 210, 210, 0.279);
 }
+
 // vue transition here ----------
 .fade-enter-active,
 .fade-leave-active {
