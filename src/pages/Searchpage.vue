@@ -76,10 +76,10 @@ export default {
 
 
 <template>
-    <div class="h-100 my-container">
-        <div class="container  w-100 m-auto">
+    <div class="h-100 my-container ">
+        <div class="container  w-100 m-auto ">
             <!--💱 searchbars all here -->
-            <div class="row  justify-content-center ">
+            <div class="row  justify-content-center pt-5 mt-5 ">
                 <div class="col d-flex justify-content-center">
                     <div class="bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
