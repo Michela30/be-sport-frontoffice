@@ -92,8 +92,9 @@ export default {
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
                     </div>
                     <!-- bottone filtri -->
-                    <button class="btn btn-light p-2 rounded-3 mx-3 " @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
-                </div>
+                    <button class="btn btn-light p-2 rounded-3 mx-3 filterButton" @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+
+                    </div>
  
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
@@ -114,7 +115,7 @@ export default {
             <!-- 🍳🍕 lower searchbars here -->
             <div v-if="this.showFilter" class="row w-75 m-auto pb-2">
                 <div class="col-6 p-2">
-                    <select v-model="this.selectedRating" class="form-select">
+                    <select v-model="this.selectedRating" class="form-select p-1 ps-3 text-grey fs-6">
                         <option value="0" selected>All Rating</option>
                         <option value="1">⭐</option>
                         <option value="2">⭐⭐</option>
@@ -125,20 +126,20 @@ export default {
 
                 </div>
                 <div class="col-6 p-2">
-                    <select v-model="this.selectedReview" class="form-select">
-                        <option value="0" selected>Any Reviews Number</option>
-                        <option value="5">At least 5 reviews</option>
-                        <option value="10">At least 10 reviews</option>
-                        <option value="15">At least 15 reviews</option>
-                        <option value="20">At least 20 reviews</option>
-                        <option value="25">At least 25 reviews</option>
+                    <select v-model="this.selectedReview" class="form-select p-1 text-grey fs-6">
+                        <option class="" value="0" selected>Any Reviews Number</option>
+                        <option class="text-black" value="5">At least 5 reviews</option>
+                        <option class="text-black" value="10">At least 10 reviews</option>
+                        <option class="text-black" value="15">At least 15 reviews</option>
+                        <option class="text-black" value="20">At least 20 reviews</option>
+                        <option class="text-black" value="25">At least 25 reviews</option>
                     </select>
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
 
             <!-- un if qua 💚-->
-            <div class="row justify-content-center" v-if="selectedRating == 0 && selectedReview == 0">
+            <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
@@ -149,7 +150,7 @@ export default {
             </div>
 
             <!--✅ primo v-else-if se selezionata solo la prima select  -->
-            <div class="row justify-content-center" v-else-if="selectedRating != 0 && selectedReview == 0">
+            <div class="row justify-content-center  pb-5" v-else-if="selectedRating != 0 && selectedReview == 0">
                 <!-- <h3>siamo nel primo v-else-if</h3> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
@@ -161,7 +162,7 @@ export default {
             </div>
 
             <!--♌ secondo v-else-if se selezionata solo la seconda selected  -->
-             <div class="row justify-content-center" v-else-if="selectedReview != 0 && selectedRating == 0">
+             <div class="row justify-content-center  pb-5" v-else-if="selectedReview != 0 && selectedRating == 0">
                 <!-- <h3>siamo nel secondo v-else-if</h3> -->
                     <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                     :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
@@ -173,7 +174,7 @@ export default {
                 </div>
                 
             <!-- ultimo else qua 💜 -->
-            <div class="row justify-content-center" v-else>
+            <div class="row justify-content-center  pb-5" v-else>
                 <!-- <h3>siamo nel v-else finale</h3> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
@@ -191,7 +192,9 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
-
+.text-grey {
+    color: rgb(98, 98, 98) !important;
+}
 .text-dark {
     color: black
 }
@@ -208,8 +211,12 @@ export default {
 .search-button {
     background-color: rgb(253, 215, 215);
 }
-
-
+.filterButton {
+    border: 4px solid rgb(255, 206, 185);
+}
+.filterButton:hover {
+    background-color: rgb(255, 206, 185) !important;
+}
 
 .bg-hover:hover {
     background-color: rgba(210, 210, 210, 0.279);

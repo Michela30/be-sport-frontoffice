@@ -88,16 +88,28 @@ export default {
                         <h5 class="ms-2">Follow Us:</h5>
                         <ul class="ms-1 d-flex fs-5">
                             <li class="p-2">
-                                <i class="fa-brands fa-facebook"></i>
+                                <a href="https://www.facebook.com/">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                                
                             </li>
                             <li class="p-2">
-                                <i class="fa-brands fa-instagram"></i>
+                                <a href="https://www.instagram.com/">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                                
                             </li>
                             <li class="p-2">
-                                <i class="fa-brands fa-twitter"></i>
+                                <a href="https://twitter.com/">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                                
                             </li>
                             <li class="p-2">
-                                <i class="fa-brands fa-linkedin"></i>
+                                <a href="https://www.linkedin.com/">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                                
                             </li>
                         </ul>
                     </div>
