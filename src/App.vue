@@ -21,6 +21,25 @@ export default {
     LoaderComponent,
   },
   methods: {
+    braintree() {
+      const input = document.querySelector('#dropin-wrapper');
+      braintree.dropin.create({
+        // Inserisci la tua chiave di autorizzazione qui
+        authorization: 'sandbox_s93sbd2q_2jc4smw4xvmkzsp6',
+        container: '#dropin-container'
+      }, function (createErr, instance) {
+        input.addEventListener('mouseleave', function () {
+          instance.requestPaymentMethod((requestPaymentMethodErr, payload) => {
+            if (requestPaymentMethodErr) {
+              console.error(requestPaymentMethodErr);
+            } else {
+              store.paymentValidated = true;
+              console.log(store.paymentValidated);
+            }
+          });
+        });
+      });
+    },
 
   },
   created() {
@@ -42,31 +61,34 @@ export default {
       })
   },
   
-//  mounted() {
-//     store.braintree();
-//   }
+ mounted() {
+    this.braintree();
+  }
 }
 </script>
 
 
 
 <template>
-  <!-- <div>
-      <div id="dropin-wrapper">
-      <div id="checkout-message"></div>
-      <div id="dropin-container"></div>
-      <button id="submit-button">Submit payment</button>
-    </div> -->
+  
 
     <HeaderComponent/>
     <div v-if="this.isLoad == false"><LoaderComponent/></div>
     <!--🔰 router view down here, here slides main content -->
     <div v-else>    <router-view></router-view></div>
 
+    
 
     <!-- <MainComponent/> -->
 
     <FooterComponent/>
+    <div>
+        <div id="dropin-wrapper">
+        <div id="checkout-message"></div>
+        <div id="dropin-container"></div>
+        <button id="submit-button">Submit payment</button>
+      </div>
+    </div>
 
 </template>
 
