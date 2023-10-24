@@ -55,7 +55,7 @@ export default {
                 officiis.
             </div>
             <div class="fw-bold 2h">
-                My specializations:
+                My specializations: 
             </div>
             <div>
 
