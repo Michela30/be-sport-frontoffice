@@ -1,8 +1,14 @@
 <script>
 import { store } from "../store";
+import CardComponent from '../components/CardComponent.vue';
+import LoaderComponent from '../components/LoaderComponent.vue';
 //import
 
 export default {
+     components: {
+        LoaderComponent,
+        CardComponent,
+    },
     data() {
         return {
             //dati
@@ -29,6 +35,8 @@ export default {
         }
 
     },
+    mounted() {
+    }
 }
 </script>
 
@@ -64,7 +72,7 @@ export default {
                 <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <!--💙 this fire the show -->
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-
+                         <!-- <CardComponent :singleTrainer="singleTrainer" />   -->
                         <div class="card rounded-4 m-2">
                             <!-- div for img and absolute text -->
                             <div class="card-container  ">
@@ -133,7 +141,7 @@ export default {
                         Skilled and top-rated tutors
                     </h2>
                     <div class="text">
-                        <span>More than thousents of students</span> gave a <span>5 star </span> review to their
+                        <span>More than thousands of students</span> gave a <span>5 star </span> review to their
                         tutor
                     </div>
                 </div>
@@ -167,7 +175,7 @@ export default {
 
                                 <div class="fs-6">
                                     <div class="my-text">
-                                        <!--🔽 specializzazione di placeholder🔽 -->
+                                        <!--stelle finte perché abbiamo poca gente -->
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
@@ -181,18 +189,17 @@ export default {
                         <!-- Inizio contenuto della singola card -->
                         <div class="col-12 py-2">
                             <div class="fs-5">
-                                <!-- review da palceholder -->
-                                <div class="fs-5">
-                                    <!-- {{ singleTrainer.review[0].comment }} -->
-                                    <template v-if="singleTrainer.review && singleTrainer.review[i]">
-                                        {{ singleTrainer.review[i].comment }}
+                                <div class="fs-6">
+                                    <!-- <template v-if="singleTrainer.review && singleTrainer.review[i]"> -->
+                                        <template v-if="singleTrainer.review">
+                                        <!-- {{ singleTrainer.review[i].comment }} -->
+                                        {{ singleTrainer.review[0].comment}}
                                     </template>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="fs-5">
-                                <!-- review da palceholder -->
+                            <div class="fs-6">
                                 <template v-if="singleTrainer.review && singleTrainer.review[i]">
                                     {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
                                 </template>

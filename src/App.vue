@@ -62,7 +62,7 @@ export default {
   },
   
  mounted() {
-    this.braintree();
+    // this.braintree();
   }
 }
 </script>
@@ -75,7 +75,7 @@ export default {
     <HeaderComponent/>
     <div v-if="this.isLoad == false"><LoaderComponent/></div>
     <!--🔰 router view down here, here slides main content -->
-    <div v-else>    <router-view></router-view></div>
+    <div v-else><router-view></router-view></div>
 
     
 
