@@ -5,7 +5,9 @@ import { store } from "../store";
 export default {
     data() {
         return {
-            singleTrainer: '',
+            singleTrainer: {},
+
+            loadPagefix: false,
 
             email: {
                 trainer_id: '',
@@ -131,6 +133,8 @@ export default {
                 this.email.trainer_id = this.$route.params.slug;
                 this.vote.trainer_id = this.$route.params.slug;
                 this.review.trainer_id = this.$route.params.slug;
+                console.log('questo è il log di show', this.singleTrainer)
+                this.loadPagefix = true;
             })
 
     }
@@ -140,51 +144,62 @@ export default {
 
 
 <template>
-    <div class=" my-container">
-        <div class="container  w-100 m-auto">
+    <div v-if="this.loadPagefix" class=" my-container">
+        <div class="container w-100 m-auto mb-5">
             <div class="row">
-                 <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start  pt-5 mt-5">
-                        <div class="card d-flex flex-column align-items-center justify-content-center p-3">
-                            <div class=" w-50 ">
-                                <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
-                                    <div class="">
-                                        <img :src="singleTrainer.full_thumb_path" class="card-img-top imgWrapper ">
-                                    </div>
+                <div class="col-12 col-sm-4 p-2 d-flex flex-column align-items-center justify-content-start pt-5 mt-5">
+                    <div class="card d-flex flex-column align-items-center justify-content-center p-3">
+                        <div class=" w-50 ">
+                            <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
+                                <div class="">
+                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top imgWrapper ">
                                 </div>
-                                <div v-else>
-                                    <div class="">
-                                        <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
-                                    </div>
-
+                            </div>
+                            <div v-else>
+                                <div class="">
+                                    <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
                                 </div>
 
-                            </div>
-                            <!-- data -->
-                            <div class="col">
-                                <h3 class="text-center">{{ singleTrainer.user.name }} {{ singleTrainer.user.surname }}</h3>
-                            </div>
-                            <!-- rating -->
-                            <div class="col p-1 text-center">
-                                Rating:<i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                            </div>
-                            <div class="col text-center">
-                                <p>
-                                    Phone Number: {{ singleTrainer.phone_number }}
-                                </p>
-                            </div>
-                            <div class="col text-center">
-                                <p> Email: {{ singleTrainer.user.email }}
-                                </p>
-                            </div>
-
-                            <div class="col text-center">
-                                <p> Description: {{ singleTrainer.description }}
-                                </p>
                             </div>
 
                         </div>
+                        <!-- data -->
+                        <div class="col">
+
+                            <h3 class="text-center">{{ singleTrainer.user.name }} {{ singleTrainer.user.surname }}</h3>
+                        </div>
+                        <!-- rating -->
+                        <div class="col p-1 text-center">
+                            <strong>Rating:</strong>
+                            <!-- ❌❌❌ ci serve average rating dall'APIIIIIIIIIIIIIIII -->
+                            <!-- <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                            <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i> -->
+                        </div>
+                        <div class="col text-center">
+                            <p>
+                               <strong>Phone Number:</strong> {{ singleTrainer.phone_number }}
+                            </p>
+                        </div>
+                        <div class="col text-center">
+                            <p> <strong>Email:</strong>  {{ singleTrainer.user.email }}
+                            </p>
+                        </div>
+
+                        <div class="col text-center">
+                            <p><strong>Description:</strong>  {{ singleTrainer.description }}
+                            </p>
+                        </div>
+                        <div class="fw-bold 2h">
+
+                            My specializations:
+                        </div>
+                        <div class="d-flex flex-wrap d-wrap justify-content-center">
+                            <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
+                                {{ singleSpec.name }}
+                            </div>
+                        </div>
                     </div>
+                </div>
                 <div class="col-12 col-sm-8 pt-5 mt-5">
                     <!-- form message here -->
                     <form class="bg-white rounded p-3 " action="" @submit.prevent="sendEmail(); console.log('premuto bottone email')">
@@ -237,13 +252,9 @@ export default {
                 </div>
 
                 <!-- card del singolo trainer -->
-               
+
             </div>
         </div>
-
-
-
-
     </div>
 </template>
 
@@ -255,7 +266,7 @@ export default {
 .my-container {
     min-height: calc(100vh - 200px);
     background: rgb(245, 245, 245);
-    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(249,221,215,1) 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(249, 221, 215, 1) 100%);
 }
 
 .imgWrapper {
@@ -265,13 +276,22 @@ export default {
     object-fit: cover;
     object-position: top;
 }
+
 .card {
     border: 2px solid $mainColor;
 }
+.single-Spec {
+        background-color: #f9ddd75b;
+        border: 2px solid $mainColor;
+        padding: 2px 7px !important;
+        margin: 5px;
+        border-radius: 15px;
+    }
 form {
     border: 2px solid $mainColor;
 }
+
 button {
-    background-color: $secColor !important ;
+    background-color: $secColor !important;
 }
 </style>

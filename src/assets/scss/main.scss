@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 body {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-family:'buenos aires regular' !important ;
     position: relative;
     padding-bottom: 200px !important;
@@ -29,9 +29,11 @@ a {
 .debug {
     border: 1px solid red;
 }
-
 .main-color {
     color: #E87C5D
+}
+.fs-6 {
+    font-size: 0.9rem !important;
 }
 .fs-7 {
     font-size: 0.7rem;

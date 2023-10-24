@@ -48,10 +48,11 @@ export default {
             </div>
 
             <div>
-                Email: {{ singleTrainer.email }}
+               <strong>Email:</strong>  {{ singleTrainer.email }}
             </div>
             <div>
-                Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                <strong>Presentation:</strong>
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
                 officiis.
             </div>
             <div class="fw-bold 2h">
@@ -74,4 +75,55 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
+.card:hover {
+    cursor: pointer !important;
+    -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
+    box-shadow: 11px 11px 23px -6px $darkColor;
+    transform: scale(1.03);
+    transition: 0.4s;
+
+}
+
+.card {
+    cursor: pointer;
+
+    min-height: 95%;
+    margin-bottom: 20px;
+
+    .single-Spec {
+        background-color: #f9ddd75b;
+        border: 2px solid $mainColor;
+        padding: 2px 7px !important;
+        margin: 5px;
+        border-radius: 15px;
+    }
+
+    .card-container {
+        position: relative;
+    }
+
+    img {
+        max-height: 200px;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .my-name {
+        position: absolute;
+        bottom: 29px;
+        left: 5px;
+        font-weight: bold;
+        color: $brightText;
+        text-shadow: 2px 2px 2px $darkColor;
+    }
+
+    .my-surname {
+        position: absolute;
+        bottom: 10px;
+        left: 5px;
+        font-weight: bold;
+        color: $brightText;
+        text-shadow: 2px 2px 2px $darkColor;
+    }
+}
 </style>

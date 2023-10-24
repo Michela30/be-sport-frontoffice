@@ -19,6 +19,7 @@ export default {
             selectedRating: 0,
             selectedReview: 0,
             isLoad: false,
+            showFilter: false,
         }
     },
     methods: {
@@ -83,15 +84,18 @@ export default {
     <div class=" my-container ">
         <div class="container  w-100 m-auto ">
             <!--💱 searchbars all here -->
-            <div class="row justify-content-center pt-5 mt-5 ">
+            <div class="row justify-content-center pt-5 mt-5 mb-3" :class="!showFilter ? 'pb-5': ''">
                 <div class="col d-flex justify-content-center">
                     <div class="bg-white d-flex p-2 w-75 rounded-4" @click="this.showSpecs = !this.showSpecs, console.log('premuto bottone dentro')">
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?">
                         <!--🔽 update chiamata API 🔽 -->
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
                     </div>
-                </div>
-                <!-- {{ foundSpecs }} -->
+                    <!-- bottone filtri -->
+                    <button class="btn btn-light p-2 rounded-3 mx-3 filterButton" @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+
+                    </div>
+ 
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
                         <div class=" col-12 w-75 d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
@@ -109,10 +113,9 @@ export default {
                 </div>
             </div>
             <!-- 🍳🍕 lower searchbars here -->
-            <div class="row w-75 m-auto py-3">
-                <h4 class="fs-6 px-2 py-2">Filtra per:</h4>
-                <div class="col-6  p-2">
-                    <select v-model="this.selectedRating" class="form-select">
+            <div v-if="this.showFilter" class="row w-75 m-auto pb-2">
+                <div class="col-6 p-2">
+                    <select v-model="this.selectedRating" class="form-select p-1 ps-3 text-grey fs-6">
                         <option value="0" selected>All Rating</option>
                         <option value="1">⭐</option>
                         <option value="2">⭐⭐</option>
@@ -123,19 +126,20 @@ export default {
 
                 </div>
                 <div class="col-6 p-2">
-                    <select v-model="this.selectedReview" class="form-select">
-                        <option value="0" selected>Any Reviews Number</option>
-                        <option value="5">At least 5 reviews</option>
-                        <option value="10">At least 10 reviews</option>
-                        <option value="15">At least 15 reviews</option>
-                        <option value="20">At least 20 reviews</option>
-                        <option value="25">At least 25 reviews</option>
+                    <select v-model="this.selectedReview" class="form-select p-1 text-grey fs-6">
+                        <option class="" value="0" selected>Any Reviews Number</option>
+                        <option class="text-black" value="5">At least 5 reviews</option>
+                        <option class="text-black" value="10">At least 10 reviews</option>
+                        <option class="text-black" value="15">At least 15 reviews</option>
+                        <option class="text-black" value="20">At least 20 reviews</option>
+                        <option class="text-black" value="25">At least 25 reviews</option>
                     </select>
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
+
             <!-- un if qua 💚-->
-            <div class="row justify-content-center" v-if="selectedRating == 0 && selectedReview == 0">
+            <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
@@ -146,7 +150,7 @@ export default {
             </div>
 
             <!--✅ primo v-else-if se selezionata solo la prima select  -->
-            <div class="row justify-content-center" v-else-if="selectedRating != 0 && selectedReview == 0">
+            <div class="row justify-content-center  pb-5" v-else-if="selectedRating != 0 && selectedReview == 0">
                 <!-- <h3>siamo nel primo v-else-if</h3> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
@@ -158,7 +162,7 @@ export default {
             </div>
 
             <!--♌ secondo v-else-if se selezionata solo la seconda selected  -->
-             <div class="row justify-content-center" v-else-if="selectedReview != 0 && selectedRating == 0">
+             <div class="row justify-content-center  pb-5" v-else-if="selectedReview != 0 && selectedRating == 0">
                 <!-- <h3>siamo nel secondo v-else-if</h3> -->
                     <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                     :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
@@ -170,7 +174,7 @@ export default {
                 </div>
                 
             <!-- ultimo else qua 💜 -->
-            <div class="row justify-content-center" v-else>
+            <div class="row justify-content-center  pb-5" v-else>
                 <!-- <h3>siamo nel v-else finale</h3> -->
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
                 :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
@@ -188,11 +192,9 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
-
 .text-grey {
-    color: grey;
+    color: rgb(98, 98, 98) !important;
 }
-
 .text-dark {
     color: black
 }
@@ -209,69 +211,11 @@ export default {
 .search-button {
     background-color: rgb(253, 215, 215);
 }
-
-.search-bar {
-    -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
-    box-shadow: 11px 11px 23px -6px $darkColor;
+.filterButton {
+    border: 4px solid rgb(255, 206, 185);
 }
-
-.thumbnail:hover {
-    background-color: lightgray;
-}
-
-.card:hover {
-    cursor: pointer !important;
-    -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
-    box-shadow: 11px 11px 23px -6px $darkColor;
-    transform: scale(1.03);
-    transition: 0.4s;
-
-}
-
-.card {
-    cursor: pointer;
-
-    .search-button:hover {
-        background-color: lightcoral;
-    }
-
-    min-height: 95%;
-    margin-bottom: 20px;
-
-    .single-Spec {
-        background-color: lightcoral;
-        padding: 5px;
-        margin: 5px;
-        border-radius: 15px;
-    }
-
-    .card-container {
-        position: relative;
-    }
-
-    img {
-        max-height: 200px;
-        object-fit: cover;
-        object-position: top;
-    }
-
-    .my-name {
-        position: absolute;
-        bottom: 29px;
-        left: 5px;
-        font-weight: bold;
-        color: $brightText;
-        text-shadow: 2px 2px 2px $darkColor;
-    }
-
-    .my-surname {
-        position: absolute;
-        bottom: 10px;
-        left: 5px;
-        font-weight: bold;
-        color: $brightText;
-        text-shadow: 2px 2px 2px $darkColor;
-    }
+.filterButton:hover {
+    background-color: rgb(255, 206, 185) !important;
 }
 
 .bg-hover:hover {
