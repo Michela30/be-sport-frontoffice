@@ -19,6 +19,7 @@ export default {
             selectedRating: 0,
             selectedReview: 0,
             isLoad: false,
+            showFilter: false,
         }
     },
     methods: {
@@ -83,15 +84,17 @@ export default {
     <div class=" my-container ">
         <div class="container  w-100 m-auto ">
             <!--💱 searchbars all here -->
-            <div class="row justify-content-center pt-5 mt-5 ">
+            <div class="row justify-content-center pt-5 mt-5 mb-3" :class="!showFilter ? 'pb-5': ''">
                 <div class="col d-flex justify-content-center">
                     <div class="bg-white d-flex p-2 w-75 rounded-4" @click="this.showSpecs = !this.showSpecs, console.log('premuto bottone dentro')">
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?">
                         <!--🔽 update chiamata API 🔽 -->
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
                     </div>
+                    <!-- bottone filtri -->
+                    <button class="btn btn-light p-2 rounded-3 mx-3 " @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
                 </div>
-                <!-- {{ foundSpecs }} -->
+ 
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
                         <div class=" col-12 w-75 d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
@@ -109,9 +112,8 @@ export default {
                 </div>
             </div>
             <!-- 🍳🍕 lower searchbars here -->
-            <div class="row w-75 m-auto py-3">
-                <h4 class="fs-6 px-2 py-2">Filtra per:</h4>
-                <div class="col-6  p-2">
+            <div v-if="this.showFilter" class="row w-75 m-auto pb-2">
+                <div class="col-6 p-2">
                     <select v-model="this.selectedRating" class="form-select">
                         <option value="0" selected>All Rating</option>
                         <option value="1">⭐</option>
@@ -134,6 +136,7 @@ export default {
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
+
             <!-- un if qua 💚-->
             <div class="row justify-content-center" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->

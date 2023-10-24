@@ -5,7 +5,7 @@ import LoaderComponent from '../components/LoaderComponent.vue';
 //import
 
 export default {
-     components: {
+    components: {
         LoaderComponent,
         CardComponent,
     },
@@ -69,10 +69,10 @@ export default {
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center  pb-5">
-                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
                     <!--💙 this fire the show -->
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                         <!-- <CardComponent :singleTrainer="singleTrainer" />   -->
+                        <!-- <CardComponent :singleTrainer="singleTrainer" />   -->
                         <div class="card rounded-4 m-2">
                             <!-- div for img and absolute text -->
                             <div class="card-container  ">
@@ -94,7 +94,7 @@ export default {
 
                                         <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                                         <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
-                                        
+
                                     </div>
                                     <div class="p-1">
                                         Sponsorship:
@@ -148,65 +148,67 @@ export default {
                 <!-- inizio card -->
 
                 <div class="col-md-6 my-row-2 col-sm-12 ">
-                    <div class="my-col m-2 p-3" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
-                        <div class="col-12 d-flex">
-                            <div class="col-auto ">
-                                <div class="img-box ">
-                                    <!-- 🔽 Metto una img di placeholder 🔽 -->
-                                    <!-- <img src="../../public/img-trainers/2.jpg" alt="img da placeholder"> -->
-                                    <div class="my-img" v-if="singleTrainer.full_thumb_path">
-                                        <img :src="singleTrainer.full_thumb_path" class="my-img">
+
+                    <div class="my-col m-2 p-3 my-lower-card" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
+                        
+                            <router-link class="text-dark " :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                                <div class="col-12 d-flex ">
+                                    <div class="col-auto ">
+                                        <div class="img-box ">
+                                            <div class="my-img" v-if="singleTrainer.full_thumb_path">
+                                                <img :src="singleTrainer.full_thumb_path" class="my-img">
+                                            </div>
+                                            <div v-else class="my-img">
+                                                <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div v-else class="my-img">
-                                        <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
+                                    <div class="col-auto ps-2 d-flex flex-column justify-content-center">
+                                        <div>
+                                            <div class="fs-5">
+                                                {{ singleTrainer.user.name }}
+
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="fs-6">
+                                            <div class="my-text d-flex align-items-center">
+                                                <!--stelle finte perché abbiamo poca gente -->
+                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="col-auto ps-2 d-flex flex-column justify-content-center">
-                                <div>
+                                <!-- Inizio contenuto della singola card -->
+                                <div class="col-12 py-2">
                                     <div class="fs-5">
-                                        {{ singleTrainer.user.name }}
-
+                                        <div class="fs-6">
+                                            <!-- <template v-if="singleTrainer.review && singleTrainer.review[i]"> -->
+                                            <template v-if="singleTrainer.review">
+                                                <!-- {{ singleTrainer.review[i].comment }} -->
+                                                {{ singleTrainer.review[0].comment }}
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="fs-6">
+                                        <template v-if="singleTrainer.review && singleTrainer.review[i]">
+                                            {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
+                                        </template>
 
                                     </div>
                                 </div>
-
-
-                                <div class="fs-6">
-                                    <div class="my-text">
-                                        <!--stelle finte perché abbiamo poca gente -->
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                        <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Inizio contenuto della singola card -->
-                        <div class="col-12 py-2">
-                            <div class="fs-5">
-                                <div class="fs-6">
-                                    <!-- <template v-if="singleTrainer.review && singleTrainer.review[i]"> -->
-                                        <template v-if="singleTrainer.review">
-                                        <!-- {{ singleTrainer.review[i].comment }} -->
-                                        {{ singleTrainer.review[0].comment}}
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="fs-6">
-                                <template v-if="singleTrainer.review && singleTrainer.review[i]">
-                                    {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
-                                </template>
-
-
-                            </div>
-                        </div>
+                            </router-link>
+                        
                     </div>
                 </div>
             </div>
@@ -247,6 +249,14 @@ export default {
 }
 
 .card:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
+    box-shadow: 11px 11px 23px -6px $darkColor;
+    transform: scale(1.03);
+    transition: 0.4s;
+}
+.my-lower-card:hover {
+    cursor: pointer;
     -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
     box-shadow: 11px 11px 23px -6px $darkColor;
     transform: scale(1.03);

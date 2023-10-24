@@ -48,10 +48,11 @@ export default {
             </div>
 
             <div>
-                Email: {{ singleTrainer.email }}
+               <strong>Email:</strong>  {{ singleTrainer.email }}
             </div>
             <div>
-                Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+                <strong>Presentation:</strong>
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
                 officiis.
             </div>
             <div class="fw-bold 2h">
