@@ -2,12 +2,14 @@
 import { store } from "../store";
 import CardComponent from '../components/CardComponent.vue';
 import LoaderComponent from '../components/LoaderComponent.vue';
+import JumboComponent from '../components/JumboComponent.vue';
 //import
 
 export default {
     components: {
         LoaderComponent,
         CardComponent,
+        JumboComponent,
     },
     data() {
         return {
@@ -213,6 +215,9 @@ export default {
                 </div>
             </div>
         </div>
+        <div class="row">
+            <Jumbo-component/>
+        </div>
     </div>
 </template>
 
@@ -318,8 +323,6 @@ export default {
 
 .review-row {
 
-    padding-top: 100px !important;
-
     .title {
         font-size: 3rem;
         font-weight: bold;
@@ -402,4 +405,6 @@ export default {
     }
 
 }
+
+
 </style>
