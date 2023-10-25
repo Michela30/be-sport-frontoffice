@@ -101,6 +101,9 @@ header {
     width: 100%;
     z-index: 1;
     box-shadow: 0px 9px 20px -6px $shadowColor;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
 }
 
 .imgWrapper {
