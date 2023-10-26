@@ -4,6 +4,7 @@ import CardComponent from '../components/CardComponent.vue';
 import LoaderComponent from '../components/LoaderComponent.vue';
 import JumboComponent from '../components/JumboComponent.vue';
 import JumboTopComponent from '../components/JumboTopComponent.vue';
+import CardSponsoredComp from '../components/CardSponsoredComp.vue';
 //import
 
 export default {
@@ -12,6 +13,7 @@ export default {
         CardComponent,
         JumboComponent,
         JumboTopComponent,
+        CardSponsoredComp
     },
     data() {
         return {
@@ -20,7 +22,7 @@ export default {
             inputSearch: '',
             foundSpecs: store.allSpecs,
             showSpecs: false,
-            
+
         }
     },
     methods: {
@@ -43,16 +45,17 @@ export default {
 
 <template>
     <div class="container-fluid  wrapper-container   ">
-        <JumboTopComponent/>
+        <div class="row">
+
+        </div>
+        <JumboTopComponent />
 
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
-                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" id="search" @click=" this.showSpecs = !this.showSpecs " >
-                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
-                        placeholder="Type what would you like to train?" aria-label="Username"
-                        aria-describedby="addon-wrapping"  >
+                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" id="search" @click=" this.showSpecs = !this.showSpecs">
+                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
-                    <button class="btn search-button p-2 rounded-3 mx-1"  >
+                    <button class="btn search-button p-2 rounded-3 mx-1">
                         <!--💚 this fire the search -->
                         <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
                         <div v-else>Search</div>
@@ -61,18 +64,24 @@ export default {
             </div>
             <div class="row justify-content-center pt-1 mb-5">
                 <transition name="fade">
-                <div class=" col-12 w-75 d-flex bg-white rounded    ">
-                    <div class="w-100" v-if="this.showSpecs">
-                        <div v-for="singleSpecs in foundSpecs">
-                            <div @click="this.inputSearch = singleSpecs" class="bg-hover p-2 cursor-pointer">
-                                <p>{{ singleSpecs }}</p>
+                    <div class=" col-12 w-75 d-flex bg-white rounded    ">
+                        <div class="w-100" v-if="this.showSpecs">
+                            <div v-for="singleSpecs in foundSpecs">
+                                <div @click="this.inputSearch = singleSpecs" class="bg-hover p-2 cursor-pointer">
+                                    <p>{{ singleSpecs }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </transition>
             </div>
             <!-- Inizio Card -->
+            <div class="row justify-content-center">
+                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                    <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer" />
+                </div>
+            </div>
+
             <div class="row justify-content-center  pb-5">
                 <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
                     <!--💙 this fire the show -->
@@ -196,7 +205,7 @@ export default {
                                 <div class="fs-5">
                                     <div class="fs-6">
                                         <template v-if="singleTrainer.review[i]">
-                                            {{ singleTrainer.review[i].comment }}  
+                                            {{ singleTrainer.review[i].comment }}
                                         </template>
                                         <template v-else>
                                             {{ singleTrainer.review[0].comment }}
