@@ -31,7 +31,7 @@ export default {
                         <router-link :to="{ name: 'home' }">
                             <h6 class=" logoTypo">Be<span>Sport</span></h6>
                         </router-link>
-                        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler bg-white p-1 me-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarText">
@@ -90,7 +90,6 @@ button {
     font-size: 0.8rem;
     -webkit-box-shadow: 11px 11px 23px -6px rgba(0, 0, 0, 0.43);
     box-shadow: 0px 9px 20px -6px $shadowColor;
-
 }
 
 header {
@@ -106,10 +105,6 @@ header {
 
 }
 
-.imgWrapper {
-    width: 30%;
-}
-
 .logoTypo {
     font-size: 1.5rem;
     font-weight: 600;
@@ -119,4 +114,5 @@ header {
         color: $compColor;
     }
 }
+
 </style>

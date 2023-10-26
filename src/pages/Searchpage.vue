@@ -98,7 +98,7 @@ export default {
  
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
-                        <div class=" col-12 w-75 d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
+                        <div class=" col-12 w-75 me-5 drop-down-specs d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
                             <div class="w-100">
                                 <div v-for="singleSpecs in foundSpecs">
                                     <div @click="this.inputSearch = singleSpecs" class=" cursor-pointer bg-hover p-2">
@@ -220,6 +220,11 @@ export default {
 
 .bg-hover:hover {
     background-color: rgba(210, 210, 210, 0.279);
+}
+
+
+.drop-down-specs{
+    margin-right: 70px !important;
 }
 
 // vue transition here ----------
