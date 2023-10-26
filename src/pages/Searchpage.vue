@@ -140,7 +140,9 @@ export default {
             </div>
             <div class="row justify-content-center">
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
-                   <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer"/>
+                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                        <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer"/>
+                    </router-link>
                </div>
 
             </div>
