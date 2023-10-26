@@ -77,6 +77,9 @@ export default {
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center  pb-5">
+                <h5 class="text-center pb-4">
+                    Our Sponsored Trainers:
+                </h5>
                 <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                         <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer" />

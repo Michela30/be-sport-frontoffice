@@ -24,12 +24,16 @@ export default {
 <template>
     <div class="card rounded-4 m-2">
         <!-- div for img and absolute text -->
-        <div class="card-container ">
+        <div class="card-container">
             <div v-if="singleTrainer.full_thumb_path">
-                <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
+                <div class="card-img-box">
+                    <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
+                </div>
             </div>
             <div v-else>
-                <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                <div class="card-img-box">
+                    <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                </div>
             </div>
 
             <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
@@ -42,38 +46,35 @@ export default {
                     <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
                     <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                 </div>
-                <div class="p-1">
-                    <!-- Sponsorship: true o false ? -->
-                </div>
             </div>
 
-            <div>
-               <strong>Email:</strong>  {{ singleTrainer.email }}
+            <div v-if="singleTrainer.email">
+                <strong>Email:</strong> {{ singleTrainer.email }}
             </div>
+            <div v-else>
+                <strong>Email:</strong> {{ singleTrainer.user.email }}
+            </div>
+
             <div>
                 <strong>Presentation:</strong>
                  {{ singleTrainer.description }} 
             </div>
+            
             <div class="fw-bold 2h">
                 My specializations: 
             </div>
-            <div>
+             
+            <div class="d-flex flex-wrap d-wrap justify-content-center">
+
+                <div v-if="singleTrainer.specializations"  class="d-flex flex-wrap d-wrap justify-content-center">
+                    <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
+                        {{ singleSpec.name }} 
+                    </div>
+                </div>
+
+                <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
 
             </div>
-            <!-- <div class="d-flex flex-wrap d-wrap justify-content-center">
-
-                <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
-
-            </div> -->
-            <div class="d-flex flex-wrap d-wrap justify-content-center">
-                    <div v-if="singleTrainer.specializations">
-                        <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
-                            {{ singleSpec.name }} </div>
-                    </div>
-
-                    <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
-
-                </div>
 
         </div>
     </div>
@@ -94,9 +95,18 @@ export default {
 
 .card {
     cursor: pointer;
-
     min-height: 95%;
     margin-bottom: 20px;
+    .card-img-box{
+        width: auto;
+        height: 200px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
 
     .single-Spec {
         background-color: #f9ddd75b;
@@ -110,11 +120,6 @@ export default {
         position: relative;
     }
 
-    img {
-        max-height: 200px;
-        object-fit: cover;
-        object-position: top;
-    }
 
     .my-name {
         position: absolute;

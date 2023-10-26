@@ -29,14 +29,20 @@ export default {
         <div class="card-container">
             <!-- badge stellina -->
             <div class="badge">
-                <i class="fa-solid fa-certificate fa-flip fs-3" style="color: #ffe100;"></i>
+                <i class="fa-solid fa-certificate fa-flip" style="color: #04d4cd;"></i>
             </div>
+
             <div v-if="singleTrainer.full_thumb_path">
-                <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
+                <div class="card-img-box">
+                    <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
+                </div>
             </div>
             <div v-else>
-                <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                <div class="card-img-box">
+                    <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                </div>
             </div>
+
             <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
             <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
         </div>
@@ -92,10 +98,21 @@ export default {
 
 .card-sponsored {
     cursor: pointer;
-    //min-height: 95%;
+    min-height: 95%;
     margin-bottom: 20px;
     padding: 3px !important;
+    border: 1px solid #04d4cd;
 
+    .card-img-box{
+        width: auto;
+        height: 200px;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
 
     .single-Spec {
         background-color: #f9ddd75b;
@@ -110,11 +127,6 @@ export default {
 
     }
 
-    img {
-        max-height: 200px;
-        object-fit: cover;
-        object-position: top;
-    }
 
     .my-name {
         position: absolute;
@@ -136,8 +148,9 @@ export default {
 
     .badge {
         position: absolute;
-        top: 7px;
-        left: 7px;
+        top: -10px;
+        left: -10px;
+        font-size: 2.5em;
     }
 }
 
