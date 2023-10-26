@@ -17,6 +17,7 @@ export default {
         singleTrainer: Object,
     },
     created() {
+        console.log(this.singleTrainer.expiring_date)
     }
 
 }

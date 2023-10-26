@@ -66,7 +66,7 @@ export default {
                 console.log('questo è larray di trainers trovati ->', this.foundedTrainers);
                 // Sort the trainers based on average rating (descending order)
                 this.sortData();
-                this.isLoad == true
+                this.isLoad = true
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -141,6 +141,7 @@ export default {
             <div class="row justify-content-center">
                 <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                        <!-- ❌❌❌ perché sto schifo genra le col vuote ? -->
                         <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer"/>
                     </router-link>
                </div>
