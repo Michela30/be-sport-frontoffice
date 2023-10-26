@@ -20,100 +20,85 @@ export default {
 
 <template>
     <footer>
-        <div class="container-fluid  w-100 p-3">
-            <div class="row justify-content-between pt-1">
-                <div class="col-4">
-                    <div class="d-flex flex-column mb-3">
+        <div class="container-fluid w-100 p-3">
+            <div class="row justify-content-between">
+
+                <div class="col-4 pt-2 text-center">
+                        
                         <h5 class="ms-2">About:</h5>
-                        <div class="d-flex justify-content-between w-75">
-                            <ul class="ms-1">
-                                <li class="p-1">
-                                    Who are we
-                                </li>
-                                <li class="p-1">
-                                    Our Value
-                                </li>
-                                <li class="p-1">
-                                    Terms & Condition
-                                </li>
-                                <li class="p-1">
-                                    Privacy Policy
-                                </li>
-                            </ul>
-
-                            <ul class="ms-1">
-                                <li class="p-1">
-                                    BeSport Global
-                                </li>
-                                <li class="p-1">
-                                    All Subjects
-                                </li>
-                                <li class="p-1">
-                                    Find the perfect tutor
-                                </li>
-                                <li class="p-1">
-                                    Online Lessons
-                                </li>
-                                <li class="p-1">
-                                    States
-                                </li>
-                                <li class="p-1">
-                                    BeSport Careers
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4 d-flex justify-content-center">
-                    <div class="d-flex flex-column mb-3">
-                        <h5 class="ms-2">Help:</h5>
                         <ul class="ms-1">
                             <li class="p-1">
-                                Help Center
+                                Who are we
                             </li>
                             <li class="p-1">
-                                Contact
+                                Our Value
                             </li>
                             <li class="p-1">
-                                Stay in Touch
+                                Terms & Condition
+                            </li>
+                            <li class="p-1" href="#search">
+                                Trainers
+                            </li>
+                            <li class="p-1">
+                                <a href="http://127.0.0.1:8000/login">
+                                    Admin
+                                </a>
+                            </li>
+                        </ul>
+                    </div>        
+                    
+                    <div class="col-4 pt-2 text-center">
+                        <h5 class="ms-2">&copy; Team-Four</h5>
+                        <ul class="ms-1">
+                            <li class="pt-2">
+                                Francesco Boco
+                            </li>
+                            <li class="pt-1">
+                                Michela De Stefano
+                            </li>
+                            <li class="pt-1">
+                                Pietro Marilei
+                            </li>
+                            <li class="pt-1">
+                                Christian Mazzaro
+                            </li>
+                            <li class="pt-1">
+                                Pasquale Rizzo
                             </li>
                         </ul>
                     </div>
-                </div>
 
-                <div class="col-4 d-flex justify-content-end">
-                    <div class="d-flex flex-column mb-3">
+                
+                    <div class="col-4 pt-2 text-center">
                         <h5 class="ms-2">Follow Us:</h5>
-                        <ul class="ms-1 d-flex fs-5">
-                            <li class="p-2">
+
+                        <div class="text-center ms-1 fs-5 mt-3">
+                            <span class="p-2">
                                 <a href="https://www.facebook.com/">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
                                 
-                            </li>
-                            <li class="p-2">
+                            </span>
+                            <span class="p-2">
                                 <a href="https://www.instagram.com/">
                                     <i class="fa-brands fa-instagram"></i>
                                 </a>
                                 
-                            </li>
-                            <li class="p-2">
+                            </span>
+                            <span class="p-2">
                                 <a href="https://twitter.com/">
                                     <i class="fa-brands fa-twitter"></i>
                                 </a>
                                 
-                            </li>
-                            <li class="p-2">
+                            </span>
+                            <span class="p-2">
                                 <a href="https://www.linkedin.com/">
                                     <i class="fa-brands fa-linkedin"></i>
                                 </a>
                                 
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                            </span>
+                        </div>
+                    </div>   
 
             </div>
         </div>
@@ -127,21 +112,23 @@ export default {
 
 footer {
     overflow-y: hidden;
-    background-color: $darkColor ;
+    background-color: $darkColor;
     color: $brightText;
-    // postiion relative?
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 200px
+    height: 200px;
+    padding: 50px;
+
 }
 
 h5 {
     font-size: 1rem;
 }
 
-.test {
-    display: flex !important;
-    justify-content: space-between !important;
+ul{
+    li:hover{
+        color: $secColor;
+    }
 }
 </style>
