@@ -18,6 +18,7 @@ export default {
             inputSearch: '',
             foundSpecs: store.allSpecs,
             showSpecs: false,
+            
         }
     },
     methods: {
@@ -32,10 +33,6 @@ export default {
             });
 
         },
-        showSpecial() {
-            this.showSpecs = true
-        }
-
     },
     mounted() {
     }
@@ -46,12 +43,12 @@ export default {
     <div class="container-fluid  wrapper-container   ">
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
-                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
+                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click=" this.showSpecs = !this.showSpecs " >
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
                         placeholder="Type what would you like to train?" aria-label="Username"
-                        aria-describedby="addon-wrapping">
+                        aria-describedby="addon-wrapping"  >
                     <!--🔽 Lancia chiamata API 🔽 -->
-                    <button class="btn search-button p-2 rounded-3 mx-1">
+                    <button class="btn search-button p-2 rounded-3 mx-1"  >
                         <!--💚 this fire the search -->
                         <router-link v-if="this.inputSearch" class="text-dark"
                             :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
@@ -59,8 +56,8 @@ export default {
                     </button>
                 </div>
             </div>
-            <div class="row justify-content-center pt-1 mb-5">
-                <transition name="fade">
+                <div class="row justify-content-center pt-1 mb-5">
+                    <transition name="fade">
                     <div class=" col-12 w-75 d-flex bg-white rounded    ">
                         <div class="w-100" v-if="this.showSpecs">
                             <div v-for="singleSpecs in foundSpecs">
@@ -257,7 +254,7 @@ export default {
 
 .search-bar {
     -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
-    box-shadow: 11px 11px 23px -6px $darkColor;
+    box-shadow: 0px 9px 20px -6px $shadowColor;
 }
 
 .thumbnail:hover {
