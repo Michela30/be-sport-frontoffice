@@ -60,11 +60,20 @@ export default {
             <div>
 
             </div>
-            <div class="d-flex flex-wrap d-wrap justify-content-center">
+            <!-- <div class="d-flex flex-wrap d-wrap justify-content-center">
 
                 <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
 
-            </div>
+            </div> -->
+            <div class="d-flex flex-wrap d-wrap justify-content-center">
+                    <div v-if="singleTrainer.specializations">
+                        <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
+                            {{ singleSpec.name }} </div>
+                    </div>
+
+                    <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+
+                </div>
 
         </div>
     </div>

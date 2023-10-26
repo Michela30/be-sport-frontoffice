@@ -76,67 +76,20 @@ export default {
                 </transition>
             </div>
             <!-- Inizio Card -->
-            <div class="row justify-content-center">
-                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-                    <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer" />
-                </div>
-            </div>
-
             <div class="row justify-content-center  pb-5">
-                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
-                    <!--💙 this fire the show -->
+                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <!-- <CardComponent :singleTrainer="singleTrainer" />   -->
-                        <div class="card rounded-4 m-2">
-                            <!-- div for img and absolute text -->
-                            <div class="card-container  ">
-                                <!-- v-if per aggiornare img da API -->
-                                <div v-if="singleTrainer.full_thumb_path">
-                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
-                                </div>
-                                <div v-else>
-                                    <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
-                                </div>
-
-                                <h5 class="card-title my-name">{{ singleTrainer.user.name }}</h5>
-                                <h5 class="card-title  my-surname">{{ singleTrainer.user.surname }}</h5>
-                            </div>
-                            <!-- start body card -->
-                            <div class="card-body m-2 text-center ">
-                                <div class="d-flex justify-content-center p-2">
-                                    <div class="p-1">
-
-                                        <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
-                                        <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
-
-                                    </div>
-                                    <div class="p-1">
-                                        Sponsorship:
-                                    </div>
-                                </div>
-
-                                <div>
-                                    Email: {{ singleTrainer.user.email }}
-                                </div>
-                                <div>
-                                    Presentation: {{ singleTrainer.description }}
-                                </div>
-                                <!-- perchè non funziona il bold? -->
-                                <div class="fw-bold 2h">
-                                    My specializations:
-                                </div>
-                                <div class="d-flex flex-wrap d-wrap justify-content-center">
-
-                                    <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
-                                        {{ singleSpec.name }}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer" />
                     </router-link>
                 </div>
             </div>
+            <!-- qua le card del compo -->
+            <div class="row justify-content-center  pb-5">
+                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                    <CardComponent :singleTrainer="singleTrainer"/>                
+                </div>
+            </div>
+
 
         </div>
     </div>
