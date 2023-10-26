@@ -3,6 +3,7 @@ import { store } from "../store";
 import CardComponent from '../components/CardComponent.vue';
 import LoaderComponent from '../components/LoaderComponent.vue';
 import JumboComponent from '../components/JumboComponent.vue';
+import JumboTopComponent from '../components/JumboTopComponent.vue';
 //import
 
 export default {
@@ -10,6 +11,7 @@ export default {
         LoaderComponent,
         CardComponent,
         JumboComponent,
+        JumboTopComponent,
     },
     data() {
         return {
@@ -41,9 +43,11 @@ export default {
 
 <template>
     <div class="container-fluid  wrapper-container   ">
+        <JumboTopComponent/>
+
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
-                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click=" this.showSpecs = !this.showSpecs " >
+                <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" id="search" @click=" this.showSpecs = !this.showSpecs " >
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
                         placeholder="Type what would you like to train?" aria-label="Username"
                         aria-describedby="addon-wrapping"  >
@@ -55,17 +59,17 @@ export default {
                     </button>
                 </div>
             </div>
-                <div class="row justify-content-center pt-1 mb-5">
-                    <transition name="fade">
-                    <div class=" col-12 w-75 d-flex bg-white rounded    ">
-                        <div class="w-100" v-if="this.showSpecs">
-                            <div v-for="singleSpecs in foundSpecs">
-                                <div @click="this.inputSearch = singleSpecs" class="bg-hover p-2 cursor-pointer">
-                                    <p>{{ singleSpecs }}</p>
-                                </div>
+            <div class="row justify-content-center pt-1 mb-5">
+                <transition name="fade">
+                <div class=" col-12 w-75 d-flex bg-white rounded    ">
+                    <div class="w-100" v-if="this.showSpecs">
+                        <div v-for="singleSpecs in foundSpecs">
+                            <div @click="this.inputSearch = singleSpecs" class="bg-hover p-2 cursor-pointer">
+                                <p>{{ singleSpecs }}</p>
                             </div>
                         </div>
                     </div>
+                </div>
                 </transition>
             </div>
             <!-- Inizio Card -->
