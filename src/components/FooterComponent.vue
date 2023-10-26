@@ -51,19 +51,29 @@ export default {
                         <h5 class="ms-2">&copy; Team-Four</h5>
                         <ul class="ms-1">
                             <li class="pt-2">
-                                Francesco Boco
+                                <a href="https://www.linkedin.com/in/francesco-boco-82950a295/">
+                                    Francesco Boco
+                                </a>
                             </li>
                             <li class="pt-1">
+                               <a href="https://www.linkedin.com/in/michela-de-stefano/">
                                 Michela De Stefano
+                               </a>
                             </li>
                             <li class="pt-1">
-                                Pietro Marilei
+                                <a href="https://www.linkedin.com/in/pietromarilei/">
+                                    Pietro Marilei
+                                </a>
                             </li>
                             <li class="pt-1">
-                                Christian Mazzaro
+                                <a href="https://www.linkedin.com/in/christian-mazzaro-1522b0295/">
+                                    Christian Mazzaro
+                                </a>
                             </li>
                             <li class="pt-1">
-                                Pasquale Rizzo
+                                <a href="https://www.linkedin.com/in/pasquale-rizzo-6a8b42216/">
+                                    Pasquale Rizzo
+                                </a>
                             </li>
                         </ul>
                     </div>
