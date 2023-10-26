@@ -2,12 +2,14 @@
 import { store } from "../store";
 import CardComponent from '../components/CardComponent.vue';
 import LoaderComponent from '../components/LoaderComponent.vue';
+import JumboComponent from '../components/JumboComponent.vue';
 //import
 
 export default {
     components: {
         LoaderComponent,
         CardComponent,
+        JumboComponent,
     },
     data() {
         return {
@@ -45,11 +47,14 @@ export default {
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" @click="showSpecial()">
-                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
+                    <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0"
+                        placeholder="Type what would you like to train?" aria-label="Username"
+                        aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
                         <!--💚 this fire the search -->
-                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
+                        <router-link v-if="this.inputSearch" class="text-dark"
+                            :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
                         <div v-else>Search</div>
                     </button>
                 </div>
@@ -69,7 +74,8 @@ export default {
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center  pb-5">
-                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
+                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)"
+                    :key="i">
                     <!--💙 this fire the show -->
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                         <!-- <CardComponent :singleTrainer="singleTrainer" />   -->
@@ -92,8 +98,10 @@ export default {
                                 <div class="d-flex justify-content-center p-2">
                                     <div class="p-1">
 
-                                        <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
-                                        <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
+                                        <i v-for="singleStar in Math.floor(singleTrainer.average_rating)"
+                                            class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                        <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))"
+                                            class="fa-regular fa-star"></i>
 
                                     </div>
                                     <div class="p-1">
@@ -114,7 +122,8 @@ export default {
                                 </div>
                                 <div class="d-flex flex-wrap d-wrap justify-content-center">
 
-                                    <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
+                                    <div class="single-Spec m-1 p-1"
+                                        v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
                                         {{ singleSpec.name }}
                                     </div>
                                 </div>
@@ -127,7 +136,7 @@ export default {
 
         </div>
     </div>
-    <div class="bg-smoke wave">
+    <div class="bg-smoke ">
         <img src="../../public/wave.svg" alt="">
     </div>
     <!-- Inizio Review -->
@@ -149,69 +158,76 @@ export default {
 
                 <div class="col-md-6 my-row-2 col-sm-12 ">
 
-                    <div class="my-col m-2 p-3 my-lower-card" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
-                        
-                            <router-link class="text-dark " :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                                <div class="col-12 d-flex ">
-                                    <div class="col-auto ">
-                                        <div class="img-box ">
-                                            <div class="my-img" v-if="singleTrainer.full_thumb_path">
-                                                <img :src="singleTrainer.full_thumb_path" class="my-img">
-                                            </div>
-                                            <div v-else class="my-img">
-                                                <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
-                                            </div>
+                    <div class="my-col m-2 p-3 my-lower-card" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)"
+                        :key="i">
+
+                        <router-link class="text-dark " :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                            <div class="col-12 d-flex ">
+                                <div class="col-auto ">
+                                    <div class="img-box ">
+                                        <div class="my-img" v-if="singleTrainer.full_thumb_path">
+                                            <img :src="singleTrainer.full_thumb_path" class="my-img">
                                         </div>
-
-                                    </div>
-                                    <div class="col-auto ps-2 d-flex flex-column justify-content-center">
-                                        <div>
-                                            <div class="fs-5">
-                                                {{ singleTrainer.user.name }}
-
-
-                                            </div>
-                                        </div>
-
-
-                                        <div class="fs-6">
-                                            <div class="my-text d-flex align-items-center">
-                                                <!--stelle finte perché abbiamo poca gente -->
-                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-                                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
-
-                                            </div>
+                                        <div v-else class="my-img">
+                                            <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
                                         </div>
                                     </div>
+
                                 </div>
-                                <!-- Inizio contenuto della singola card -->
-                                <div class="col-12 py-2">
-                                    <div class="fs-5">
-                                        <div class="fs-6">
-                                            <!-- <template v-if="singleTrainer.review && singleTrainer.review[i]"> -->
-                                            <template v-if="singleTrainer.review">
-                                                <!-- {{ singleTrainer.review[i].comment }} -->
-                                                {{ singleTrainer.review[0].comment }}
-                                            </template>
+                                <div class="col-auto ps-2 d-flex flex-column justify-content-center">
+                                    <div>
+                                        <div class="fs-5">
+                                            {{ singleTrainer.user.name }}
+
+
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
+
+
                                     <div class="fs-6">
-                                        <template v-if="singleTrainer.review && singleTrainer.review[i]">
-                                            {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
-                                        </template>
+                                        <div class="my-text d-flex align-items-center">
+                                            <!--stelle finte perché abbiamo poca gente -->
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </router-link>
-                        
+                            </div>
+                            <!-- Inizio contenuto della singola card -->
+                            <div class="col-12 py-2">
+                                <div class="fs-5">
+                                    <div class="fs-6">
+                                        <!-- <template v-if="singleTrainer.review && singleTrainer.review[i]"> -->
+                                        <template v-if="singleTrainer.review">
+                                            <!-- {{ singleTrainer.review[i].comment }} -->
+                                            {{ singleTrainer.review[0].comment }}
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="fs-6">
+                                    <template v-if="singleTrainer.review && singleTrainer.review[i]">
+                                        {{ singleTrainer.review[i].name }} {{ singleTrainer.review[i].date }}
+                                    </template>
+
+                                </div>
+                            </div>
+                        </router-link>
+
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="bg-smoke wave">
+            <img src="../../public/wave.svg" alt="">
+        </div>
+        <div class="row wrapper-container">
+            <Jumbo-component />
         </div>
     </div>
 </template>
@@ -255,6 +271,7 @@ export default {
     transform: scale(1.03);
     transition: 0.4s;
 }
+
 .my-lower-card:hover {
     cursor: pointer;
     -webkit-box-shadow: 11px 11px 23px -6px $darkColor;
@@ -318,8 +335,6 @@ export default {
 
 .review-row {
 
-    padding-top: 100px !important;
-
     .title {
         font-size: 3rem;
         font-weight: bold;
@@ -375,6 +390,10 @@ export default {
     background-color: rgba(210, 210, 210, 0.279);
 }
 
+.wave{
+    transform: rotate(180deg);
+}
+
 // vue transition here ----------
 .fade-enter-active,
 .fade-leave-active {
@@ -401,5 +420,4 @@ export default {
 
     }
 
-}
-</style>
+}</style>
