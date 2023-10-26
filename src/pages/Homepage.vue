@@ -107,8 +107,7 @@ export default {
                                     Email: {{ singleTrainer.user.email }}
                                 </div>
                                 <div>
-                                    Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-                                    officiis.
+                                    Presentation: {{ singleTrainer.description }}
                                 </div>
                                 <!-- perchè non funziona il bold? -->
                                 <div class="fw-bold 2h">
