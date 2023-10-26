@@ -138,13 +138,13 @@ export default {
                     </select>
                 </div>
             </div>
-            <!-- here shows all trainer for that specific spec -->
             <div class="row justify-content-center">
                 <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                    <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer"/>
                </div>
 
             </div>
+            <!-- here shows all trainer for that specific spec -->
             <!-- un if qua 💚-->
             <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->

@@ -49,6 +49,7 @@ export default {
                 <strong>Email:</strong> {{ singleTrainer.email }}
             </div>
             <div>
+                
                 <strong>Presentation:</strong>
                 {{ singleTrainer.description }}
             </div>
@@ -59,8 +60,11 @@ export default {
 
             </div>
             <div class="d-flex flex-wrap d-wrap justify-content-center">
-
-                <p class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+                <div v-if="singleTrainer.specializations">
+                <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
+                {{ singleSpec.name }}</div>
+                </div>
+                <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
 
             </div>
 
