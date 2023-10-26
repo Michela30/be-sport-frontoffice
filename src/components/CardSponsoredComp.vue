@@ -24,9 +24,10 @@ export default {
 
 
 <template>
-    <div class="card rounded-4 m-2">
+    <div class="card card-sponsored rounded-4 mx-2">
         <!-- div for img and absolute text -->
         <div class="card-container">
+            <!-- badge stellina -->
             <div class="badge">
                 <i class="fa-solid fa-certificate fa-flip fs-3" style="color: #ffe100;"></i>
             </div>
@@ -47,30 +48,38 @@ export default {
                     <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                 </div>
             </div>
-            <div>
+            <div v-if="singleTrainer.email">
                 <strong>Email:</strong> {{ singleTrainer.email }}
             </div>
-            <div>
+            <div v-else>
+                <strong>Email:</strong> {{ singleTrainer.user.email }}
+            </div>
 
+            <div>
                 <strong>Presentation:</strong>
                 {{ singleTrainer.description }}
             </div>
-            <div class="fw-bold 2h">
-                My specializations:
-            </div>
-            <div>
+            
 
-            </div>
-            <div class="d-flex flex-wrap d-wrap justify-content-center">
-                <div v-if="singleTrainer.specializations">
-                    <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
-                        {{ singleSpec.name }} </div>
+            <div v-if="singleTrainer.specializations || singleTrainer.specialization_name" class="pt-2">
+            
+                <div class="fw-bold 2h">
+                    My specializations:
                 </div>
+                
+                <div class="d-flex flex-wrap d-wrap justify-content-center">
 
-                <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+                    <div v-if="singleTrainer.specializations"  class="d-flex flex-wrap d-wrap justify-content-center">
+                        <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
+                            {{ singleSpec.name }} 
+                        </div>
+                    </div>
 
+                    <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
+
+                </div>
             </div>
-
+            
         </div>
     </div>
 </template>
@@ -81,9 +90,9 @@ export default {
 @use '../assets/scss/variables.scss' as *;
 
 
-.card {
+.card-sponsored {
     cursor: pointer;
-    min-height: 95%;
+    //min-height: 95%;
     margin-bottom: 20px;
     padding: 3px !important;
 

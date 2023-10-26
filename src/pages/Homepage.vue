@@ -44,7 +44,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid  wrapper-container   ">
+    <div class="container-fluid  wrapper-container ">
         <div class="row">
 
         </div>
@@ -77,7 +77,7 @@ export default {
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center  pb-5">
-                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                         <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer" />
                     </router-link>
@@ -85,7 +85,7 @@ export default {
             </div>
             <!-- qua le card del compo -->
             <div class="row justify-content-center  pb-5">
-                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <CardComponent :singleTrainer="singleTrainer"/>                
                 </div>
             </div>
