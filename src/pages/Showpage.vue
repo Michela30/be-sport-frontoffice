@@ -170,10 +170,10 @@ export default {
                         </div>
                         <!-- rating -->
                         <div class="col p-1 text-center">
-                            <strong>Rating:</strong>
+                            <strong>Rating: </strong>
                             <!-- ❌❌❌ ci serve average rating dall'APIIIIIIIIIIIIIIII -->
-                            <!-- <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
-                            <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i> -->
+                            <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                            <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
                         </div>
                         <div class="col text-center">
                             <p>
