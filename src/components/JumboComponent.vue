@@ -25,7 +25,7 @@
 <template>
 <div class=" d-flex justify-content-center my-5 py-5">
     <div class="my-jumbo col-8 px-5">
-        <div class="col-8 ">
+        <div class="col-xxl-8  ">
             <h2 class="py-5">
                 You can become a great tutor too!
             </h2 >
@@ -61,7 +61,7 @@
     border-radius: 30px;
 
     h2{
-        font-size: 4.5rem;
+        font-size: 4rem;
         font-weight: bold;
     }
     p{
@@ -80,5 +80,25 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+   .my-jumbo{
+        h2{
+            font-size: 3rem;
+            
+        }
+   }
+}
 
+@media screen and (max-width: 690px) {
+   .my-jumbo{
+        p{
+           display: none;
+           
+        }
+        button{
+            margin-top: 0px !important;
+            padding: 10px 40px !important;
+        }
+   }
+}
 </style>

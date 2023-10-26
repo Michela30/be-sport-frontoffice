@@ -92,13 +92,13 @@ export default {
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
                     </div>
                     <!-- bottone filtri -->
-                    <button class="btn btn-light p-2 rounded-3 mx-3 filterButton" @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+                    <button class="btn btn-light p-2 rounded-3 mx-3 filterButton" @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-filter text-white"></i></button>
 
                     </div>
  
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
-                        <div class=" col-12 w-75 d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
+                        <div class=" col-12 w-75 me-5 drop-down-specs d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
                             <div class="w-100">
                                 <div v-for="singleSpecs in foundSpecs">
                                     <div @click="this.inputSearch = singleSpecs" class=" cursor-pointer bg-hover p-2">
@@ -212,7 +212,8 @@ export default {
     background-color: rgb(253, 215, 215);
 }
 .filterButton {
-    border: 4px solid rgb(255, 206, 185);
+    border: 4px solid white;
+    background-color: rgba(232, 123, 93, 0.581);
 }
 .filterButton:hover {
     background-color: rgb(255, 206, 185) !important;
@@ -220,6 +221,11 @@ export default {
 
 .bg-hover:hover {
     background-color: rgba(210, 210, 210, 0.279);
+}
+
+
+.drop-down-specs{
+    margin-right: 70px !important;
 }
 
 // vue transition here ----------
