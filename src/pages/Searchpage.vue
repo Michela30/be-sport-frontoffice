@@ -1,6 +1,7 @@
 <script>
 import LoaderComponent from '../components/LoaderComponent.vue';
 import CardComponent from '../components/CardComponent.vue';
+import CardSponsoredComp from '../components/CardSponsoredComp.vue';
 import axios from 'axios';
 import { store } from "../store";
 
@@ -8,6 +9,7 @@ export default {
     components: {
         LoaderComponent,
         CardComponent,
+        CardSponsoredComp,
     },
     data() {
         return {
@@ -83,10 +85,10 @@ export default {
     </div>
     <div class=" my-container ">
         <div class="container  w-100 m-auto ">
-            <!--💱 searchbars all here -->
-            <div class="row justify-content-center pt-5 mt-5 mb-3" :class="!showFilter ? 'pb-5': ''">
+            <!--💱 searchbars all here --> 
+            <div class="row justify-content-center pt-5 mt-5 mb-3 "  :class="!showFilter ? 'pb-5': ''">
                 <div class="col d-flex justify-content-center">
-                    <div class="bg-white d-flex p-2 w-75 rounded-4" @click="this.showSpecs = !this.showSpecs, console.log('premuto bottone dentro')">
+                    <div class="bg-white d-flex p-2 w-75 rounded-4" id="search" @click="this.showSpecs = !this.showSpecs, console.log('premuto bottone dentro')">
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?">
                         <!--🔽 update chiamata API 🔽 -->
                         <button @click="updateSearch()" class="btn search-button p-2 rounded-3 mx-1">Search</button>
@@ -137,7 +139,12 @@ export default {
                 </div>
             </div>
             <!-- here shows all trainer for that specific spec -->
+            <div class="row justify-content-center">
+                <div class="col-4 " style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
+                   <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer"/>
+               </div>
 
+            </div>
             <!-- un if qua 💚-->
             <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
