@@ -50,8 +50,7 @@ export default {
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1"  >
                         <!--💚 this fire the search -->
-                        <router-link v-if="this.inputSearch" class="text-dark"
-                            :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
+                        <router-link v-if="this.inputSearch" class="text-dark" :to="{ name: 'search', params: { spec: this.inputSearch } }">Search</router-link>
                         <div v-else>Search</div>
                     </button>
                 </div>
@@ -71,8 +70,7 @@ export default {
             </div>
             <!-- Inizio Card -->
             <div class="row justify-content-center  pb-5">
-                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)"
-                    :key="i">
+                <div class="col-4  py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
                     <!--💙 this fire the show -->
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                         <!-- <CardComponent :singleTrainer="singleTrainer" />   -->
@@ -95,10 +93,8 @@ export default {
                                 <div class="d-flex justify-content-center p-2">
                                     <div class="p-1">
 
-                                        <i v-for="singleStar in Math.floor(singleTrainer.average_rating)"
-                                            class="fa-solid fa-star" style="color: #ffdd00"></i>
-                                        <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))"
-                                            class="fa-regular fa-star"></i>
+                                        <i v-for="singleStar in Math.floor(singleTrainer.average_rating)" class="fa-solid fa-star" style="color: #ffdd00"></i>
+                                        <i v-for="singleStar in (5 - Math.floor(singleTrainer.average_rating))" class="fa-regular fa-star"></i>
 
                                     </div>
                                     <div class="p-1">
@@ -110,8 +106,7 @@ export default {
                                     Email: {{ singleTrainer.user.email }}
                                 </div>
                                 <div>
-                                    Presentation: Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-                                    officiis.
+                                    Presentation: {{ singleTrainer.description }}
                                 </div>
                                 <!-- perchè non funziona il bold? -->
                                 <div class="fw-bold 2h">
@@ -119,8 +114,7 @@ export default {
                                 </div>
                                 <div class="d-flex flex-wrap d-wrap justify-content-center">
 
-                                    <div class="single-Spec m-1 p-1"
-                                        v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
+                                    <div class="single-Spec m-1 p-1" v-for="(singleSpec, i) in singleTrainer.specializations " :key="i">
                                         {{ singleSpec.name }}
                                     </div>
                                 </div>
@@ -155,8 +149,7 @@ export default {
 
                 <div class="col-md-6 my-row-2 col-sm-12 ">
 
-                    <div class="my-col m-2 p-3 my-lower-card" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)"
-                        :key="i">
+                    <div class="my-col m-2 p-3 my-lower-card" v-for="(singleTrainer, i) in store.allTrainers.slice(0, 6)" :key="i">
 
                         <router-link class="text-dark " :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                             <div class="col-12 d-flex ">
@@ -198,9 +191,10 @@ export default {
                             <div class="col-12 py-2">
                                 <div class="fs-5">
                                     <div class="fs-6">
-                                        <!-- <template v-if="singleTrainer.review && singleTrainer.review[i]"> -->
-                                        <template v-if="singleTrainer.review">
-                                            <!-- {{ singleTrainer.review[i].comment }} -->
+                                        <template v-if="singleTrainer.review[i]">
+                                            {{ singleTrainer.review[i].comment }}  
+                                        </template>
+                                        <template v-else>
                                             {{ singleTrainer.review[0].comment }}
                                         </template>
                                     </div>
@@ -387,7 +381,7 @@ export default {
     background-color: rgba(210, 210, 210, 0.279);
 }
 
-.wave{
+.wave {
     transform: rotate(180deg);
 }
 
@@ -417,4 +411,5 @@ export default {
 
     }
 
-}</style>
+}
+</style>

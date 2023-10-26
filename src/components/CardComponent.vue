@@ -52,8 +52,7 @@ export default {
             </div>
             <div>
                 <strong>Presentation:</strong>
-                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-                officiis.
+                 {{ singleTrainer.description }} 
             </div>
             <div class="fw-bold 2h">
                 My specializations: 
