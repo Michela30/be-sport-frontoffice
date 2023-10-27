@@ -50,8 +50,9 @@ export default {
         </div>
 
         <div class=" my-container container w-100 m-auto ">
-            <div class="col d-flex justify-content-center pt-5 mt-5">
+            <div class="col d-flex justify-content-center pt-5 mt-5 ">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" id="search" @click=" this.showSpecs = !this.showSpecs">
+                    <i class="fa-solid fa-dumbbell dumbbell  px-2 align-items-center d-flex" ></i>
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
@@ -237,6 +238,11 @@ export default {
     transform: scale(1.03);
     transition: 0.4s;
 }
+
+.dumbbell{
+        font-size: 1.5rem !important;
+        color: rgb(253, 215, 215);
+    }
 
 .card {
 
