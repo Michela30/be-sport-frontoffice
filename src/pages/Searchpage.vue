@@ -118,7 +118,7 @@ export default {
             <!-- 🍳🍕 lower searchbars here -->
             <div v-if="this.showFilter" class="d-flex justify-content-center w-50 m-auto pb-2">
                 <div class="col-6 p-2">
-                    <select v-model="this.selectedRating" class="form-select p-1 ps-3 text-grey fs-6">
+                    <select @change="console.log(this.selectedRating) " v-model="this.selectedRating" class="form-select p-1 ps-3 text-grey fs-6">
                         <option value="0" selected>All Rating</option>
                         <option value="1">⭐</option>
                         <option value="2">⭐⭐</option>
@@ -129,7 +129,7 @@ export default {
 
                 </div>
                 <div class="col-6 p-2">
-                    <select v-model="this.selectedReview" class="form-select p-1 text-grey fs-6">
+                    <select @change="console.log(this.selectedReview)" v-model="this.selectedReview" class="form-select p-1 text-grey fs-6">
                         <option class="" value="0" selected>Any Reviews Number</option>
                         <option class="text-black" value="5">At least 5 reviews</option>
                         <option class="text-black" value="10">At least 10 reviews</option>
@@ -153,32 +153,32 @@ export default {
             <!-- primo if qua 💚-->
             <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
-                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i">
-                    <CardComponent :singleTrainer="singleTrainer" />
+                <template class="d-flex justify-content-center" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
+                    <CardComponent class="" :singleTrainer="singleTrainer" />
                 </template>
             </div>
 
             <!--✅ primo v-else-if se selezionata solo la prima select  -->
             <div class="row justify-content-center  pb-5" v-else-if="selectedRating != 0 && selectedReview == 0">
                 <!-- <h3>siamo nel primo v-else-if</h3> -->
-                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
-                    <CardComponent :singleTrainer="singleTrainer" />
+                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
+                    <CardComponent :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'" :singleTrainer="singleTrainer" />
                 </template>
             </div>
 
             <!--♌ secondo v-else-if se selezionata solo la seconda selected  -->
             <div class="row justify-content-center  pb-5" v-else-if="selectedReview != 0 && selectedRating == 0">
                 <!-- <h3>siamo nel secondo v-else-if</h3> -->
-                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
-                    <CardComponent :singleTrainer="singleTrainer" />
+                <template class="d-flex justify-content-center" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
+                    <CardComponent :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'" :singleTrainer="singleTrainer" />
                 </template>
             </div>
 
             <!-- ultimo else qua 💜 -->
             <div class="row justify-content-center  pb-5" v-else>
                 <!-- <h3>siamo nel v-else finale</h3> -->
-                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
-                    <CardComponent :singleTrainer="singleTrainer" />
+                <template class="d-flex justify-content-center" v-for="(singleTrainer, i) in foundedTrainers" :key="i" >
+                    <CardComponent :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'" :singleTrainer="singleTrainer" />
                 </template>
             </div>
         </div>
