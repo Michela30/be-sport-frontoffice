@@ -46,9 +46,8 @@ export default {
 <template>
     <div class="container-fluid  wrapper-container ">
         <div class="row">
-
+            <JumboTopComponent />
         </div>
-        <JumboTopComponent />
 
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
@@ -75,22 +74,22 @@ export default {
                     </div>
                 </transition>
             </div>
-            <!-- Inizio Card -->
-            <div class="row justify-content-center  pb-5">
+            <!-- Inizio Card spons -->
+            <div class="row justify-content-center ipb-5">
                 <h5 class="text-center pb-4">
                     Our Sponsored Trainers:
                 </h5>
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer" />
-                    </router-link>
-                </div>
+                <div class="row justify-content-center">
+                <template v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                    <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
+                </template>
             </div>
-            <!-- qua le card del compo -->
-            <div class="row justify-content-center  pb-5">
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+            </div>
+            <!-- qua all cards -->
+            <div class="row justify-content-center pb-5">
+                <template v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                     <CardComponent :singleTrainer="singleTrainer"/>                
-                </div>
+                </template>
             </div>
 
 
@@ -101,7 +100,6 @@ export default {
     </div>
     <!-- Inizio Review -->
     <div class="container-fluid my-container-bottom">
-        <!-- non mi prende il bg ??? why -->
         <div class="h-100 container my-container-bottom w-100 m-auto py-5 ">
             <div class="row review-row p-2 ">
                 <div class="col-md-6 col-sm-12 p-2 left-container pe-5 d-flex flex-column  justify-content-center">
@@ -114,7 +112,7 @@ export default {
                         tutor
                     </div>
                 </div>
-                <!-- inizio card -->
+                <!-- inizio card review -->
 
                 <div class="col-md-6 my-row-2 col-sm-12 ">
 
@@ -241,9 +239,6 @@ export default {
 }
 
 .card {
-    cursor: pointer;
-    min-height: 100%;
-    margin-bottom: 20px;
 
     .search-button:hover {
         background-color: lightcoral;

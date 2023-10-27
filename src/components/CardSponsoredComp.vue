@@ -25,9 +25,9 @@ export default {
 
 
 <template>
-    <div class="col-4 py-2">
+    <div class="col-8 col-sm-6 col-md-4 col-lg-3 py-2">
          <router-link :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-            <div class="card card-sponsored rounded-4 mx-2" >
+            <div class="card card-sponsored rounded-4 mx-2 p-3" >
                 <!-- div for img and absolute text -->
                 <div class="card-container">
                     <!-- badge stellina -->
@@ -103,8 +103,7 @@ export default {
 
 .card-sponsored {
     cursor: pointer;
-    min-height: 95%;
-    margin-bottom: 20px;
+    min-height: 100%;
     padding: 3px !important;
     border: 1px solid #04d4cd;
 
