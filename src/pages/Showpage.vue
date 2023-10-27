@@ -207,15 +207,15 @@ export default {
 
                         <div class="form-group  m-2">
                             <label for="name">Name</label>
-                            <input v-model="this.email.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                            <input v-model="this.email.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name" min="5" required>
                         </div>
                         <div class="m-2">
                             <label for="email" class="form-label ">Email address</label>
-                            <input v-model="this.email.email" type="email" class="form-control p-1 fs-7" id="email" placeholder="insert your email here">
+                            <input v-model="this.email.email" type="email" class="form-control p-1 fs-7" id="email" placeholder="insert your email here" required>
                         </div>
                         <div class="m-2">
                             <label for="mesagge" class="form-label">Type your message here</label>
-                            <textarea v-model="this.email.message_text" class="form-control p-1 fs-7" id="mesagge" rows="3">
+                            <textarea v-model="this.email.message_text" class="form-control p-1 fs-7" id="mesagge" rows="3" min="15" required>
                             </textarea>
                         </div>
 
@@ -226,7 +226,8 @@ export default {
                     <!-- rating form -->
                     <form class="bg-white rounded p-4 my-2" action="" @submit.prevent="sendRating(); console.log('premuto bottone rating')">
                         <label for="rating" class="form-label">Rate Me ✨</label>
-                        <select v-model="this.vote.rating" class="form-select form-select-sm" aria-label=".form-select-sm example" id="rating">
+                        <select v-model="this.vote.rating" class="form-select form-select-sm ps-2" aria-label=".form-select-sm example" id="rating">
+                            <option value="" disabled selected>Rating</option>
                             <option value="1">⭐</option>
                             <option value="2">⭐⭐</option>
                             <option value="3">⭐⭐⭐</option>
@@ -240,10 +241,10 @@ export default {
                         <!-- <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2024-12-31" /> -->
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input v-model="this.review.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name">
+                            <input v-model="this.review.name" type="text" class="form-control p-1 fs-7" id="name" placeholder="Insert your name" min="5" required>
                         </div>
                         <label for="rating" class="form-label ">Write me a review 💛</label>
-                        <textarea v-model="this.review.comment" class="form-control " id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea v-model="this.review.comment" class="form-control " id="exampleFormControlTextarea1" min="15" rows="3" required></textarea>
 
 
                         <button type="submit" class="btn text-white fs-7 my-2 py-1 px-2 ">Submit</button>
