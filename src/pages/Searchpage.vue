@@ -85,8 +85,8 @@ export default {
     </div>
     <div class=" my-container ">
         <div class="container  w-100 m-auto ">
-            <!--💱 searchbars all here --> 
-            <div class="row justify-content-center pt-5 mt-5 mb-3 "  :class="!showFilter ? 'pb-5': ''">
+            <!--💱 searchbars all here -->
+            <div class="row justify-content-center pt-5 mt-5 mb-3 " :class="!showFilter ? 'pb-5' : ''">
                 <div class="col d-flex justify-content-center">
                     <div class="bg-white d-flex p-2 w-75 rounded-4" id="search" @click="this.showSpecs = !this.showSpecs, console.log('premuto bottone dentro')">
                         <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?">
@@ -96,8 +96,8 @@ export default {
                     <!-- bottone filtri -->
                     <button class="btn btn-light p-2 rounded-3 mx-3 filterButton" @click="this.showFilter = !this.showFilter"><i class="fa-solid fa-filter text-white"></i></button>
 
-                    </div>
- 
+                </div>
+
                 <div class="row justify-content-center pt-1">
                     <transition name="fade">
                         <div class=" col-12 w-75 me-5 drop-down-specs d-flex justify-content-center bg-white rounded " v-if="this.showSpecs">
@@ -138,60 +138,54 @@ export default {
                     </select>
                 </div>
             </div>
+            <!-- ❌❌❌ bisogna creare le col all'interno del compo, idk why -->
             <div class="row justify-content-center">
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <!-- ❌❌❌ perché sto schifo genra le col vuote ? -->
-                        <CardSponsoredComp v-if="singleTrainer.expiring_date" :singleTrainer="singleTrainer"/>
-                    </router-link>
-               </div>
-
+                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i">
+                    <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
+                </template>
             </div>
             <!-- here shows all trainer for that specific spec -->
-            <!-- un if qua 💚-->
+            <!-- primo if qua 💚-->
             <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
                 <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <CardComponent :singleTrainer="singleTrainer" />                      
+                        <CardComponent :singleTrainer="singleTrainer" />
                     </router-link>
-                    
+
                 </div>
             </div>
 
             <!--✅ primo v-else-if se selezionata solo la prima select  -->
             <div class="row justify-content-center  pb-5" v-else-if="selectedRating != 0 && selectedReview == 0">
                 <!-- <h3>siamo nel primo v-else-if</h3> -->
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
-                :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
+                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <CardComponent :singleTrainer="singleTrainer" />     
+                        <CardComponent :singleTrainer="singleTrainer" />
                     </router-link>
-                    
+
                 </div>
             </div>
 
             <!--♌ secondo v-else-if se selezionata solo la seconda selected  -->
-             <div class="row justify-content-center  pb-5" v-else-if="selectedReview != 0 && selectedRating == 0">
+            <div class="row justify-content-center  pb-5" v-else-if="selectedReview != 0 && selectedRating == 0">
                 <!-- <h3>siamo nel secondo v-else-if</h3> -->
-                    <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
-                    :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
-                        <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                            <CardComponent :singleTrainer="singleTrainer" />
-                        </router-link>
-                        
-                    </div>
-                </div>
-                
-            <!-- ultimo else qua 💜 -->
-            <div class="row justify-content-center  pb-5" v-else>
-                <!-- <h3>siamo nel v-else finale</h3> -->
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" 
-                :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
+                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
                     <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
                         <CardComponent :singleTrainer="singleTrainer" />
                     </router-link>
-                    
+
+                </div>
+            </div>
+
+            <!-- ultimo else qua 💜 -->
+            <div class="row justify-content-center  pb-5" v-else>
+                <!-- <h3>siamo nel v-else finale</h3> -->
+                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
+                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                        <CardComponent :singleTrainer="singleTrainer" />
+                    </router-link>
+
                 </div>
             </div>
         </div>
@@ -202,9 +196,11 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
+
 .text-grey {
     color: rgb(98, 98, 98) !important;
 }
+
 .text-dark {
     color: black
 }
@@ -221,10 +217,12 @@ export default {
 .search-button {
     background-color: rgb(253, 215, 215);
 }
+
 .filterButton {
     border: 4px solid white;
     background-color: rgba(232, 123, 93, 0.581);
 }
+
 .filterButton:hover {
     background-color: rgb(255, 206, 185) !important;
 }
@@ -234,7 +232,7 @@ export default {
 }
 
 
-.drop-down-specs{
+.drop-down-specs {
     margin-right: 70px !important;
 }
 
