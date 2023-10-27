@@ -27,12 +27,13 @@
     <div class="my-jumbo col-12 px-5 pt-5 d-flex align-items-center">
         <div class="col-xxl-8  ">
             <h2 class="py-5">
-                Find the perfect trainer!
+            <span> Find the perfect trainer!</span>
             </h2 >
             <p  class="">
                 Online or in-person, 
                 <br>
-                make your choice from 25 million tutors
+                <br>
+                Make your choice from <span> millions of tutors</span>
             </p>
            
         </div>
@@ -76,6 +77,9 @@
         // border: 2px solid lightcoral;
         border-radius: 30px;
         padding: 20px 80px !important;
+    }
+    span{
+        color: rgba(232, 124, 93, 1);
     }
 }
 
