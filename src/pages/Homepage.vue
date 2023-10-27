@@ -96,7 +96,7 @@ export default {
 
         </div>
     </div>
-    <div class="bg-smoke ">
+    <div class="bg-smoke wave-top ">
         <img src="../../public/wave.svg" alt="">
     </div>
     <!-- Inizio Review -->
@@ -286,9 +286,13 @@ export default {
     }
 
 }
+.wave-top{
+    margin: -15px !important;
 
+}
 .wave {
-    margin: -5px !important;
+    margin: -15px !important;
+    transform: rotate(180deg);
 }
 
 // Inizio CSS rewiev
@@ -350,9 +354,7 @@ export default {
     background-color: rgba(210, 210, 210, 0.279);
 }
 
-.wave {
-    transform: rotate(180deg);
-}
+
 
 // vue transition here ----------
 .fade-enter-active,
