@@ -83,8 +83,9 @@ export default {
     <div v-if="isLoad == false">
 
     </div>
-    <div class=" my-container ">
+    <div class=" my-container " id="home">
         <div class="container  w-100 m-auto ">
+
             <!--💱 searchbars all here -->
             <div class="row justify-content-center pt-5 mt-5 mb-3 " :class="!showFilter ? 'pb-5' : ''">
                 <div class="col d-flex justify-content-center">
@@ -138,7 +139,11 @@ export default {
                     </select>
                 </div>
             </div>
-            
+            <a href="#home">
+                <div class="arrow-button">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </div>
+            </a>
             <div class="row justify-content-center">
                 <template v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
@@ -149,7 +154,7 @@ export default {
             <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
                 <template v-for="(singleTrainer, i) in foundedTrainers" :key="i">
-                        <CardComponent :singleTrainer="singleTrainer" />
+                    <CardComponent :singleTrainer="singleTrainer" />
                 </template>
             </div>
 
@@ -184,6 +189,26 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
+
+.arrow-button {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: rgba(232, 124, 93, 1);
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    right: 80px;
+    top: 450px;
+
+    >i {
+        color: white;
+    }
+}
 
 .text-grey {
     color: rgb(98, 98, 98) !important;
