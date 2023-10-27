@@ -49,6 +49,10 @@ export default {
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                     <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
                 </div>
+
+                <strong class=" pb-4 title-sponsorized text-end">
+                    Sponsored
+                </strong>
                 <!-- start body card -->
                 <div class="card-body m-2 text-center ">
                     <div class="d-flex justify-content-center p-2">
@@ -100,7 +104,11 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
-
+.title-sponsorized {
+    font-weight: bold;
+    color: #059c97;
+    text-shadow: 1px 1px 1px #e1ebeb;
+}
 .card-sponsored {
     cursor: pointer;
     min-height: 100%;

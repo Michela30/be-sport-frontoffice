@@ -87,9 +87,6 @@ export default {
             </div>
             <!-- Inizio Card spons -->
             <div class="row justify-content-center ipb-5">
-                <h5 class="text-center pb-4">
-                    Our Sponsored Trainers:
-                </h5>
                 <div class="row justify-content-center">
                     <template v-for="(singleTrainer, i) in store.allTrainers" :key="i">
                         <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
@@ -389,6 +386,7 @@ export default {
 .bg-hover:hover {
     background-color: rgba(210, 210, 210, 0.279);
 }
+
 
 
 
