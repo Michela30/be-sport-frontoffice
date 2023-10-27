@@ -197,11 +197,11 @@ export default {
         </div>
         <div class="row wrapper-container">
             <Jumbo-component />
+            <div>
+                <FaqComponent/>
+            </div>
         </div>
 
-        <div>
-            <FaqComponent/>
-        </div>
     </div>
 </template>
 
