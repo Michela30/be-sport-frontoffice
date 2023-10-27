@@ -204,6 +204,7 @@ export default {
 @use '../assets/scss/variables.scss' as *;
 
 .arrow-button{
+    cursor: pointer;
     height: 40px;
     width: 40px;
     border-radius: 50%;
