@@ -32,7 +32,6 @@
             <p  class="">
                 Online or in-person, 
                 <br>
-                <br>
                 Make your choice from <span> millions of tutors</span>
             </p>
            
