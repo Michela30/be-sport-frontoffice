@@ -138,7 +138,7 @@ export default {
                     </select>
                 </div>
             </div>
-            <!-- ❌❌❌ bisogna creare le col all'interno del compo, idk why -->
+            
             <div class="row justify-content-center">
                 <template v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                     <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
@@ -148,45 +148,33 @@ export default {
             <!-- primo if qua 💚-->
             <div class="row justify-content-center pb-5" v-if="selectedRating == 0 && selectedReview == 0">
                 <!-- <h3>siamo nel v-if</h3> -->
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i">
                         <CardComponent :singleTrainer="singleTrainer" />
-                    </router-link>
-
-                </div>
+                </template>
             </div>
 
             <!--✅ primo v-else-if se selezionata solo la prima select  -->
             <div class="row justify-content-center  pb-5" v-else-if="selectedRating != 0 && selectedReview == 0">
                 <!-- <h3>siamo nel primo v-else-if</h3> -->
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <CardComponent :singleTrainer="singleTrainer" />
-                    </router-link>
-
-                </div>
+                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating)) ? '' : 'hidden'">
+                    <CardComponent :singleTrainer="singleTrainer" />
+                </template>
             </div>
 
             <!--♌ secondo v-else-if se selezionata solo la seconda selected  -->
             <div class="row justify-content-center  pb-5" v-else-if="selectedReview != 0 && selectedRating == 0">
                 <!-- <h3>siamo nel secondo v-else-if</h3> -->
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <CardComponent :singleTrainer="singleTrainer" />
-                    </router-link>
-
-                </div>
+                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
+                    <CardComponent :singleTrainer="singleTrainer" />
+                </template>
             </div>
 
             <!-- ultimo else qua 💜 -->
             <div class="row justify-content-center  pb-5" v-else>
                 <!-- <h3>siamo nel v-else finale</h3> -->
-                <div class="col-4 py-2" style="width: 18rem;" v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
-                    <router-link class="text-dark" :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-                        <CardComponent :singleTrainer="singleTrainer" />
-                    </router-link>
-
-                </div>
+                <template v-for="(singleTrainer, i) in foundedTrainers" :key="i" :class="(selectedRating <= Math.floor(singleTrainer.average_rating) && selectedReview <= Math.floor(singleTrainer.reviews.length)) ? '' : 'hidden'">
+                    <CardComponent :singleTrainer="singleTrainer" />
+                </template>
             </div>
         </div>
     </div>
