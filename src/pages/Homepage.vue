@@ -49,17 +49,17 @@ export default {
         <div class="row">
             <JumboTopComponent />
         </div>
-        <div class="arrow-button">
-            <a href="#home">
+        <a href="#home">
+            <div class="arrow-button">
                 <i class="fa-solid fa-arrow-up"></i>
-            </a>
-        </div>
+            </div>
+        </a>
 
 
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5 ">
                 <div class="search-bar bg-white d-flex p-2 w-75  rounded-4" id="search" @click=" this.showSpecs = !this.showSpecs">
-                    <i class="fa-solid fa-dumbbell dumbbell  px-2 align-items-center d-flex" ></i>
+                    <i class="fa-solid fa-dumbbell dumbbell  px-2 align-items-center d-flex"></i>
                     <input @keyup="searchSpec()" v-model="inputSearch" type="text" class="form-control border-0" placeholder="Type what would you like to train?" aria-label="Username" aria-describedby="addon-wrapping">
                     <!--🔽 Lancia chiamata API 🔽 -->
                     <button class="btn search-button p-2 rounded-3 mx-1">
@@ -88,15 +88,15 @@ export default {
                     Our Sponsored Trainers:
                 </h5>
                 <div class="row justify-content-center">
-                <template v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-                    <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
-                </template>
-            </div>
+                    <template v-for="(singleTrainer, i) in store.allTrainers" :key="i">
+                        <CardSponsoredComp :singleTrainer="singleTrainer" v-if="singleTrainer.expiring_date" />
+                    </template>
+                </div>
             </div>
             <!-- qua all cards -->
             <div class="row justify-content-center pb-5">
                 <template v-for="(singleTrainer, i) in store.allTrainers" :key="i">
-                    <CardComponent :singleTrainer="singleTrainer"/>                
+                    <CardComponent :singleTrainer="singleTrainer" />
                 </template>
             </div>
 
@@ -203,7 +203,7 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
-.arrow-button{
+.arrow-button {
     cursor: pointer;
     height: 40px;
     width: 40px;
@@ -216,10 +216,12 @@ export default {
     position: fixed;
     z-index: 100;
     right: 80px;
-    >a{
+
+    >i {
         color: white;
     }
 }
+
 .my-container {
     background-color: $mainColor;
     position: relative;
@@ -263,10 +265,10 @@ export default {
     transition: 0.4s;
 }
 
-.dumbbell{
-        font-size: 1.5rem !important;
-        color: rgb(253, 215, 215);
-    }
+.dumbbell {
+    font-size: 1.5rem !important;
+    color: rgb(253, 215, 215);
+}
 
 .card {
 
@@ -311,10 +313,12 @@ export default {
     }
 
 }
-.wave-top{
+
+.wave-top {
     margin: -15px !important;
 
 }
+
 .wave {
     margin: -15px !important;
     transform: rotate(180deg);
@@ -407,5 +411,4 @@ export default {
 
     }
 
-}
-</style>
+}</style>

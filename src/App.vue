@@ -62,7 +62,13 @@ export default {
   },
   
  mounted() {
-    // this.braintree();
+  // scroll to top
+    window.onload = function () {
+      var myDiv = document.getElementById('myDiv');
+      if (myDiv) {
+        window.scrollTo(0, myDiv.offsetTop);
+      }
+    };
   }
 }
 </script>
@@ -72,7 +78,7 @@ export default {
 <template>
   
 
-    <HeaderComponent/>
+    <HeaderComponent id="myDiv"/>
     <div v-if="this.isLoad == false"><LoaderComponent/></div>
     <!--🔰 router view down here, here slides main content -->
     <div v-else><router-view></router-view></div>
