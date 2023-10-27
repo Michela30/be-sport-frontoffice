@@ -16,14 +16,9 @@ export default {
 </script>
 
 
-
-
-    
-
-
-
 <template>
-    <section class="faq">
+    <div class="pt-4"></div>
+    <section class="faq mt-2" id="faq">
         <div class="col-12 col-md-6 container-fluid px-3">
             <h2>
                 Frequently Asked Questions
@@ -38,7 +33,7 @@ export default {
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">To enroll, go to the Home page, click "Register," and follow the instructions to complete the registration process.</div>
+                        <div class="accordion-body py-2">To enroll, go to the Home page, click "Register," and follow the instructions to complete the registration process.</div>
                     </div>
                 </div>
 
@@ -51,7 +46,7 @@ export default {
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">We offer a diverse range, including fitness courses, sport-specific training, group classes, and more. Explore our "Courses" section for the full selection.</div>
+                        <div class="accordion-body py-2">We offer a diverse range, including fitness courses, sport-specific training, group classes, and more. Explore our "Courses" section for the full selection.</div>
                     </div>
                 </div>
 
@@ -64,11 +59,11 @@ export default {
                         </button>
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Yes, we offer sponsorship opportunities for our sports courses. For details on how to purchase sponsorships and the benefits associated with them, please visit our "Sponsorship Opportunities" section.</div>
+                        <div class="accordion-body py-2">Yes, we offer sponsorship opportunities for our sports courses. For details on how to purchase sponsorships and the benefits associated with them, please visit our "Sponsorship Opportunities" section.</div>
                     </div>
                 </div>
+                <hr>
             </div>
-            <hr class="py-3">
           
         </div>
     </section>
