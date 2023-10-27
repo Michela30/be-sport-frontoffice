@@ -43,11 +43,18 @@ export default {
 }
 </script>
 
+
 <template>
-    <div class="container-fluid  wrapper-container ">
+    <div class="container-fluid  wrapper-container " id="home">
         <div class="row">
             <JumboTopComponent />
         </div>
+        <div class="arrow-button">
+            <a href="#home">
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </div>
+
 
         <div class=" my-container container w-100 m-auto ">
             <div class="col d-flex justify-content-center pt-5 mt-5">
@@ -195,6 +202,22 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/variables.scss' as *;
 
+.arrow-button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: rgba(232, 124, 93, 1);
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    right: 80px;
+    >a{
+        color: white;
+    }
+}
 .my-container {
     background-color: $mainColor;
     position: relative;
