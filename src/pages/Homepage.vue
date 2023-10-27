@@ -5,6 +5,8 @@ import LoaderComponent from '../components/LoaderComponent.vue';
 import JumboComponent from '../components/JumboComponent.vue';
 import JumboTopComponent from '../components/JumboTopComponent.vue';
 import CardSponsoredComp from '../components/CardSponsoredComp.vue';
+import FaqComponent from '../components/FaqComponent.vue';
+
 //import
 
 export default {
@@ -13,7 +15,8 @@ export default {
         CardComponent,
         JumboComponent,
         JumboTopComponent,
-        CardSponsoredComp
+        CardSponsoredComp,
+        FaqComponent,
     },
     data() {
         return {
@@ -194,6 +197,10 @@ export default {
         </div>
         <div class="row wrapper-container">
             <Jumbo-component />
+        </div>
+
+        <div>
+            <FaqComponent/>
         </div>
     </div>
 </template>
