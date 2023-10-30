@@ -26,9 +26,9 @@ export default {
 
             <hr class="py-3">
             <div class="accordion accordion-flush py-4" id="accordionFlushExample">
-                <div class="accordion-item">
+                <div class="accordion-item rounded-3">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             How do I enroll in a sports course on the platform?
                         </button>
                     </h2>
@@ -37,9 +37,9 @@ export default {
                     </div>
                 </div>
 
-                <hr class="py-3">
+                <br class="py-3">
 
-                <div class="accordion-item">
+                <div class="accordion-item rounded-3">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                             What types of sports courses are available on the platform?
@@ -50,9 +50,9 @@ export default {
                     </div>
                 </div>
 
-                <hr class="py-3">
+                <br class="py-3 ">
 
-                <div class="accordion-item">
+                <div class="accordion-item rounded-3">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                             Is it possible to purchase sponsorships for sports courses on the platform?
@@ -62,7 +62,7 @@ export default {
                         <div class="accordion-body py-2">Yes, we offer sponsorship opportunities for our sports courses. For details on how to purchase sponsorships and the benefits associated with them, please visit our "Sponsorship Opportunities" section.</div>
                     </div>
                 </div>
-                <hr>
+                <br>
             </div>
           
         </div>
@@ -94,6 +94,8 @@ export default {
 
 .faq h2 {
     padding-bottom: 40px;
+    font-weight: bold;
+    
 }
 
 .faq-section {
@@ -115,9 +117,8 @@ export default {
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: rgba(232, 124, 93, 1);
     padding: 5px;
-    color: white;
+    color: $compColor;
 }
 
 .accordion-button:focus {
