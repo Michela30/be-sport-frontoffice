@@ -44,14 +44,14 @@ export default {
   },
   created() {
     axios
-      .get('http://127.0.0.1:8000/api/trainers/')
+      .get('https://besports.netsons.org/api/trainers/')
       .then(response => {
         this.store.allTrainers = response.data.trainers;
         console.log( 'this.store.allTrainers',this.store.allTrainers)
         this.isLoad = true
       });
       axios
-      .get('http://127.0.0.1:8000/api/specializations/')
+      .get('https://besports.netsons.org/api/specializations/')
       .then(response => {
         //this add just name to specs array in store, may need to convert spec to objs. it will broke specs name search idk.
         response.data.specializations.forEach(singleApiSpec => {
