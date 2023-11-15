@@ -42,9 +42,7 @@ export default {
         },
     },
     mounted() {
-        setInterval(() => {
-            console.log(this.store);
-        }, 1000);
+       
     }
 }
 </script>
