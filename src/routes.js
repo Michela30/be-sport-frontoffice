@@ -6,7 +6,7 @@ import Showpage from "./pages/Showpage.vue";
 const routes = [
     // homepage
     {
-        path: '/',
+        path: '/be-sport-frontoffice/',
         name: 'home',
         component: Homepage,
     },
