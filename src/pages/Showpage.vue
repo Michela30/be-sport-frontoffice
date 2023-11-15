@@ -45,7 +45,7 @@ export default {
         },
         sendEmail() {
             axios
-                .post("http://127.0.0.1:8000/api/messages",
+                .post("https://besports.netsons.org/api/messages",
                     this.email, {
                     header: {
                         'Content-Type': 'multipart/form-data'
@@ -73,7 +73,7 @@ export default {
             this.vote.date = today
 
             axios
-                .post("http://127.0.0.1:8000/api/votes",
+                .post("https://besports.netsons.org/api/votes",
                     this.vote, {
                     header: {
                         'Content-Type': 'multipart/form-data'
@@ -100,7 +100,7 @@ export default {
             this.review.date = today
             // ----------------------------------
             axios
-                .post("http://127.0.0.1:8000/api/reviews",
+                .post("https://besports.netsons.org/api/reviews",
                     this.review, {
                     header: {
                         'Content-Type': 'multipart/form-data'
@@ -122,7 +122,7 @@ export default {
     created() {
         // here fires axios call
         axios
-            .get(`http://127.0.0.1:8000/api/trainer/${this.$route.params.slug}`)
+            .get(`https://besports.netsons.org/api/trainer/${this.$route.params.slug}`)
             // 'http://localhost:8000/api/trainer/' + this.$route.params.id
             // .get(`http://127.0.0.1:8000/api/trainer/`, {
             //     params: { trainers: this.$route.params.id },

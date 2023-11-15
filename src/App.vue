@@ -110,7 +110,7 @@ export default {
 
 <style lang="scss">
 @import 'assets/scss/main.scss';
-@import 'assets/scss/variables.scss';
+@import 'assets/scss/variables.scss'; 
 
 // import font from local space 
 @font-face {

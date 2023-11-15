@@ -58,7 +58,7 @@ export default {
     },
     created() {
         axios
-            .get(`http://127.0.0.1:8000/api/trainerfilter/`, {
+            .get(`https://besports.netsons.org/api/trainerfilter/`, {
                 params: { specialization: this.$route.params.spec },
             })
             .then(response => {
