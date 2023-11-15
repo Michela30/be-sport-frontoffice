@@ -87,8 +87,10 @@ export default {
   
 
   <HeaderComponent id="myDiv"/>
-  <router-view></router-view>
   <!-- <div v-if="this.isLoad == false"><LoaderComponent/></div> -->
+  <div>
+    <router-view></router-view>
+  </div>
   <!--🔰 router view down here, here slides main content -->
   <!-- <div v-else></div> -->
 
