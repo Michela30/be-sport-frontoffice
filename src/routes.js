@@ -12,7 +12,7 @@ const routes = [
     },
     // searchPage
     {
-        path: '/search/:spec',
+        path: '/be-sport-frontoffice/search/:spec',
         name: 'search',
         component: Searchpage,
     },
