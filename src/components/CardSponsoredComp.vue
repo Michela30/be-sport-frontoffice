@@ -9,8 +9,10 @@ export default {
     },
     methods: {
         slashRemover(string){
-            console.log(string.replace('https:/besports.netsons.org/public/storage//', ""));
-            return string.replace('https:/besports.netsons.org/public/storage//','');
+            let url = string
+            url.replace('https:/besports.netsons.org/public/storage//', "");
+            console.log(url);
+            return url;
         }
         // //function
         // getImagePath: function (image) {
