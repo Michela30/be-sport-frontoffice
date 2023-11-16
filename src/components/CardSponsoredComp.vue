@@ -9,21 +9,14 @@ export default {
     },
     methods: {
         slashRemover(string){
-            let url = string
-            url.replace('https:/besports.netsons.org/public/storage//', "_");
-            console.log(url);
-            return url;
+            // accrocco che rimuove il percorso davanti all'imagine https: etc
+            return string.substr(45, 65);
         }
-        // //function
-        // getImagePath: function (image) {
-        //     return new URL(image, import.meta.url).href;
-        // }
     },
     props: {
         singleTrainer: Object,
     },
-    created() {
-        console.log(this.singleTrainer.expiring_date)
+    mounted() {
     }
 
 }
@@ -47,11 +40,11 @@ export default {
                             <!-- <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4"> -->
                         </div>
                     </div>
-                    <!-- <div v-else>
+                    <div v-else>
                         <div class="card-img-box">
                             <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                         </div>
-                    </div> -->
+                    </div>
 
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                     <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
