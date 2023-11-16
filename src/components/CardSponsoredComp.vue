@@ -10,7 +10,7 @@ export default {
     methods: {
         slashRemover(string){
             let url = string
-            url.replace('https:/besports.netsons.org/public/storage//', "");
+            url.replace('https:/besports.netsons.org/public/storage//', "_");
             console.log(url);
             return url;
         }
