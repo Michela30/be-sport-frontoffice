@@ -8,6 +8,10 @@ export default {
         }
     },
     methods: {
+        slashRemover(link){
+            console.log(link.replace('/', ''));
+            return link.replace('/','');
+        }
         // //function
         // getImagePath: function (image) {
         //     return new URL(image, import.meta.url).href;
@@ -35,18 +39,16 @@ export default {
                         <i class="fa-solid fa-certificate fa-flip" style="color: #04d4cd;"></i>
                     </div>
 
-                    <!-- <div v-if="singleTrainer.full_thumb_path">
+                    <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
-                            <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
+                            <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
+                            <!-- <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4"> -->
                         </div>
                     </div>
                     <div v-else>
                         <div class="card-img-box">
                             <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                         </div>
-                    </div> -->
-                    <div class="card-img-box">
-                        <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                     </div>
 
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
