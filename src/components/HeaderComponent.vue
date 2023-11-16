@@ -15,13 +15,6 @@ export default {
 }
 </script>
 
-
-
-
-    
-
-
-
 <template>
     <header>
         <div class="container-fluid d-felx justify-content-center d-inline  px-2 ">
@@ -54,12 +47,12 @@ export default {
 
                                     <li>
                                         <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
-                                            <a class="text-dark px-2" href="http://127.0.0.1:8000/login">Login</a>
+                                            <a class="text-dark px-2" href="https://besports.netsons.org/login">Login</a>
                                         </button>
                                     </li>
                                     <li>
                                         <button class="btn btn-light mx-2 px-2 py-1 rounded-4 ">
-                                            <a class="text-dark px-2" href="http://127.0.0.1:8000/register">Register</a>
+                                            <a class="text-dark px-2" href="https://besports.netsons.org/register">Register</a>
                                         </button>
                                     </li>
                                 </ul>

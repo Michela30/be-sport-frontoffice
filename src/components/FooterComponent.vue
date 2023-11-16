@@ -40,7 +40,7 @@ export default {
                                 Trainers
                             </li>
                             <li class="p-1">
-                                <a href="http://127.0.0.1:8000/login">
+                                <a href="https://besports.netsons.org/login">
                                     Admin
                                 </a>
                             </li>
