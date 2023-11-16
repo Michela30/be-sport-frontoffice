@@ -26,16 +26,16 @@ export default {
 
 <template>
     <div class="col-8 col-sm-6 col-md-4 col-lg-3 py-2">
-         <router-link :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
-            <div class="card card-sponsored rounded-4 mx-2 p-3" >
+        <router-link :to="{ name: 'show', params: { slug: singleTrainer.slug } }">
+            <div class="card card-sponsored rounded-4 mx-2 p-3">
                 <!-- div for img and absolute text -->
                 <div class="card-container">
                     <!-- badge stellina -->
                     <div class="badge">
                         <i class="fa-solid fa-certificate fa-flip" style="color: #04d4cd;"></i>
                     </div>
-    
-                    <div v-if="singleTrainer.full_thumb_path">
+
+                    <!-- <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
                             <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
                         </div>
@@ -44,8 +44,11 @@ export default {
                         <div class="card-img-box">
                             <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                         </div>
+                    </div> -->
+                    <div class="card-img-box">
+                        <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                     </div>
-    
+
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                     <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
                 </div>
@@ -67,32 +70,32 @@ export default {
                     <div v-else>
                         <strong>Email:</strong> {{ singleTrainer.user.email }}
                     </div>
-    
+
                     <div>
                         <strong>Presentation:</strong>
                         {{ singleTrainer.description }}
                     </div>
-                
-    
+
+
                     <div v-if="singleTrainer.specializations || singleTrainer.specialization_name" class="pt-2">
-                
+
                         <div class="fw-bold 2h">
                             My specializations:
                         </div>
-                    
+
                         <div class="d-flex flex-wrap d-wrap justify-content-center">
-    
-                            <div v-if="singleTrainer.specializations"  class="d-flex flex-wrap d-wrap justify-content-center">
+
+                            <div v-if="singleTrainer.specializations" class="d-flex flex-wrap d-wrap justify-content-center">
                                 <div class="single-Spec m-1 p-1" v-for="singleSpec in singleTrainer.specializations">
-                                    {{ singleSpec.name }} 
+                                    {{ singleSpec.name }}
                                 </div>
                             </div>
-    
+
                             <p v-else class="single-Spec m-1 p-1">{{ singleTrainer.specialization_name }}</p>
-    
+
                         </div>
                     </div>
-                
+
                 </div>
             </div>
         </router-link>
@@ -109,16 +112,18 @@ export default {
     color: #059c97;
     text-shadow: 1px 1px 1px #e1ebeb;
 }
+
 .card-sponsored {
     cursor: pointer;
     min-height: 100%;
     padding: 3px !important;
     border: 1px solid #04d4cd;
 
-    .card-img-box{
+    .card-img-box {
         width: auto;
         height: 200px;
-        img{
+
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
