@@ -27,16 +27,16 @@ export default {
             <div class="card rounded-4 m-2">
                 <!-- div for img and absolute text -->
                 <div class="card-container">
-                    <div v-if="singleTrainer.full_thumb_path">
+                    <!-- <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
                             <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
                         </div>
+                    </div> -->
+                    <div class="card-img-box">
+                        <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                     </div>
-                    <div v-else>
-                        <div class="card-img-box">
-                            <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
-                        </div>
-                    </div>
+                    <!-- <div v-else>
+                    </div> -->
 
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                     <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>

@@ -8,10 +8,10 @@ export default {
         }
     },
     methods: {
-        slashRemover(string){
-            // accrocco che rimuove il percorso davanti all'imagine https: etc
-            return string.substr(45, 65);
-        }
+        // slashRemover(string){
+        //     // accrocco che rimuove il percorso davanti all'imagine https: etc
+        //     return string.substr(45, 65);
+        // }
     },
     props: {
         singleTrainer: Object,
@@ -36,8 +36,8 @@ export default {
 
                     <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
-                            <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
-                            <!-- <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4"> -->
+                            <!-- <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4"> -->
+                            <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
                         </div>
                     </div>
                     <div v-else>
