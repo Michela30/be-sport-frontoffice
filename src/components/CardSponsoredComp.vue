@@ -43,8 +43,6 @@ export default {
 
                     <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
-                            <!-- <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4"> -->
-                            <!-- <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4"> -->
                             <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
                         </div>
                     </div>
