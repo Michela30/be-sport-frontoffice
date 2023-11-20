@@ -32,16 +32,14 @@ export default {
                 <div class="card-container">
                     <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
-                            <h1>if</h1>
                             <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
                         </div>
                     </div>
-                    <!-- <div v-else>
+                    <div v-else>
                         <div class="card-img-box">
-                            <h1>else</h1>
-                            <img :src="slashRemover(singleTrainer.picture)" class="rounded card-img-top" alt="...">
+                            <img src="https://2csolution.it/wp-content/themes/consultix/images/no-image-found-360x260.png" class="rounded card-img-top" alt="...">
                         </div>
-                    </div> -->
+                    </div>
 
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>
                     <h5 class="card-title  my-surname">{{ singleTrainer.surname }}</h5>
