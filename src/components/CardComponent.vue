@@ -11,6 +11,8 @@ export default {
          slashRemover(string) {
             if (string.startsWith("/img-trainers/")  ) {
                 return string.replace('/', '');                
+            } else {
+                return string
             }
         }
     },
