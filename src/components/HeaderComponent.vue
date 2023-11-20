@@ -33,12 +33,11 @@ export default {
                             </ul>
                             <span class="navbar-text">
                                 <ul class="d-flex justify-content-end ">
-                                    <li>
+                                    <!-- <li>
                                         <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
-                                            <!--💢 qua ci va inserito il parametro di ricerca stringa vuota per il search -->
                                             <router-link class="text-dark" :to="{ name: 'search', params: { spec: ' ' } }">Search</router-link>
                                         </button>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <button class="btn btn-light mx-2 px-3 py-1 rounded-4">
                                             <a class="text-dark px-2" href="#faq">Faq</a>
