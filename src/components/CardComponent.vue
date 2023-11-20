@@ -8,9 +8,9 @@ export default {
         }
     },
     methods: {
-        slashRemover(string) {
-            // accrocco che rimuove il percorso davanti all'imagine https: etc
-            return string.substr(45, 65);
+         slashRemover(string) {
+            return string.replace('/', '');
+            // perché non funziona sul link ?
         }
     },
     props: {
@@ -27,15 +27,17 @@ export default {
             <div class="card rounded-4 m-2">
                 <!-- div for img and absolute text -->
                 <div class="card-container">
-                    <!-- <div v-if="singleTrainer.full_thumb_path">
+                    <div v-if="singleTrainer.full_thumb_path">
                         <div class="card-img-box">
+                            <h1>if</h1>
                             <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
                         </div>
-                    </div> -->
-                    <div class="card-img-box">
-                        <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
                     </div>
                     <!-- <div v-else>
+                        <div class="card-img-box">
+                            <h1>else</h1>
+                            <img :src="slashRemover(singleTrainer.picture)" class="rounded card-img-top" alt="...">
+                        </div>
                     </div> -->
 
                     <h5 class="card-title my-name">{{ singleTrainer.name }}</h5>

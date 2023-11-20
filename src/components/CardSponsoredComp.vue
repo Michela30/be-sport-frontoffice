@@ -11,7 +11,10 @@ export default {
         // slashRemover(string){
         //     // accrocco che rimuove il percorso davanti all'imagine https: etc
         //     return string.substr(45, 65);
-        // }
+        // },
+        slashRemover(string){
+            return string.replace('/','');
+        }
     },
     props: {
         singleTrainer: Object,
@@ -34,15 +37,18 @@ export default {
                         <i class="fa-solid fa-certificate fa-flip" style="color: #04d4cd;"></i>
                     </div>
 
-                    <div v-if="singleTrainer.full_thumb_path">
+                    <div v-if="singleTrainer.full_thumb_path.startsWith('https://besports.netsons.org/')">
                         <div class="card-img-box">
+                        <h1>if</h1>
                             <!-- <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4"> -->
-                            <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4">
+                            <!-- <img :src="singleTrainer.full_thumb_path" class="card-img-top rounded-4"> -->
+                            <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top rounded-4">
                         </div>
                     </div>
                     <div v-else>
+                        <h1>else</h1>
                         <div class="card-img-box">
-                            <img :src="singleTrainer.picture" class="rounded card-img-top" alt="...">
+                            <img :src="slashRemover(singleTrainer.picture)" class="rounded card-img-top" alt="...">
                         </div>
                     </div>
 
