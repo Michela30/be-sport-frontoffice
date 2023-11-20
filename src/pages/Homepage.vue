@@ -29,6 +29,13 @@ export default {
         }
     },
     methods: {
+        slashRemover(string) {
+            if (string.startsWith("/img-trainers/")) {
+                return string.replace('/', '');
+            } else {
+                return string
+            }
+        },
         searchSpec() {
             this.foundSpecs = [];
             this.store.allSpecs.forEach((singleSpecs, i) => {
@@ -132,11 +139,11 @@ export default {
                                 <div class="col-auto ">
                                     <div class="img-box ">
                                         <div class="my-img" v-if="singleTrainer.full_thumb_path">
-                                            <img :src="singleTrainer.full_thumb_path" class="my-img">
+                                            <img :src="slashRemover(singleTrainer.full_thumb_path)" class="my-img">
                                         </div>
-                                        <div v-else class="my-img">
+                                        <!-- <div v-else class="my-img">
                                             <img :src="singleTrainer.picture" class="rounded my-img" alt="...">
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                 </div>
