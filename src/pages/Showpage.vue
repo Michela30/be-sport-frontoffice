@@ -31,6 +31,13 @@ export default {
         }
     },
     methods: {
+         slashRemover(string) {
+            if (string.startsWith("/img-trainers/")) {
+                return string.replace('/', '');
+            } else {
+                return string
+            }
+        },
 
         getDate(objDate) {
             let today = new Date();
@@ -152,12 +159,12 @@ export default {
                         <div class=" w-50 ">
                             <div class="d-flex justify-content-center" v-if="singleTrainer.full_thumb_path">
                                 <div class="">
-                                    <img :src="singleTrainer.full_thumb_path" class="card-img-top imgWrapper ">
+                                    <img :src="slashRemover(singleTrainer.full_thumb_path)" class="card-img-top imgWrapper ">
                                 </div>
                             </div>
                             <div v-else>
                                 <div class="">
-                                    <img :src="singleTrainer.picture" class="rounded card-img-top imgWrapper " alt="...">
+                                    <img src="https://2csolution.it/wp-content/themes/consultix/images/no-image-found-360x260.png" class="rounded card-img-top imgWrapper " alt="...">
                                 </div>
 
                             </div>
