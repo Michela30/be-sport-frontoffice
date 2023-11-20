@@ -9,8 +9,9 @@ export default {
     },
     methods: {
          slashRemover(string) {
-            return string.replace('/', '');
-            // perché non funziona sul link ?
+            if (string.startsWith("/img-trainers/")  ) {
+                return string.replace('/', '');                
+            }
         }
     },
     props: {
